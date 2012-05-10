@@ -30,10 +30,10 @@
         {
             this.onButton = new System.Windows.Forms.Button();
             this.offButton = new System.Windows.Forms.Button();
-            this.deviceIDLabel = new System.Windows.Forms.Label();
+            this.deviceCodeLabel = new System.Windows.Forms.Label();
             this.dimLabel = new System.Windows.Forms.Label();
             this.dimButton = new System.Windows.Forms.Button();
-            this.deviceIDEdit = new System.Windows.Forms.TextBox();
+            this.deviceCodeEdit = new System.Windows.Forms.TextBox();
             this.dimEdit = new System.Windows.Forms.TextBox();
             this.dimUnitLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -58,14 +58,14 @@
             this.offButton.UseVisualStyleBackColor = true;
             this.offButton.Click += new System.EventHandler(this.OffButton_Click);
             // 
-            // deviceIDLabel
+            // deviceCodeLabel
             // 
-            this.deviceIDLabel.AutoSize = true;
-            this.deviceIDLabel.Location = new System.Drawing.Point(12, 9);
-            this.deviceIDLabel.Name = "deviceIDLabel";
-            this.deviceIDLabel.Size = new System.Drawing.Size(58, 13);
-            this.deviceIDLabel.TabIndex = 2;
-            this.deviceIDLabel.Text = "Device-ID:";
+            this.deviceCodeLabel.AutoSize = true;
+            this.deviceCodeLabel.Location = new System.Drawing.Point(12, 9);
+            this.deviceCodeLabel.Name = "deviceCodeLabel";
+            this.deviceCodeLabel.Size = new System.Drawing.Size(72, 13);
+            this.deviceCodeLabel.TabIndex = 2;
+            this.deviceCodeLabel.Text = "Device Code:";
             // 
             // dimLabel
             // 
@@ -86,19 +86,19 @@
             this.dimButton.UseVisualStyleBackColor = true;
             this.dimButton.Click += new System.EventHandler(this.DimButton_Click);
             // 
-            // deviceIDEdit
+            // deviceCodeEdit
             // 
-            this.deviceIDEdit.Location = new System.Drawing.Point(76, 6);
-            this.deviceIDEdit.Name = "deviceIDEdit";
-            this.deviceIDEdit.Size = new System.Drawing.Size(100, 20);
-            this.deviceIDEdit.TabIndex = 6;
-            this.deviceIDEdit.Text = "1001";
+            this.deviceCodeEdit.Location = new System.Drawing.Point(90, 6);
+            this.deviceCodeEdit.Name = "deviceCodeEdit";
+            this.deviceCodeEdit.Size = new System.Drawing.Size(86, 20);
+            this.deviceCodeEdit.TabIndex = 6;
+            this.deviceCodeEdit.Text = "1001";
             // 
             // dimEdit
             // 
-            this.dimEdit.Location = new System.Drawing.Point(78, 68);
+            this.dimEdit.Location = new System.Drawing.Point(90, 68);
             this.dimEdit.Name = "dimEdit";
-            this.dimEdit.Size = new System.Drawing.Size(73, 20);
+            this.dimEdit.Size = new System.Drawing.Size(61, 20);
             this.dimEdit.TabIndex = 7;
             this.dimEdit.Text = "10";
             // 
@@ -118,10 +118,10 @@
             this.ClientSize = new System.Drawing.Size(184, 127);
             this.Controls.Add(this.dimUnitLabel);
             this.Controls.Add(this.dimEdit);
-            this.Controls.Add(this.deviceIDEdit);
+            this.Controls.Add(this.deviceCodeEdit);
             this.Controls.Add(this.dimButton);
             this.Controls.Add(this.dimLabel);
-            this.Controls.Add(this.deviceIDLabel);
+            this.Controls.Add(this.deviceCodeLabel);
             this.Controls.Add(this.offButton);
             this.Controls.Add(this.onButton);
             this.Name = "MainWindow";
@@ -136,10 +136,10 @@
 
         private System.Windows.Forms.Button onButton;
         private System.Windows.Forms.Button offButton;
-        private System.Windows.Forms.Label deviceIDLabel;
+        private System.Windows.Forms.Label deviceCodeLabel;
         private System.Windows.Forms.Label dimLabel;
         private System.Windows.Forms.Button dimButton;
-        private System.Windows.Forms.TextBox deviceIDEdit;
+        private System.Windows.Forms.TextBox deviceCodeEdit;
         private System.Windows.Forms.TextBox dimEdit;
         private System.Windows.Forms.Label dimUnitLabel;
     }

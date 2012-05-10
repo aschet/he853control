@@ -79,7 +79,7 @@ namespace HE853Util
         {
             string name = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
             
-            Console.WriteLine("Usage: " + name + " <COMMAND> <DEVICE_ID>");
+            Console.WriteLine("Usage: " + name + " <COMMAND> <DEVICE_CODE>");
             Console.WriteLine();
             Console.WriteLine("<COMMAND> := ON | OFF | 0..100");
             Console.WriteLine("<DEVICE_CODE> := 1..6000");
