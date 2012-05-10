@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HE853App.Properties {
+namespace HE853Util.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace HE853App.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("HE853App.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("HE853Util.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -60,9 +60,9 @@ namespace HE853App.Properties {
             }
         }
         
-        internal static System.Drawing.Icon HE853App {
+        internal static System.Drawing.Icon HE853Util {
             get {
-                object obj = ResourceManager.GetObject("HE853App", resourceCulture);
+                object obj = ResourceManager.GetObject("HE853Util", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
