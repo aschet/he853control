@@ -81,7 +81,7 @@ namespace HE853Util
             
             Console.WriteLine("Usage: " + name + " <COMMAND> <DEVICE_CODE>");
             Console.WriteLine();
-            Console.WriteLine("<COMMAND> := ON | OFF | 0..100");
+            Console.WriteLine("<COMMAND> := ON | OFF | 1..100");
             Console.WriteLine("<DEVICE_CODE> := 1..6000");
             Console.WriteLine();
             Console.WriteLine("The device code has to programmed to a receiver first.");

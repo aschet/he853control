@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.onButton = new System.Windows.Forms.Button();
             this.offButton = new System.Windows.Forms.Button();
             this.deviceCodeLabel = new System.Windows.Forms.Label();
@@ -124,6 +125,7 @@
             this.Controls.Add(this.deviceCodeLabel);
             this.Controls.Add(this.offButton);
             this.Controls.Add(this.onButton);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainWindow";
             this.Text = "HE853";
             this.Load += new System.EventHandler(this.HE853ControlWindow_Load);
