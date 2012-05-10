@@ -35,21 +35,21 @@ namespace HE853App
         private void OnButton_Click(object sender, EventArgs e)
         {
             this.onButton.Enabled = false;
-            this.Notify(this.device.On(this.GetDeviceID()));
+            this.Notify(this.device.On(this.GetDeviceCode()));
             this.onButton.Enabled = true;
         }
 
         private void OffButton_Click(object sender, EventArgs e)
         {
             this.offButton.Enabled = false;
-            this.Notify(this.device.Off(this.GetDeviceID()));
+            this.Notify(this.device.Off(this.GetDeviceCode()));
             this.offButton.Enabled = true;
         }
 
         private void DimButton_Click(object sender, EventArgs e)
         {
             this.dimButton.Enabled = false;
-            this.Notify(this.device.Dim(this.GetDeviceID(), int.Parse(this.dimEdit.Text)));
+            this.Notify(this.device.Dim(this.GetDeviceCode(), int.Parse(this.dimEdit.Text)));
             this.dimButton.Enabled = true;
         }
 
@@ -67,9 +67,9 @@ namespace HE853App
             }
         }
 
-        private int GetDeviceID()
+        private int GetDeviceCode()
         {
-            return int.Parse(this.deviceIDEdit.Text);
+            return int.Parse(this.deviceCodeEdit.Text);
         }
     }
 }
