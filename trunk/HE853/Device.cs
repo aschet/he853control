@@ -98,7 +98,7 @@ namespace HE853
                 this.readHandle = PInvoke.CreateFile(devicePath, PInvoke.GenericRead, PInvoke.FileFlagOverlapped);
                 if (this.readHandle == IntPtr.Zero)
                 {
-                    this.Close();
+                    this.CloseUnlocked();
                 }
                 else
                 {
@@ -107,7 +107,7 @@ namespace HE853
 
                     if (this.writeHandle == IntPtr.Zero)
                     {
-                        this.Close();
+                        this.CloseUnlocked();
                     }
                 }
             }
@@ -210,7 +210,7 @@ namespace HE853
             bool result = this.SetOutputReport(buf);
             if (!result)
             {
-                result = this.Open();
+                result = this.OpenUnlocked();
             }
 
             return result;
