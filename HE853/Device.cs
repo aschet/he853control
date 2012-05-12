@@ -34,10 +34,62 @@ namespace HE853
 
         public bool Open()
         {
-            this.Close();
+            bool result = false;
+            lock (this)
+            {
+                result = this.OpenUnlocked();
+            }
+
+            return result;
+        }
+
+        public void Close()
+        {
+            lock (this)
+            {
+                this.CloseUnlocked();
+            }
+        }
+
+        public bool On(int deviceCode)
+        {
+            bool result = false;
+            lock (this)
+            {
+                result = this.SendTextCommand(deviceCode, Command.On);
+            }
+
+            return result;
+        }
+
+        public bool Off(int deviceCode)
+        {
+            bool result = false;
+            lock (this)
+            {
+                result = this.SendTextCommand(deviceCode, Command.Off);
+            }
+
+            return result;
+        }
+
+        public bool Dim(int deviceCode, int percent)
+        {
+            bool result = false;
+            lock (this)
+            {
+                result = this.SendTextCommand(deviceCode, Convert.ToString(percent));
+            }
+
+            return result;
+        }
+
+        private bool OpenUnlocked()
+        {
+            this.CloseUnlocked();
 
             string devicePath = string.Empty;
-            
+
             PInvoke.GetHIDHandle(0x4d9, 0x1357, ref this.hidHandle, ref devicePath);
             if (this.hidHandle != IntPtr.Zero)
             {
@@ -63,20 +115,11 @@ namespace HE853
             return this.hidHandle != IntPtr.Zero;
         }
 
-        public bool On(int deviceCode)
+        private void CloseUnlocked()
         {
-            return this.SendTextCommand(deviceCode, Command.On);
-        }
-
-        public bool Off(int deviceCode)
-        {
-            return this.SendTextCommand(deviceCode, Command.Off);
-        }
-
-        public bool Dim(int deviceCode, int percent)
-        {
-            
-            return this.SendTextCommand(deviceCode, Convert.ToString(percent));
+            PInvoke.CloseHandle(ref this.readHandle);
+            PInvoke.CloseHandle(ref this.writeHandle);
+            PInvoke.CloseHandle(ref this.hidHandle);        
         }
 
         private bool SendTextCommand(int deviceCode, string commandString)
@@ -171,13 +214,6 @@ namespace HE853
             }
 
             return result;
-        }
-
-        private void Close()
-        {
-            PInvoke.CloseHandle(ref this.readHandle);
-            PInvoke.CloseHandle(ref this.writeHandle);
-            PInvoke.CloseHandle(ref this.hidHandle);
         }
     }
 }
