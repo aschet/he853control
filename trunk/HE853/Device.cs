@@ -20,8 +20,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 namespace HE853
 {
     using System;
+    using System.Runtime.InteropServices;
 
-    public sealed class Device
+    [ComVisible(true), GuidAttribute("D4A99D66-CAB0-40A9-A288-AED3BDBF6092")]
+    [ProgId("HE853.Device")]
+    [ClassInterface(ClassInterfaceType.None)]
+    public sealed class Device : MarshalByRefObject, IDevice
     {
         private int outputReportByteLength = 0;
         private IntPtr hidHandle = IntPtr.Zero;
