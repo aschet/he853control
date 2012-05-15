@@ -8,7 +8,7 @@
     {
         public Installer()
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
             ServiceProcessInstaller process = new ServiceProcessInstaller();
             process.Account = ServiceAccount.LocalSystem;
