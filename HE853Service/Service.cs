@@ -19,31 +19,23 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 namespace HE853Service
 {
-    using System.Runtime.Remoting;
-    using System.Runtime.Remoting.Channels;
-    using System.Runtime.Remoting.Channels.Ipc;
     using System.ServiceProcess;
     
     public partial class Service : ServiceBase
-    {
-        private HE853.Device device = new HE853.Device();
-        
+    {        
         public Service()
         {
-            InitializeComponent();
+            this.InitializeComponent();
+
+            HE853.RPC.RegisterServer();        
         }
 
         protected override void OnStart(string[] args)
         {
-            this.device.Open();
-
-            ChannelServices.RegisterChannel(new IpcChannel("HE853"), true);
-            RemotingConfiguration.RegisterWellKnownServiceType(typeof(HE853.Device), "Device", WellKnownObjectMode.Singleton);
         }
 
         protected override void OnStop()
         {
-            this.device.Close();
         }
     }
 }

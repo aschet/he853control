@@ -25,9 +25,24 @@ namespace HE853App
     internal static class Program
     {
         [STAThread]
-        private static void Main()
+        private static void Main(string[] args)
         {
-            Application.Run(new MainWindow());
+            bool useService;
+            ParseArgs(args, out useService);
+            Application.Run(new MainWindow(useService));
+        }
+
+        private static void ParseArgs(string[] args, out bool useService)
+        {
+            useService = false;
+            
+            if (args.Length >= 1)
+            {
+                if (args[0] == "-service")
+                {
+                    useService = true;
+                }
+            }
         }
     }
 }

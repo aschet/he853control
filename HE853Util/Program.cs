@@ -29,31 +29,29 @@ namespace HE853Util
             Console.WriteLine("Home Easy HE853 Control Utility by Thomas Ascher");
             Console.WriteLine();
             
-            if (args.Length < 2)
+            string command;
+            int dim;
+            int deviceCode;
+            bool useService;
+
+            if (!ParseArgs(args, out command, out dim, out deviceCode, out useService))
             {
-                PrintUsage();
                 return;
             }
 
-            string command = args[0];
-            int dim = 0;
-            if (!(command == "ON" || command == "OFF" || int.TryParse(command, out dim)))
-            {
-                PrintUsage();
-                return;
-            }
+            IDevice device = CreateDevice(useService);
 
-            int deviceCode = 0;
-            if (!int.TryParse(args[1], out deviceCode))
+            try
             {
-                PrintUsage();
-                return;
+                if (!device.Open())
+                {
+                    Console.WriteLine("The device is not attached or in use!");
+                    return;
+                }
             }
-
-            Device device = new Device();
-            if (!device.Open())
+            catch (Exception)
             {
-                Console.WriteLine("The device is not attached or in use!");
+                Console.WriteLine("The service does not respond!");
                 return;
             }
 
@@ -71,18 +69,76 @@ namespace HE853Util
                 result = device.Dim(deviceCode, dim);
             }
 
+            device.Close();
+
             if (!result)
+            {
                 Console.WriteLine("Error during command send!");
+            }
+        }
+
+        private static bool ParseArgs(string[] args, out string command, out int dim, out int deviceCode, out bool useService)
+        {
+            command = string.Empty;
+            dim = 0;
+            deviceCode = 0;
+            useService = false;
+            
+            if (args.Length < 2)
+            {
+                PrintUsage();
+                return false;
+            }
+
+            command = args[0];
+            if (!(command == "ON" || command == "OFF" || int.TryParse(command, out dim)))
+            {
+                PrintUsage();
+                return false;
+            }
+
+            if (!int.TryParse(args[1], out deviceCode))
+            {
+                PrintUsage();
+                return false;
+            }
+
+            if (args.Length >= 3)
+            {
+                if (args[2] == "-service")
+                {
+                    useService = true;
+                }
+            }
+
+            return true;
+        }
+
+        private static IDevice CreateDevice(bool useService)
+        {
+            IDevice device = null;
+
+            if (useService)
+            {
+                RPC.RegisterClient();
+                device = RPC.GetInstance();
+            }
+            else
+            {
+                device = new Device();
+            }
+
+            return device;
         }
 
         private static void PrintUsage()
         {
             string name = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
-            
-            Console.WriteLine("Usage: " + name + " <COMMAND> <DEVICE_CODE>");
+
+            Console.WriteLine("Usage: " + name + " <command> <device_code> [-service]");
             Console.WriteLine();
-            Console.WriteLine("<COMMAND> := ON | OFF | 1..100");
-            Console.WriteLine("<DEVICE_CODE> := 1..6000");
+            Console.WriteLine("<command> := ON | OFF | 1..100");
+            Console.WriteLine("<device_code> := 1..6000");
             Console.WriteLine();
             Console.WriteLine("The device code has to programmed to a receiver first.");
             Console.WriteLine("To program the code hold the learn button on the receiver for");
