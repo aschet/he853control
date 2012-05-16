@@ -1,15 +1,14 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("HE853ControlApp")]
+[assembly: AssemblyTitle("HE853.App")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("HE853ControlApp")]
+[assembly: AssemblyProduct("HE853.App")]
 [assembly: AssemblyCopyright("© 2012 by Thomas Ascher")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

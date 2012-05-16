@@ -8,8 +8,8 @@
     <ProjectGuid>{61A080F3-60D2-4841-9319-EF6A9C7B5BC9}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HE853Service</RootNamespace>
-    <AssemblyName>HE853Service</AssemblyName>
+    <RootNamespace>HE853.App.Service</RootNamespace>
+    <AssemblyName>HE853.Service</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>

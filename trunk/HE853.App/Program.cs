@@ -1,5 +1,5 @@
 ﻿/*
-Home Easy HE853 Control Application
+Home Easy HE853 Control
 Copyright (C) 2012 Thomas Ascher
 
 This program is free software; you can redistribute it and/or
@@ -17,7 +17,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-namespace HE853App
+namespace HE853.App
 {
     using System;
     using System.Windows.Forms;
