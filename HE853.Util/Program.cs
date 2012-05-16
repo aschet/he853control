@@ -20,7 +20,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 namespace HE853.Util
 {
     using System;
-    using HE853;
 
     public class Program
     {        
@@ -82,7 +81,7 @@ namespace HE853.Util
             command = string.Empty;
             dim = 0;
             deviceCode = 0;
-            useService = false;
+            useService = RPC.HasServiceArg(args);
             
             if (args.Length < 2)
             {
@@ -101,14 +100,6 @@ namespace HE853.Util
             {
                 PrintUsage();
                 return false;
-            }
-
-            if (args.Length >= 3)
-            {
-                if (args[2] == "-service")
-                {
-                    useService = true;
-                }
             }
 
             return true;
@@ -135,7 +126,7 @@ namespace HE853.Util
         {
             string name = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
 
-            Console.WriteLine("Usage: " + name + " <command> <device_code> [-service]");
+            Console.WriteLine("Usage: " + name + " <command> <device_code> [/service]");
             Console.WriteLine();
             Console.WriteLine("<command> := ON | OFF | 1..100");
             Console.WriteLine("<device_code> := 1..6000");

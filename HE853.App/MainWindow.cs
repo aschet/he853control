@@ -21,7 +21,6 @@ namespace HE853.App
 {
     using System;
     using System.Windows.Forms;
-    using HE853.App;
 
     public partial class MainWindow : Form
     {
@@ -55,7 +54,7 @@ namespace HE853.App
             this.dimButton.Enabled = true;
         }
 
-        private void HE853ControlWindow_Load(object sender, EventArgs e)
+        private void MainWindow_Load(object sender, EventArgs e)
         {
             try
             {

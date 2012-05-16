@@ -27,22 +27,7 @@ namespace HE853.App
         [STAThread]
         private static void Main(string[] args)
         {
-            bool useService;
-            ParseArgs(args, out useService);
-            Application.Run(new MainWindow(useService));
-        }
-
-        private static void ParseArgs(string[] args, out bool useService)
-        {
-            useService = false;
-            
-            if (args.Length >= 1)
-            {
-                if (args[0] == "-service")
-                {
-                    useService = true;
-                }
-            }
+            Application.Run(new MainWindow(RPC.HasServiceArg(args)));
         }
     }
 }
