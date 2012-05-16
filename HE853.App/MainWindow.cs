@@ -1,5 +1,5 @@
 ﻿/*
-Home Easy HE853 Control Application
+Home Easy HE853 Control
 Copyright (C) 2012 Thomas Ascher
 
 This program is free software; you can redistribute it and/or
