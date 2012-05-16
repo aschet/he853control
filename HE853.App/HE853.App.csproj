@@ -107,6 +107,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\HE853App.ico" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\HE853.RPC\HE853.RPC.csproj">
       <Project>{9E0798BC-7005-4064-947E-3A6291233C80}</Project>
       <Name>HE853.RPC</Name>
@@ -115,9 +118,6 @@
       <Project>{540C7AC8-6B11-4814-A22C-84580686B8ED}</Project>
       <Name>HE853</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\HE853App.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -27,7 +27,12 @@ namespace HE853.App
         [STAThread]
         private static void Main(string[] args)
         {
-            Application.Run(new MainWindow(RPC.HasServiceArg(args)));
+            if (RPC.HasServiceArg(args))
+            {
+                RPC.RegisterClient();
+            }
+            
+            Application.Run(new MainWindow());
         }
     }
 }

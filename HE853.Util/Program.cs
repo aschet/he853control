@@ -38,7 +38,12 @@ namespace HE853.Util
                 return;
             }
 
-            IDevice device = CreateDevice(useService);
+            if (useService)
+            {
+                RPC.RegisterClient();
+            }
+
+            Device device = new Device();
 
             try
             {
@@ -103,23 +108,6 @@ namespace HE853.Util
             }
 
             return true;
-        }
-
-        private static IDevice CreateDevice(bool useService)
-        {
-            IDevice device = null;
-
-            if (useService)
-            {
-                RPC.RegisterClient();
-                device = RPC.GetInstance();
-            }
-            else
-            {
-                device = new Device();
-            }
-
-            return device;
         }
 
         private static void PrintUsage()

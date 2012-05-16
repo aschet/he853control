@@ -24,13 +24,11 @@ namespace HE853.App
 
     public partial class MainWindow : Form
     {
-        private IDevice device;
+        private Device device = new Device();
 
-        public MainWindow(bool useService)
+        public MainWindow()
         {
             this.InitializeComponent();
-            this.device = this.CreateDevice(useService);
-            this.useServiceCheckBox.Checked = useService;
         }
 
         private void OnButton_Click(object sender, EventArgs e)
@@ -80,23 +78,6 @@ namespace HE853.App
         private int GetDeviceCode()
         {
             return int.Parse(this.deviceCodeEdit.Text);
-        }
-
-        private IDevice CreateDevice(bool useService)
-        {
-            IDevice device = null;
-
-            if (useService)
-            {
-                RPC.RegisterClient();
-                device = RPC.GetInstance();
-            }
-            else
-            {
-                device = new Device();
-            }
-
-            return device;
         }
     }
 }
