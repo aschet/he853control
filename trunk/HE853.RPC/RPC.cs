@@ -49,12 +49,8 @@ namespace HE853
         public static void RegisterClient()
         {
             IpcClientChannel channel = new IpcClientChannel();
-            ChannelServices.RegisterChannel(channel, true);            
-        }
-
-        public static IDevice GetInstance()
-        {
-            return (IDevice)Activator.GetObject(typeof(Device), "ipc://" + ChannelName + "/" + InterfaceName);
+            ChannelServices.RegisterChannel(channel, true);
+            RemotingConfiguration.RegisterWellKnownClientType(typeof(HE853.Device), "ipc://" + ChannelName + "/" + InterfaceName);
         }
 
         public static bool HasServiceArg(string[] args)
