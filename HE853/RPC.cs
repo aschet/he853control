@@ -49,7 +49,7 @@ namespace HE853
         public static void RegisterClient()
         {
             IpcClientChannel channel = new IpcClientChannel();
-            ChannelServices.RegisterChannel(channel, true);            
+            ChannelServices.RegisterChannel(channel, false);            
         }
 
         public static IDevice GetInstance()
