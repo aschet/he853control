@@ -1,4 +1,4 @@
-﻿namespace HE853App
+﻿namespace HE853.App
 {
     partial class MainWindow
     {

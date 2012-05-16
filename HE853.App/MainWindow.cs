@@ -17,11 +17,11 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-namespace HE853App
+namespace HE853.App
 {
     using System;
     using System.Windows.Forms;
-    using HE853;
+    using HE853.App;
 
     public partial class MainWindow : Form
     {

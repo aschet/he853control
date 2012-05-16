@@ -1,4 +1,4 @@
-﻿namespace HE853Service
+﻿namespace HE853.Service
 {
     partial class Service
     {

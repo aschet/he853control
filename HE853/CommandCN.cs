@@ -1,5 +1,5 @@
 ﻿/*
-Home Easy HE853 Control Library
+Home Easy HE853 Control
 Copyright (C) 2012 Thomas Ascher
 
 This library is free software; you can redistribute it and/or

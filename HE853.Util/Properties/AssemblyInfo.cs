@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("HE853Util")]
+[assembly: AssemblyTitle("HE853.Util")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("HE853Util")]
+[assembly: AssemblyProduct("HE853.Util")]
 [assembly: AssemblyCopyright("© 2012 by Thomas Ascher")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
