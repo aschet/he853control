@@ -56,5 +56,20 @@ namespace HE853
         {
             return (IDevice)Activator.GetObject(typeof(Device), "ipc://" + ChannelName + "/" + InterfaceName);
         }
+
+        public static bool HasServiceArg(string[] args)
+        {
+            bool has = false;
+
+            foreach (string arg in args)
+            {
+                if (arg == "/service")
+                {
+                    has = true;
+                }
+            }
+
+            return has;
+        }
     }
 }
