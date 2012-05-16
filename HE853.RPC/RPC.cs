@@ -1,5 +1,5 @@
 ﻿/*
-Home Easy HE853 Control Library
+Home Easy HE853 Control
 Copyright (C) 2012 Thomas Ascher
 
 This library is free software; you can redistribute it and/or
@@ -42,14 +42,14 @@ namespace HE853
             BinaryClientFormatterSinkProvider clientProvider = new BinaryClientFormatterSinkProvider();
             BinaryServerFormatterSinkProvider serverProvider = new BinaryServerFormatterSinkProvider();
 
-            ChannelServices.RegisterChannel(new IpcChannel(properties, clientProvider, serverProvider), false);
+            ChannelServices.RegisterChannel(new IpcChannel(properties, clientProvider, serverProvider), true);
             RemotingConfiguration.RegisterWellKnownServiceType(typeof(HE853.Device), InterfaceName, WellKnownObjectMode.Singleton);
         }
 
         public static void RegisterClient()
         {
             IpcClientChannel channel = new IpcClientChannel();
-            ChannelServices.RegisterChannel(channel, false);            
+            ChannelServices.RegisterChannel(channel, true);            
         }
 
         public static IDevice GetInstance()
