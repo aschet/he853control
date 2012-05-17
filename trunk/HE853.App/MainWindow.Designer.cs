@@ -37,7 +37,6 @@
             this.deviceCodeEdit = new System.Windows.Forms.TextBox();
             this.dimEdit = new System.Windows.Forms.TextBox();
             this.dimUnitLabel = new System.Windows.Forms.Label();
-            this.useServiceCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // onButton
@@ -113,23 +112,11 @@
             this.dimUnitLabel.TabIndex = 8;
             this.dimUnitLabel.Text = "%";
             // 
-            // useServiceCheckBox
-            // 
-            this.useServiceCheckBox.AutoSize = true;
-            this.useServiceCheckBox.Enabled = false;
-            this.useServiceCheckBox.Location = new System.Drawing.Point(15, 123);
-            this.useServiceCheckBox.Name = "useServiceCheckBox";
-            this.useServiceCheckBox.Size = new System.Drawing.Size(84, 17);
-            this.useServiceCheckBox.TabIndex = 9;
-            this.useServiceCheckBox.Text = "Use Service";
-            this.useServiceCheckBox.UseVisualStyleBackColor = true;
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(184, 152);
-            this.Controls.Add(this.useServiceCheckBox);
+            this.ClientSize = new System.Drawing.Size(184, 124);
             this.Controls.Add(this.dimUnitLabel);
             this.Controls.Add(this.dimEdit);
             this.Controls.Add(this.deviceCodeEdit);
@@ -157,6 +144,5 @@
         private System.Windows.Forms.TextBox deviceCodeEdit;
         private System.Windows.Forms.TextBox dimEdit;
         private System.Windows.Forms.Label dimUnitLabel;
-        private System.Windows.Forms.CheckBox useServiceCheckBox;
     }
 }
