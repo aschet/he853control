@@ -25,7 +25,6 @@ namespace HE853
     internal sealed class PInvoke
     {
         public const int FileFlagOverlapped = 0x40000000;
-        public const uint GenericRead = 0x80000000;
         public const uint GenericWrite = 0x40000000;
 
         public static void CloseHandle(ref IntPtr handle)
@@ -47,10 +46,10 @@ namespace HE853
             return CreateFile(fileName, desiredAccess, 0x3, ref security, 0x3, flagsAndAttributes, IntPtr.Zero);
         }
 
-        public static bool GetHIDHandle(short vendorID, short productID, ref IntPtr hidHandle, ref string devicePath)
+        public static string GetHIDDevicePath(short vendorID, short productID)
         {
-            hidHandle = IntPtr.Zero;
-            devicePath = string.Empty;
+            IntPtr hidHandle = IntPtr.Zero;
+            string devicePath = string.Empty;
 
             string[] paths = GetHIDDevicePaths();
             foreach (string path in paths)
@@ -59,38 +58,19 @@ namespace HE853
 
                 if (hidHandle != IntPtr.Zero)
                 {
-                    if (IsHIDProduct(hidHandle, 0x4D9, 0x1357))
+                    bool isHIDProduct = IsHIDProduct(hidHandle, 0x4D9, 0x1357);
+                    CloseHandle(ref hidHandle);
+
+                    if (isHIDProduct)
                     {
                         devicePath = path;
                         break;
                     }
-                    else
-                    {
-                        CloseHandle(ref hidHandle);
-                    }
                 }
             }
 
-            return hidHandle != IntPtr.Zero;
+            return devicePath;
         }
-
-        public static int GetHIDOutputReportByteLenght(IntPtr hidHandle)
-        {
-            IntPtr preparsedData = IntPtr.Zero;
-            if (HidD_GetPreparsedData(hidHandle, ref preparsedData) == 0)
-            {
-                return 0;
-            }
-
-            HIDPCaps capabilities = new HIDPCaps();
-            HidP_GetCaps(preparsedData, ref capabilities);
-
-            HidD_FreePreparsedData(ref preparsedData);
-            return capabilities.OutputReportByteLength;
-        }
-
-        [DllImport("hid.dll")]
-        public static extern bool HidD_FlushQueue(IntPtr hidDeviceObject);
 
         [DllImport("hid.dll")]
         public static extern bool HidD_SetOutputReport(IntPtr hidDeviceObject, ref byte reportBuffer, int reportBufferLength);
@@ -156,15 +136,6 @@ namespace HE853
         [DllImport("hid.dll")]
         private static extern int HidD_GetAttributes(IntPtr hidDeviceObject, ref HIDDAttributes atributes);
 
-        [DllImport("hid.dll")]
-        private static extern int HidD_GetPreparsedData(IntPtr hidDeviceObject, ref IntPtr preparsedData);
-
-        [DllImport("hid.dll")]
-        private static extern int HidD_FreePreparsedData(ref IntPtr preparsedData);
-
-        [DllImport("hid.dll")]
-        private static extern int HidP_GetCaps(IntPtr preparsedData, ref HIDPCaps capabilities);
-
         [DllImport("setupapi.dll")]
         private static extern int SetupDiEnumDeviceInterfaces(IntPtr deviceInfoSet, IntPtr deviceInfoData, ref Guid interfaceClassGuid, int memberIndex, ref SPDeviceInterfaceData deviceInterfaceData);
 
@@ -183,28 +154,6 @@ namespace HE853
             public int Length;
             public IntPtr SecurityDescriptor;
             public int InheritHandle;
-        }
-
-        [StructLayout(LayoutKind.Sequential)]
-        private struct HIDPCaps
-        {
-            public short Usage;
-            public short UsagePage;
-            public short InputReportByteLength;
-            public short OutputReportByteLength;
-            public short FeatureReportByteLength;
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 17)]
-            public short[] Reserved;
-            public short NumberLinkCollectionNodes;
-            public short NumberInputButtonCaps;
-            public short NumberInputValueCaps;
-            public short NumberInputDataIndices;
-            public short NumberOutputButtonCaps;
-            public short NumberOutputValueCaps;
-            public short NumberOutputDataIndices;
-            public short NumberFeatureButtonCaps;
-            public short NumberFeatureValueCaps;
-            public short NumberFeatureDataIndices;
         }
 
         [StructLayout(LayoutKind.Sequential)]
