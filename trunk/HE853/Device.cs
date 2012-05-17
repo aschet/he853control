@@ -105,7 +105,7 @@ namespace HE853
 
         private bool SendTextCommand(int deviceCode, string commandString)
         {
-            bool result = this.GetStatus();
+            bool result = this.TestStatus();
             if (result)
             {
                 result = this.SendCommand(this.commandCN.Build(deviceCode, commandString));
@@ -182,7 +182,7 @@ namespace HE853
             return false;
         }
 
-        private bool GetStatus()
+        private bool TestStatus()
         {
             byte[] buf = new byte[8];
             buf[0] = 6;
