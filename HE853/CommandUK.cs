@@ -23,14 +23,14 @@ namespace HE853
     {
         public CommandUK()
         {
-            StartBitHTime = 320;
-            StartBitLTime = 9700;
+            StartBitHTime = 32;
+            StartBitLTime = 970;
             EndBitHTime = 0;
             EndBitLTime = 0;
-            DataBit0HTime = 320;
-            DataBit0LTime = 960;
-            DataBit1HTime = 960;
-            DataBit1LTime = 320;
+            DataBit0HTime = 32;
+            DataBit0LTime = 96;
+            DataBit1HTime = 96;
+            DataBit1LTime = 32;
             DataBitCount = 24;
             FrameCount = 18;
         }

@@ -23,14 +23,14 @@ namespace HE853
     {
         public CommandEU()
         {
-            StartBitHTime = 260;
-            StartBitLTime = 8600;
+            StartBitHTime = 26;
+            StartBitLTime = 860;
             EndBitHTime = 0;
             EndBitLTime = 0;
-            DataBit0HTime = 260;
-            DataBit0LTime = 260;
-            DataBit1HTime = 260;
-            DataBit1LTime = 1300;
+            DataBit0HTime = 26;
+            DataBit0LTime = 26;
+            DataBit1HTime = 26;
+            DataBit1LTime = 130;
             DataBitCount = 57;
             FrameCount = 7;
         }
