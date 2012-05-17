@@ -27,9 +27,6 @@ namespace HE853
     [ClassInterface(ClassInterfaceType.None)]
     public sealed class Device : MarshalByRefObject, IDevice
     {
-        private int outputReportByteLength = 0;
-        private IntPtr hidHandle = IntPtr.Zero;
-        private IntPtr readHandle = IntPtr.Zero;
         private IntPtr writeHandle = IntPtr.Zero;
 
         private CommandCN commandCN = new CommandCN();
@@ -92,38 +89,18 @@ namespace HE853
         {
             this.CloseUnlocked();
 
-            string devicePath = string.Empty;
-
-            PInvoke.GetHIDHandle(0x4d9, 0x1357, ref this.hidHandle, ref devicePath);
-            if (this.hidHandle != IntPtr.Zero)
+            string devicePath = PInvoke.GetHIDDevicePath(0x4d9, 0x1357);
+            if (devicePath.Length != 0)
             {
-                this.outputReportByteLength = PInvoke.GetHIDOutputReportByteLenght(this.hidHandle);
-
-                this.readHandle = PInvoke.CreateFile(devicePath, PInvoke.GenericRead, PInvoke.FileFlagOverlapped);
-                if (this.readHandle == IntPtr.Zero)
-                {
-                    this.CloseUnlocked();
-                }
-                else
-                {
-                    this.writeHandle = PInvoke.CreateFile(devicePath, PInvoke.GenericWrite);
-                    PInvoke.HidD_FlushQueue(this.readHandle);
-
-                    if (this.writeHandle == IntPtr.Zero)
-                    {
-                        this.CloseUnlocked();
-                    }
-                }
+                this.writeHandle = PInvoke.CreateFile(devicePath, PInvoke.GenericWrite);
             }
 
-            return this.hidHandle != IntPtr.Zero;
+            return this.writeHandle != IntPtr.Zero;
         }
 
         private void CloseUnlocked()
         {
-            PInvoke.CloseHandle(ref this.readHandle);
-            PInvoke.CloseHandle(ref this.writeHandle);
-            PInvoke.CloseHandle(ref this.hidHandle);        
+            PInvoke.CloseHandle(ref this.writeHandle);     
         }
 
         private bool SendTextCommand(int deviceCode, string commandString)
@@ -187,9 +164,9 @@ namespace HE853
 
         private bool SetOutputReport(byte[] binaryCommandPart)
         {
-            if (this.readHandle != IntPtr.Zero && this.writeHandle != IntPtr.Zero && this.outputReportByteLength > 0)
+            if (this.writeHandle != IntPtr.Zero)
             {
-                byte[] outputBuffer = new byte[this.outputReportByteLength];
+                byte[] outputBuffer = new byte[binaryCommandPart.Length + 1];
                 outputBuffer[0] = 0;
                 for (int count = 0; count < 8; ++count)
                 {
