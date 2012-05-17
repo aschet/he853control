@@ -116,38 +116,28 @@ namespace HE853
             Guid guid = Guid.Empty;
             HidD_GetHidGuid(ref guid);
 
-            bool done = false;
             int index = 0;
             IntPtr deviceInfoSet = SetupDiGetClassDevs(ref guid, null, IntPtr.Zero, 0x12);
 
-            do
+            SPDeviceInterfaceData deviceInterfaceData = new SPDeviceInterfaceData();
+            deviceInterfaceData.Size = Marshal.SizeOf(deviceInterfaceData);
+            
+            while (SetupDiEnumDeviceInterfaces(deviceInfoSet, IntPtr.Zero, ref guid, index, ref deviceInterfaceData) != 0)
             {
-                SPDeviceInterfaceData deviceInterfaceData = new SPDeviceInterfaceData();
-                deviceInterfaceData.Size = Marshal.SizeOf(deviceInterfaceData);
-
-                if (SetupDiEnumDeviceInterfaces(deviceInfoSet, IntPtr.Zero, ref guid, index, ref deviceInterfaceData) != 0)
-                {
-                    /* BUG: The SetupDiGetDeviceInterfaceDetail API is a bitch concerning PInvoke with
-                       different platform configurations or Any CPU configuration.
-                       This is a hack to make it at least work with x86 configuration. */
+                /* BUG: The SetupDiGetDeviceInterfaceDetail API is a bitch concerning PInvoke with
+                    different platform configurations or Any CPU configuration.
+                    This is a hack to make it at least work with x86 configuration. */
                     
-                    int bufferSize = 0;
-                    SPDeviceInterfaceDetailData deviceInterfaceDetailData = new SPDeviceInterfaceDetailData();
-                    SPDeviceInterfaceDetailDataFake fake = new SPDeviceInterfaceDetailDataFake();
-                    deviceInterfaceDetailData.Size = Marshal.SizeOf(fake);
-                    SetupDiGetDeviceInterfaceDetail(deviceInfoSet, ref deviceInterfaceData, ref deviceInterfaceDetailData, 2048, ref bufferSize, IntPtr.Zero);
+                int bufferSize = 0;
+                SPDeviceInterfaceDetailData deviceInterfaceDetailData = new SPDeviceInterfaceDetailData();
+                SPDeviceInterfaceDetailDataFake fake = new SPDeviceInterfaceDetailDataFake();
+                deviceInterfaceDetailData.Size = Marshal.SizeOf(fake);
+                SetupDiGetDeviceInterfaceDetail(deviceInfoSet, ref deviceInterfaceData, ref deviceInterfaceDetailData, 2048, ref bufferSize, IntPtr.Zero);
 
-                    Array.Resize(ref paths, paths.Length + 1);
-                    paths[paths.Length - 1] = deviceInterfaceDetailData.DevicePath;
-                }
-                else
-                {
-                    done = true;
-                }
-
+                Array.Resize(ref paths, paths.Length + 1);
+                paths[paths.Length - 1] = deviceInterfaceDetailData.DevicePath;
                 ++index;
             }
-            while (!done);
 
             SetupDiDestroyDeviceInfoList(deviceInfoSet);
 
