@@ -20,8 +20,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 namespace HE853
 {
     using System;
-    using System.Runtime.InteropServices; 
-    
+    using System.Runtime.InteropServices;
+
     internal sealed class PInvoke
     {
         public const int FileFlagOverlapped = 0x40000000;
@@ -101,21 +101,34 @@ namespace HE853
 
             SPDeviceInterfaceData deviceInterfaceData = new SPDeviceInterfaceData();
             deviceInterfaceData.Size = Marshal.SizeOf(deviceInterfaceData);
-            
+
             while (SetupDiEnumDeviceInterfaces(deviceInfoSet, IntPtr.Zero, ref guid, index, ref deviceInterfaceData) != 0)
             {
-                /* BUG: The SetupDiGetDeviceInterfaceDetail API is a bitch concerning PInvoke with
-                    different platform configurations or Any CPU configuration.
-                    This is a hack to make it at least work with x86 configuration. */
-                    
                 int bufferSize = 0;
-                SPDeviceInterfaceDetailData deviceInterfaceDetailData = new SPDeviceInterfaceDetailData();
-                SPDeviceInterfaceDetailDataFake fake = new SPDeviceInterfaceDetailDataFake();
-                deviceInterfaceDetailData.Size = Marshal.SizeOf(fake);
-                SetupDiGetDeviceInterfaceDetail(deviceInfoSet, ref deviceInterfaceData, ref deviceInterfaceDetailData, 2048, ref bufferSize, IntPtr.Zero);
+                SetupDiGetDeviceInterfaceDetail(deviceInfoSet, ref deviceInterfaceData, IntPtr.Zero, 0, ref bufferSize, IntPtr.Zero);
+                IntPtr deviceInterfaceDetailData = Marshal.AllocHGlobal(bufferSize);
+
+                int detailDataSize = 6;
+                if (IntPtr.Size == 8)
+                {
+                    detailDataSize = 8;
+                }
+
+                Marshal.WriteInt32(deviceInterfaceDetailData, detailDataSize);
+                SetupDiGetDeviceInterfaceDetail(deviceInfoSet, ref deviceInterfaceData, deviceInterfaceDetailData, bufferSize, ref bufferSize, IntPtr.Zero);
+
+                byte[] deviceInterfaceDetailDataManaged = new byte[bufferSize];
+                Marshal.Copy(deviceInterfaceDetailData, deviceInterfaceDetailDataManaged, 0, deviceInterfaceDetailDataManaged.Length);
+                Marshal.FreeHGlobal(deviceInterfaceDetailData);
+
+                byte[] deviceName = new byte[deviceInterfaceDetailDataManaged.Length - 4];
+                for (int i = 0; i < deviceName.Length; ++i)
+                {
+                    deviceName[i] = deviceInterfaceDetailDataManaged[i + 4];
+                }
 
                 Array.Resize(ref paths, paths.Length + 1);
-                paths[paths.Length - 1] = deviceInterfaceDetailData.DevicePath;
+                paths[paths.Length - 1] = System.Text.Encoding.Unicode.GetString(deviceName);
                 ++index;
             }
 
@@ -127,7 +140,7 @@ namespace HE853
         [DllImport("kernel32.dll")]
         private static extern int CloseHandle(IntPtr handleObject);
 
-        [DllImport("kernel32.dll", CharSet = CharSet.Auto)]
+        [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
         private static extern IntPtr CreateFile(string fileName, uint desiredAccess, uint shareMode, ref SecurityAttributes securityAttributes, int creationDisposition, uint flagsAndAttributes, IntPtr handleTemplateFile);
 
         [DllImport("hid.dll")]
@@ -142,11 +155,11 @@ namespace HE853
         [DllImport("setupapi.dll")]
         private static extern int SetupDiDestroyDeviceInfoList(IntPtr deviceInfoSet);
 
-        [DllImport("setupapi.dll", CharSet = CharSet.Auto)]
+        [DllImport("setupapi.dll", CharSet = CharSet.Unicode)]
         private static extern IntPtr SetupDiGetClassDevs(ref Guid classGuid, string enumerator, IntPtr hwndParent, int flags);
- 
-        [DllImport("setupapi.dll", CharSet = CharSet.Auto)]
-        private static extern int SetupDiGetDeviceInterfaceDetail(IntPtr deviceInfoSet, ref SPDeviceInterfaceData deviceInterfaceData, ref SPDeviceInterfaceDetailData deviceInterfaceDetailData, int deviceInterfaceDetailDataSize, ref int requiredSize, IntPtr deviceInfoData);
+
+        [DllImport("setupapi.dll", CharSet = CharSet.Unicode)]
+        private static extern int SetupDiGetDeviceInterfaceDetail(IntPtr deviceInfoSet, ref SPDeviceInterfaceData deviceInterfaceData, IntPtr deviceInterfaceDetailData, int deviceInterfaceDetailDataSize, ref int requiredSize, IntPtr deviceInfoData);
 
         [StructLayout(LayoutKind.Sequential)]
         private struct SecurityAttributes
@@ -172,22 +185,6 @@ namespace HE853
             public Guid InterfaceClassGuid;
             public int Flags;
             public IntPtr Reserved;
-        }
-
-        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto, Pack = 1)] 
-        private struct SPDeviceInterfaceDetailData
-        {
-            public int Size;
-            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 2048)] 
-            public string DevicePath;
-        }
-
-        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto, Pack = 1)] 
-        private struct SPDeviceInterfaceDetailDataFake
-        {
-            public int Size;
-            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 1)]
-            public string DevicePath;
         }
     }
 }
