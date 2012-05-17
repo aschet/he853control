@@ -51,33 +51,24 @@ namespace HE853
         {
             hidHandle = IntPtr.Zero;
             devicePath = string.Empty;
-            
-            string[] paths = new string[128];
-            if (GetHIDDevicePaths(ref paths))
+
+            string[] paths = GetHIDDevicePaths();
+            foreach (string path in paths)
             {
-                int index = 0;
-                bool found = false;
+                hidHandle = CreateFile(path, 0);
 
-                do
+                if (hidHandle != IntPtr.Zero)
                 {
-                    hidHandle = CreateFile(paths[index], 0);
-
-                    if (hidHandle != IntPtr.Zero)
+                    if (IsHIDProduct(hidHandle, 0x4D9, 0x1357))
                     {
-                        if (IsHIDProduct(hidHandle, 0x4D9, 0x1357))
-                        {
-                            devicePath = paths[index];
-                            found = true;
-                        }
-                        else
-                        {
-                            CloseHandle(ref hidHandle);
-                        }
+                        devicePath = path;
+                        break;
                     }
-
-                    ++index;
+                    else
+                    {
+                        CloseHandle(ref hidHandle);
+                    }
                 }
-                while (!found && index != paths.Length);
             }
 
             return hidHandle != IntPtr.Zero;
@@ -119,12 +110,12 @@ namespace HE853
             return false;
         }
 
-        private static bool GetHIDDevicePaths(ref string[] devicePathName)
+        private static string[] GetHIDDevicePaths()
         {
+            string[] paths = new string[0];
             Guid guid = Guid.Empty;
             HidD_GetHidGuid(ref guid);
 
-            bool result = false;
             bool done = false;
             int index = 0;
             IntPtr deviceInfoSet = SetupDiGetClassDevs(ref guid, null, IntPtr.Zero, 0x12);
@@ -146,9 +137,8 @@ namespace HE853
                     deviceInterfaceDetailData.Size = Marshal.SizeOf(fake);
                     SetupDiGetDeviceInterfaceDetail(deviceInfoSet, ref deviceInterfaceData, ref deviceInterfaceDetailData, 2048, ref bufferSize, IntPtr.Zero);
 
-                    devicePathName[index] = deviceInterfaceDetailData.DevicePath;
-
-                    result = true;
+                    Array.Resize(ref paths, paths.Length + 1);
+                    paths[paths.Length - 1] = deviceInterfaceDetailData.DevicePath;
                 }
                 else
                 {
@@ -161,7 +151,7 @@ namespace HE853
 
             SetupDiDestroyDeviceInfoList(deviceInfoSet);
 
-            return result;
+            return paths;
         }
 
         [DllImport("kernel32.dll")]
