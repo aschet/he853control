@@ -1,0 +1,35 @@
+body
+{
+	background-color : #888888;
+    margin-left : 30px;
+	margin-right : 30px;
+}
+
+*
+{
+	color : white;
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+a
+{
+	color: #333333;
+	text-decoration: underline;
+}
+
+a:hover
+{
+	text-decoration: none;
+}
+
+pre
+{
+	font-family: Courier, "Courier New", monospace;
+	font-size: 80%
+}
+
+h1
+{
+	font-size : 200%;
+	border-bottom : solid thin;
+}
