@@ -48,25 +48,25 @@ namespace HE853
             set;
         }
 
-        protected int DataBit0HTime
+        protected byte DataBit0HTime
         {
             get;
             set;
         }
 
-        protected int DataBit0LTime
+        protected byte DataBit0LTime
         {
             get;
             set;
         }
 
-        protected int DataBit1HTime
+        protected byte DataBit1HTime
         {
             get;
             set;
         }
 
-        protected int DataBit1LTime
+        protected byte DataBit1LTime
         {
             get;
             set;
@@ -106,10 +106,10 @@ namespace HE853
             binaryCommand[0, 6] = (byte)(this.EndBitHTime & 0xff);
             binaryCommand[0, 7] = (byte)((this.EndBitLTime >> 8) & 0xff);
             binaryCommand[1, 1] = (byte)(this.EndBitLTime & 0xff);
-            binaryCommand[1, 2] = (byte)(this.DataBit0HTime & 0xff);
-            binaryCommand[1, 3] = (byte)(this.DataBit0LTime & 0xff);
-            binaryCommand[1, 4] = (byte)(this.DataBit1HTime & 0xff);
-            binaryCommand[1, 5] = (byte)(this.DataBit1LTime & 0xff);
+            binaryCommand[1, 2] = this.DataBit0HTime;
+            binaryCommand[1, 3] = this.DataBit0LTime;
+            binaryCommand[1, 4] = this.DataBit1HTime;
+            binaryCommand[1, 5] = this.DataBit1LTime;
             binaryCommand[1, 6] = this.DataBitCount;
             binaryCommand[1, 7] = this.FrameCount;
         }
