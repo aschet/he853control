@@ -502,7 +502,7 @@
                 {
                     "{9EF0B969-E518-4E46-987F-47570745A589}:_22CD649D46B348B19722693228BC76D8"
                     {
-                    "Name" = "8:Source"
+                    "Name" = "8:Source Code"
                     "AlwaysCreate" = "11:TRUE"
                     "Condition" = "8:"
                     "Transitive" = "11:FALSE"
@@ -618,7 +618,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:HE853 Control"
         "ProductCode" = "8:{DDFFFC5F-890A-4EEF-8E98-D004C085E3C5}"
-        "PackageCode" = "8:{970EB34B-07F3-43BE-8356-177B7B6F3C61}"
+        "PackageCode" = "8:{C4B2504D-76E6-4A8A-9A35-82679ADECA91}"
         "UpgradeCode" = "8:{5D5BA8E3-E724-4900-A438-A3C3EBD4E6FE}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -752,9 +752,9 @@
             "Icon" = "8:_85AE27FAD65E4571B4CAB1529DD516A3"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_8397B4A9DA3B4B9B985128D49641EA23"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_6A612A9B01E640F59BD9D21743315DB2"
             {
-            "Name" = "8:Shortcut to Source"
+            "Name" = "8:Source Code"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -1265,7 +1265,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_835FDE80299A49BFB81F16608C9443F8"
             {
-            "SourcePath" = "8:..\\HE853.Service\\obj\\Release\\HE853.Service.exe"
+            "SourcePath" = "8:..\\HE853.Service\\obj\\Debug\\HE853.Service.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_921C019BC581495DB2000BBDF396FAAD"
@@ -1293,7 +1293,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_85AE27FAD65E4571B4CAB1529DD516A3"
             {
-            "SourcePath" = "8:..\\HE853.App\\obj\\Release\\HE853.App.exe"
+            "SourcePath" = "8:..\\HE853.App\\obj\\Debug\\HE853.App.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_921C019BC581495DB2000BBDF396FAAD"
@@ -1349,7 +1349,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_9106F4A8387C49A0A7009FE62DA96193"
             {
-            "SourcePath" = "8:..\\HE853\\obj\\Release\\HE853.dll"
+            "SourcePath" = "8:..\\HE853\\obj\\Debug\\HE853.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_921C019BC581495DB2000BBDF396FAAD"
@@ -1377,7 +1377,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_B4F193A7AE4F40498A5C8CD42E36ADE3"
             {
-            "SourcePath" = "8:..\\HE853.Util\\obj\\Release\\HE853.Util.exe"
+            "SourcePath" = "8:..\\HE853.Util\\obj\\Debug\\HE853.Util.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_921C019BC581495DB2000BBDF396FAAD"
@@ -1405,7 +1405,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_B6CCCEE919D744F28FF3CD19FADF5AB9"
             {
-            "SourcePath" = "8:..\\HE853.RPC\\obj\\Release\\HE853.RPC.dll"
+            "SourcePath" = "8:..\\HE853.RPC\\obj\\Debug\\HE853.RPC.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_921C019BC581495DB2000BBDF396FAAD"
@@ -1433,7 +1433,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_C84C9716AA084C8698617637F92B5990"
             {
-            "SourcePath" = "8:..\\HE853\\obj\\Release\\HE853.dll"
+            "SourcePath" = "8:..\\HE853\\obj\\Debug\\HE853.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_5B01C3794D7D4856B6AFDAB666DA776C"
