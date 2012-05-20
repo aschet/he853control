@@ -28,13 +28,7 @@
         "Entry"
         {
         "MsmKey" = "8:_42D27502A14FE9AA3E3035454485897C"
-        "OwnerKey" = "8:_B6CCCEE919D744F28FF3CD19FADF5AB9"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_42D27502A14FE9AA3E3035454485897C"
-        "OwnerKey" = "8:_B4F193A7AE4F40498A5C8CD42E36ADE3"
+        "OwnerKey" = "8:_835FDE80299A49BFB81F16608C9443F8"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -46,7 +40,13 @@
         "Entry"
         {
         "MsmKey" = "8:_42D27502A14FE9AA3E3035454485897C"
-        "OwnerKey" = "8:_835FDE80299A49BFB81F16608C9443F8"
+        "OwnerKey" = "8:_B4F193A7AE4F40498A5C8CD42E36ADE3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_42D27502A14FE9AA3E3035454485897C"
+        "OwnerKey" = "8:_B6CCCEE919D744F28FF3CD19FADF5AB9"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -70,13 +70,13 @@
         "Entry"
         {
         "MsmKey" = "8:_83DA11EBCEC0AC386108CD6B881899DE"
-        "OwnerKey" = "8:_B4F193A7AE4F40498A5C8CD42E36ADE3"
+        "OwnerKey" = "8:_85AE27FAD65E4571B4CAB1529DD516A3"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_83DA11EBCEC0AC386108CD6B881899DE"
-        "OwnerKey" = "8:_85AE27FAD65E4571B4CAB1529DD516A3"
+        "OwnerKey" = "8:_B4F193A7AE4F40498A5C8CD42E36ADE3"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -88,6 +88,12 @@
         "Entry"
         {
         "MsmKey" = "8:_9106F4A8387C49A0A7009FE62DA96193"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_93B5A5703D4A43E8B564F8C3B9A550D9"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -130,31 +136,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C84C9716AA084C8698617637F92B5990"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_B6CCCEE919D744F28FF3CD19FADF5AB9"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_B4F193A7AE4F40498A5C8CD42E36ADE3"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_85AE27FAD65E4571B4CAB1529DD516A3"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_835FDE80299A49BFB81F16608C9443F8"
+        "OwnerKey" = "8:_42D27502A14FE9AA3E3035454485897C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -166,7 +148,31 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_42D27502A14FE9AA3E3035454485897C"
+        "OwnerKey" = "8:_835FDE80299A49BFB81F16608C9443F8"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_85AE27FAD65E4571B4CAB1529DD516A3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_B4F193A7AE4F40498A5C8CD42E36ADE3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_B6CCCEE919D744F28FF3CD19FADF5AB9"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_C84C9716AA084C8698617637F92B5990"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -347,11 +353,6 @@
             "AssemblyAsmDisplayName" = "8:HE853, Version=1.2.0.0, Culture=neutral, PublicKeyToken=c5b100a8b7cb8aff, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_42D27502A14FE9AA3E3035454485897C"
-                    {
-                    "Name" = "8:HE853.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:HE853.dll"
             "TargetName" = "8:"
@@ -398,11 +399,6 @@
             "AssemblyAsmDisplayName" = "8:HE853.RPC, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_83DA11EBCEC0AC386108CD6B881899DE"
-                    {
-                    "Name" = "8:HE853.RPC.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:HE853.RPC.dll"
             "TargetName" = "8:"
@@ -420,6 +416,26 @@
             "Register" = "3:1"
             "Exclude" = "11:TRUE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_93B5A5703D4A43E8B564F8C3B9A550D9"
+            {
+            "SourcePath" = "8:..\\HE853\\bin\\Release\\HE853.tlb"
+            "TargetName" = "8:HE853.tlb"
+            "Tag" = "8:"
+            "Folder" = "8:_921C019BC581495DB2000BBDF396FAAD"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:2"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C4B3F85041A941EFB481422A4FBD7C97"
@@ -1265,7 +1281,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_835FDE80299A49BFB81F16608C9443F8"
             {
-            "SourcePath" = "8:..\\HE853.Service\\obj\\Debug\\HE853.Service.exe"
+            "SourcePath" = "8:..\\HE853.Service\\obj\\Release\\HE853.Service.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_921C019BC581495DB2000BBDF396FAAD"
@@ -1293,7 +1309,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_85AE27FAD65E4571B4CAB1529DD516A3"
             {
-            "SourcePath" = "8:..\\HE853.App\\obj\\Debug\\HE853.App.exe"
+            "SourcePath" = "8:..\\HE853.App\\obj\\Release\\HE853.App.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_921C019BC581495DB2000BBDF396FAAD"
@@ -1349,7 +1365,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_9106F4A8387C49A0A7009FE62DA96193"
             {
-            "SourcePath" = "8:..\\HE853\\obj\\Debug\\HE853.dll"
+            "SourcePath" = "8:..\\HE853\\obj\\Release\\HE853.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_921C019BC581495DB2000BBDF396FAAD"
@@ -1377,7 +1393,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_B4F193A7AE4F40498A5C8CD42E36ADE3"
             {
-            "SourcePath" = "8:..\\HE853.Util\\obj\\Debug\\HE853.Util.exe"
+            "SourcePath" = "8:..\\HE853.Util\\obj\\Release\\HE853.Util.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_921C019BC581495DB2000BBDF396FAAD"
@@ -1405,7 +1421,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_B6CCCEE919D744F28FF3CD19FADF5AB9"
             {
-            "SourcePath" = "8:..\\HE853.RPC\\obj\\Debug\\HE853.RPC.dll"
+            "SourcePath" = "8:..\\HE853.RPC\\obj\\Release\\HE853.RPC.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_921C019BC581495DB2000BBDF396FAAD"
@@ -1433,7 +1449,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_C84C9716AA084C8698617637F92B5990"
             {
-            "SourcePath" = "8:..\\HE853\\obj\\Debug\\HE853.dll"
+            "SourcePath" = "8:..\\HE853\\obj\\Release\\HE853.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_5B01C3794D7D4856B6AFDAB666DA776C"

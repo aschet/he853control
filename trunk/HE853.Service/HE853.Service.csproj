@@ -111,10 +111,6 @@
       <Project>{9E0798BC-7005-4064-947E-3A6291233C80}</Project>
       <Name>HE853.RPC</Name>
     </ProjectReference>
-    <ProjectReference Include="..\HE853\HE853.csproj">
-      <Project>{540C7AC8-6B11-4814-A22C-84580686B8ED}</Project>
-      <Name>HE853</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
