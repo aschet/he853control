@@ -62,6 +62,7 @@ namespace HE853
                 if (arg == "/service")
                 {
                     has = true;
+                    break;
                 }
             }
 

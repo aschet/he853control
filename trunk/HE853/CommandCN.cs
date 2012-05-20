@@ -19,6 +19,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace HE853
 {
+    using System.IO;
+
     internal sealed class CommandCN : Command
     {
         private byte count = 0;
@@ -37,24 +39,22 @@ namespace HE853
             FrameCount = 7;
         }
 
-        protected override void BuildData(ref byte[,] binaryCommand, int deviceCode, string commandString)
+        protected override void BuildData(ref MemoryStream stream, int deviceCode, string commandString)
         {
-            int[] tbFx = new int[] { 0x609, 0x306, 0x803, 0xa08, 10, 0x200, 0xc02, 0x40c, 0xe04, 0x70e, 0x507, 0x105, 0xf01, 0xb0f, 0xd0b, 0x90d };
-            binaryCommand[2, 0] = 3;
-            binaryCommand[3, 0] = 4;
+            int[] seed = new int[] { 0x609, 0x306, 0x803, 0xA08, 0xA, 0x200, 0xC02, 0x40C, 0xE04, 0x70E, 0x507, 0x105, 0xF01, 0xB0F, 0xD0B, 0x90D };
             this.count = (byte)(this.count + 1);
             int[] gbuf = new int[10];
             gbuf[0] = 1;
-            gbuf[1] = (this.count << 2) & 15;
+            gbuf[1] = (this.count << 2) & 0xF;
             if (commandString != Off)
             {
                 gbuf[1] |= 2;
             }
 
-            gbuf[2] = deviceCode & 15;
-            gbuf[3] = (deviceCode >> 4) & 15;
-            gbuf[4] = (deviceCode >> 8) & 15;
-            gbuf[5] = (deviceCode >> 12) & 15;
+            gbuf[2] = deviceCode & 0xF;
+            gbuf[3] = (deviceCode >> 4) & 0xF;
+            gbuf[4] = (deviceCode >> 8) & 0xF;
+            gbuf[5] = (deviceCode >> 12) & 0xF;
             if ((commandString == On) || (commandString == Off))
             {
                 gbuf[6] = 0;
@@ -68,48 +68,44 @@ namespace HE853
 
             byte[] kbuf = new byte[7];
             int idx = gbuf[0];
-            kbuf[0] = (byte)(tbFx[idx] >> 8);
+            kbuf[0] = (byte)(seed[idx] >> 8);
             idx = gbuf[1] ^ kbuf[0];
-            kbuf[1] = (byte)(tbFx[idx] >> 8);
+            kbuf[1] = (byte)(seed[idx] >> 8);
             idx = gbuf[2] ^ kbuf[1];
-            kbuf[2] = (byte)(tbFx[idx] >> 8);
+            kbuf[2] = (byte)(seed[idx] >> 8);
             idx = gbuf[3] ^ kbuf[2];
-            kbuf[3] = (byte)(tbFx[idx] >> 8);
+            kbuf[3] = (byte)(seed[idx] >> 8);
             idx = gbuf[4] ^ kbuf[3];
-            kbuf[4] = (byte)(tbFx[idx] >> 8);
+            kbuf[4] = (byte)(seed[idx] >> 8);
             idx = gbuf[5] ^ kbuf[4];
-            kbuf[5] = (byte)(tbFx[idx] >> 8);
+            kbuf[5] = (byte)(seed[idx] >> 8);
             kbuf[6] = (byte)gbuf[6];
             byte[] cbuf = new byte[7];
             idx = kbuf[0];
-            cbuf[0] = (byte)(tbFx[idx] & 0xff);
+            cbuf[0] = (byte)(seed[idx] & 0xFF);
             idx = kbuf[1] ^ cbuf[0];
-            cbuf[1] = (byte)(tbFx[idx] & 0xff);
+            cbuf[1] = (byte)(seed[idx] & 0xFF);
             idx = kbuf[2] ^ cbuf[1];
-            cbuf[2] = (byte)(tbFx[idx] & 0xff);
+            cbuf[2] = (byte)(seed[idx] & 0xFF);
             idx = kbuf[3] ^ cbuf[2];
-            cbuf[3] = (byte)(tbFx[idx] & 0xff);
+            cbuf[3] = (byte)(seed[idx] & 0xFF);
             idx = kbuf[4] ^ cbuf[3];
-            cbuf[4] = (byte)(tbFx[idx] & 0xff);
+            cbuf[4] = (byte)(seed[idx] & 0xFF);
             idx = kbuf[5] ^ cbuf[4];
-            cbuf[5] = (byte)(tbFx[idx] & 0xff);
+            cbuf[5] = (byte)(seed[idx] & 0xFF);
             cbuf[6] = (byte)(kbuf[6] ^ 9);
-            int temp = ((((((cbuf[6] << 0x18) | (cbuf[5] << 20)) | (cbuf[4] << 0x10)) | (cbuf[3] << 12)) | (cbuf[2] << 8)) | (cbuf[1] << 4)) | cbuf[0];
-            temp = (temp >> 2) | ((temp & 3) << 0x1a);
-            binaryCommand[2, 1] = (byte)(temp >> 20);
-            binaryCommand[2, 2] = (byte)(temp >> 12);
-            binaryCommand[2, 3] = (byte)(temp >> 4);
-            binaryCommand[2, 4] = (byte)(temp << 4);
-            binaryCommand[2, 5] = 0;
-            binaryCommand[2, 6] = 0;
-            binaryCommand[2, 7] = 0;
-            binaryCommand[3, 1] = 0;
-            binaryCommand[3, 2] = 0;
-            binaryCommand[3, 3] = 0;
-            binaryCommand[3, 4] = 0;
-            binaryCommand[3, 5] = 0;
-            binaryCommand[3, 6] = 0;
-            binaryCommand[3, 7] = 0;
+            int temp = ((((((cbuf[6] << 24) | (cbuf[5] << 20)) | (cbuf[4] << 16)) | (cbuf[3] << 12)) | (cbuf[2] << 8)) | (cbuf[1] << 4)) | cbuf[0];
+            temp = (temp >> 2) | ((temp & 3) << 0x1A);
+
+            stream.WriteByte(3);
+            stream.WriteByte((byte)(temp >> 20));
+            stream.WriteByte((byte)(temp >> 12));
+            stream.WriteByte((byte)(temp >> 4));
+            stream.WriteByte((byte)(temp << 4));
+            this.WriteZero(ref stream, 3);
+
+            stream.WriteByte(4);
+            this.WriteZero(ref stream, 7);
         }
     }
 }

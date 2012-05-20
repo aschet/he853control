@@ -19,6 +19,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace HE853
 {
+    using System.IO;
+
     internal abstract class Command
     {
         public const string On = "ON";
@@ -84,34 +86,63 @@ namespace HE853
             set;
         }
 
-        public byte[,] Build(int deviceCode, string commandString)
+        public byte[] BuildStatus()
         {
-            byte[,] binaryCommand = new byte[4, 8];
-            this.BuildSpec(ref binaryCommand);
-            this.BuildData(ref binaryCommand, deviceCode, commandString);
-            return binaryCommand;
+            MemoryStream stream = new MemoryStream();
+
+            stream.WriteByte(6);
+            stream.WriteByte(1);
+            this.WriteZero(ref stream, 6);
+
+            return stream.ToArray();
         }
 
-        protected abstract void BuildData(ref byte[,] binaryCommand, int deviceCode, string commandString);
-
-        private void BuildSpec(ref byte[,] binaryCommand)
+        public byte[] Build(int deviceCode, string commandString)
         {
-            binaryCommand[0, 0] = 1;
-            binaryCommand[1, 0] = 2;
-            binaryCommand[0, 1] = (byte)((this.StartBitHTime >> 8) & 0xff);
-            binaryCommand[0, 2] = (byte)(this.StartBitHTime & 0xff);
-            binaryCommand[0, 3] = (byte)((this.StartBitLTime >> 8) & 0xff);
-            binaryCommand[0, 4] = (byte)(this.StartBitLTime & 0xff);
-            binaryCommand[0, 5] = (byte)((this.EndBitHTime >> 8) & 0xff);
-            binaryCommand[0, 6] = (byte)(this.EndBitHTime & 0xff);
-            binaryCommand[0, 7] = (byte)((this.EndBitLTime >> 8) & 0xff);
-            binaryCommand[1, 1] = (byte)(this.EndBitLTime & 0xff);
-            binaryCommand[1, 2] = this.DataBit0HTime;
-            binaryCommand[1, 3] = this.DataBit0LTime;
-            binaryCommand[1, 4] = this.DataBit1HTime;
-            binaryCommand[1, 5] = this.DataBit1LTime;
-            binaryCommand[1, 6] = this.DataBitCount;
-            binaryCommand[1, 7] = this.FrameCount;
+            MemoryStream stream = new MemoryStream();
+
+            this.BuildSpec(ref stream);
+            this.BuildData(ref stream, deviceCode, commandString);
+            this.BuildExec(ref stream);
+
+            return stream.ToArray();
+        }
+
+        protected abstract void BuildData(ref MemoryStream stream, int deviceCode, string commandString);
+
+        protected void WriteZero(ref MemoryStream stream, int count)
+        {
+            for (int i = 0; i < count; ++i)
+            {
+                stream.WriteByte(0);
+            }
+        }
+
+        private void BuildSpec(ref MemoryStream stream)
+        {
+            stream.WriteByte(1);
+            stream.WriteByte((byte)((this.StartBitHTime >> 8) & 0xff));
+            stream.WriteByte((byte)(this.StartBitHTime & 0xff));
+            stream.WriteByte((byte)((this.StartBitLTime >> 8) & 0xff));
+            stream.WriteByte((byte)(this.StartBitLTime & 0xff));
+            stream.WriteByte((byte)((this.EndBitHTime >> 8) & 0xff));
+            stream.WriteByte((byte)(this.EndBitHTime & 0xff));
+            stream.WriteByte((byte)((this.EndBitLTime >> 8) & 0xff));
+
+            stream.WriteByte(2);            
+            stream.WriteByte((byte)(this.EndBitLTime & 0xff));
+            stream.WriteByte(this.DataBit0HTime);
+            stream.WriteByte(this.DataBit0LTime);
+            stream.WriteByte(this.DataBit1HTime);
+            stream.WriteByte(this.DataBit1LTime);
+            stream.WriteByte(this.DataBitCount);
+            stream.WriteByte(this.FrameCount);
+        }
+
+        private void BuildExec(ref System.IO.MemoryStream stream)
+        {
+            stream.WriteByte(5);
+            this.WriteZero(ref stream, 7);
         }
     }
 }

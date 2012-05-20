@@ -19,6 +19,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace HE853
 {
+    using System.IO;
+
     internal sealed class CommandUK : Command
     {
         public CommandUK()
@@ -35,68 +37,53 @@ namespace HE853
             FrameCount = 18;
         }
 
-        protected override void BuildData(ref byte[,] binaryCommand, int deviceCode, string commandString)
+        protected override void BuildData(ref MemoryStream stream, int deviceCode, string commandString)
         {
-            binaryCommand[2, 0] = 3;
-            binaryCommand[3, 0] = 4;
-            ushort address = this.UKGetAddress(deviceCode);
-            byte buf = 20;
+            stream.WriteByte(3);
+
+            ushort address = this.EncodeDeviceCode(deviceCode);
+            stream.WriteByte((byte)((address >> 8) & 0xFF));
+            stream.WriteByte((byte)(address & 0xFF));
+            
+            byte command = 20;
             if (commandString == On)
             {
-                buf = (byte)(buf | 1);
+                command = (byte)(command | 1);
             }
 
-            binaryCommand[2, 1] = (byte)((address >> 8) & 0xff);
-            binaryCommand[2, 2] = (byte)(address & 0xff);
-            binaryCommand[2, 3] = buf;
-            binaryCommand[2, 4] = 0;
-            binaryCommand[2, 5] = 0;
-            binaryCommand[2, 6] = 0;
-            binaryCommand[2, 7] = 0;
-            binaryCommand[3, 1] = 0;
-            binaryCommand[3, 2] = 0;
-            binaryCommand[3, 3] = 0;
-            binaryCommand[3, 4] = 0;
-            binaryCommand[3, 5] = 0;
-            binaryCommand[3, 6] = 0;
-            binaryCommand[3, 7] = 0;
+            stream.WriteByte(command);
+            this.WriteZero(ref stream, 4);
+
+            stream.WriteByte(4);
+            this.WriteZero(ref stream, 7);
         }
 
-        private ushort UKGetAddress(int deviceCode)
+        private ushort EncodeDeviceCode(int deviceCode)
         {
-            int[] buf = new int[8];
-            for (int i = 0; i < 8; ++i)
+            int[] encodingBuffer = new int[8];
+            for (int i = 0; i < encodingBuffer.Length; ++i)
             {
-                buf[i] = deviceCode % 3;
+                encodingBuffer[i] = deviceCode % 3;
                 deviceCode /= 3;
-            }
 
-            for (int i = 0; i < 8; ++i)
-            {
-                switch (buf[i])
+                if (encodingBuffer[i] == 1)
                 {
-                    case 0:
-                        buf[i] = 0;
-                        break;
-
-                    case 1:
-                        buf[i] = 3;
-                        break;
-
-                    case 2:
-                        buf[i] = 1;
-                        break;
+                    encodingBuffer[i] = 3;
+                }
+                else if (encodingBuffer[i] == 2)
+                {
+                    encodingBuffer[i] = 1;
                 }
             }
 
-            ushort temp = 0;
-            for (int i = 7; i >= 0; --i)
+            ushort encodedDeviceCode = 0;
+            for (int i = (encodingBuffer.Length - 1); i >= 0; --i)
             {
-                temp = (ushort)(temp << 2);
-                temp = (ushort)(temp | ((ushort)buf[i]));
+                encodedDeviceCode = (ushort)(encodedDeviceCode << 2);
+                encodedDeviceCode = (ushort)(encodedDeviceCode | ((ushort)encodingBuffer[i]));
             }
 
-            return temp;
+            return encodedDeviceCode;
         }
     }
 }
