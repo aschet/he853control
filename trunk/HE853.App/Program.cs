@@ -31,7 +31,8 @@ namespace HE853.App
             {
                 RPC.RegisterClient();
             }
-            
+
+            Application.EnableVisualStyles();
             Application.Run(new MainWindow());
         }
     }
