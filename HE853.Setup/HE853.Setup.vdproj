@@ -57,24 +57,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_63C2B2B9E68BC1589756041F7FBB23E9"
-        "OwnerKey" = "8:_E9414189115C471D0A6E84AEF6595B27"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_63C2B2B9E68BC1589756041F7FBB23E9"
-        "OwnerKey" = "8:_C84C9716AA084C8698617637F92B5990"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_63C2B2B9E68BC1589756041F7FBB23E9"
-        "OwnerKey" = "8:_9106F4A8387C49A0A7009FE62DA96193"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_66FCB674FCC2489984A273D070906211"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -189,6 +171,36 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_AED3B7099571088045490ACD7FB65DDE"
+        "OwnerKey" = "8:_835FDE80299A49BFB81F16608C9443F8"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_AED3B7099571088045490ACD7FB65DDE"
+        "OwnerKey" = "8:_83DA11EBCEC0AC386108CD6B881899DE"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_AED3B7099571088045490ACD7FB65DDE"
+        "OwnerKey" = "8:_B6CCCEE919D744F28FF3CD19FADF5AB9"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_AED3B7099571088045490ACD7FB65DDE"
+        "OwnerKey" = "8:_B4F193A7AE4F40498A5C8CD42E36ADE3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_AED3B7099571088045490ACD7FB65DDE"
+        "OwnerKey" = "8:_85AE27FAD65E4571B4CAB1529DD516A3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_B4F193A7AE4F40498A5C8CD42E36ADE3"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -237,36 +249,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_E9414189115C471D0A6E84AEF6595B27"
-        "OwnerKey" = "8:_83DA11EBCEC0AC386108CD6B881899DE"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_E9414189115C471D0A6E84AEF6595B27"
-        "OwnerKey" = "8:_B6CCCEE919D744F28FF3CD19FADF5AB9"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_E9414189115C471D0A6E84AEF6595B27"
-        "OwnerKey" = "8:_B4F193A7AE4F40498A5C8CD42E36ADE3"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_E9414189115C471D0A6E84AEF6595B27"
-        "OwnerKey" = "8:_85AE27FAD65E4571B4CAB1529DD516A3"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_E9414189115C471D0A6E84AEF6595B27"
-        "OwnerKey" = "8:_835FDE80299A49BFB81F16608C9443F8"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_F8412CE5BE33453DAEC14AF963FFB0CB"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -287,6 +269,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_9106F4A8387C49A0A7009FE62DA96193"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_83DA11EBCEC0AC386108CD6B881899DE"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -322,13 +310,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_83DA11EBCEC0AC386108CD6B881899DE"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E9414189115C471D0A6E84AEF6595B27"
+        "OwnerKey" = "8:_AED3B7099571088045490ACD7FB65DDE"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -622,26 +604,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_63C2B2B9E68BC1589756041F7FBB23E9"
-            {
-            "SourcePath" = "8:HE853.tlb"
-            "TargetName" = "8:HE853.tlb"
-            "Tag" = "8:"
-            "Folder" = "8:_921C019BC581495DB2000BBDF396FAAD"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:2"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_66FCB674FCC2489984A273D070906211"
             {
             "SourcePath" = "8:..\\Samples\\CPPCLI\\CPPCLI.vcxproj.filters"
@@ -933,6 +895,37 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_AED3B7099571088045490ACD7FB65DDE"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:HE853, Version=1.2.0.0, Culture=neutral, PublicKeyToken=c5b100a8b7cb8aff, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_AED3B7099571088045490ACD7FB65DDE"
+                    {
+                    "Name" = "8:HE853.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:HE853.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_921C019BC581495DB2000BBDF396FAAD"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:TRUE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BE5600CD6A8D482DB109F8CB0BBC3BB3"
             {
             "SourcePath" = "8:..\\Samples\\VB\\My Project\\Resources.Designer.vb"
@@ -1031,37 +1024,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E9414189115C471D0A6E84AEF6595B27"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:TRUE"
-            "AssemblyAsmDisplayName" = "8:HE853, Version=1.2.0.0, Culture=neutral, PublicKeyToken=c5b100a8b7cb8aff, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_E9414189115C471D0A6E84AEF6595B27"
-                    {
-                    "Name" = "8:HE853.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:HE853.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_921C019BC581495DB2000BBDF396FAAD"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:TRUE"
-            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F8412CE5BE33453DAEC14AF963FFB0CB"
@@ -1357,7 +1319,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:HE853 Control"
         "ProductCode" = "8:{DDFFFC5F-890A-4EEF-8E98-D004C085E3C5}"
-        "PackageCode" = "8:{E29B4EE5-FCAC-4417-AA7E-2DF923D64A30}"
+        "PackageCode" = "8:{0B1D2063-2C36-456D-9379-A2A8D756988F}"
         "UpgradeCode" = "8:{5D5BA8E3-E724-4900-A438-A3C3EBD4E6FE}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -1505,6 +1467,20 @@
             "Icon" = "8:"
             "Feature" = "8:"
             }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_993940BA0BB3416CB0B30AEA15B00A3F"
+            {
+            "Name" = "8:lgpl-2.1.txt"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_E209243AAF4F45AB9A87A1389145A6A6"
+            "Folder" = "8:_35396BCD97844719B50ADF99B2271D3E"
+            "WorkingFolder" = "8:_22CD649D46B348B19722693228BC76D8"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_B77B1F1FD1674363808B233481CE4CCA"
             {
             "Name" = "8:Samples"
@@ -1531,6 +1507,20 @@
             "Folder" = "8:_35396BCD97844719B50ADF99B2271D3E"
             "WorkingFolder" = "8:_921C019BC581495DB2000BBDF396FAAD"
             "Icon" = "8:_85AE27FAD65E4571B4CAB1529DD516A3"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_CA6E5BFED04F4416B57691722F03D036"
+            {
+            "Name" = "8:gpl-2.0.txt"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_445B3AA375EB48599CBE8F165008F1C7"
+            "Folder" = "8:_35396BCD97844719B50ADF99B2271D3E"
+            "WorkingFolder" = "8:_22CD649D46B348B19722693228BC76D8"
+            "Icon" = "8:"
             "Feature" = "8:"
             }
         }
@@ -1917,8 +1907,8 @@
                             "Type" = "3:15"
                             "ContextData" = "8:"
                             "Attributes" = "3:0"
-                            "Setting" = "3:1"
-                            "Value" = "8:#1258"
+                            "Setting" = "3:2"
+                            "Value" = "8:"
                             "DefaultValue" = "8:#1258"
                             "UsePlugInResources" = "11:TRUE"
                             }
