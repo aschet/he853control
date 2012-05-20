@@ -26,6 +26,8 @@ namespace HE853.Util
         public static void Main(string[] args)
         {
             Console.WriteLine("Home Easy HE853 Control Utility by Thomas Ascher");
+            Console.WriteLine("This program is licensed under the terms of the GNU GPL.");
+            Console.WriteLine("http://he853control.sourceforge.net");
             Console.WriteLine();
             
             string command;

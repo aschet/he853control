@@ -19,6 +19,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace HE853
 {
+    using System.IO;
+
     internal sealed class CommandEU : Command
     {
         public CommandEU()
@@ -35,12 +37,9 @@ namespace HE853
             FrameCount = 7;
         }
 
-        protected override void BuildData(ref byte[,] binaryCommand, int deviceCode, string commandString)
+        protected override void BuildData(ref MemoryStream stream, int deviceCode, string commandString)
         {
-            int i;
-            int[] tbFx = new int[] { 7, 11, 13, 14, 0x13, 0x15, 0x16, 0x19, 0x1a, 0x1c, 3, 5, 6, 9, 10, 12 };
-            binaryCommand[2, 0] = 3;
-            binaryCommand[3, 0] = 4;
+            int[] seed = new int[] { 7, 11, 13, 14, 0x13, 0x15, 0x16, 0x19, 0x1a, 0x1c, 3, 5, 6, 9, 10, 12 };
             byte[] buf = new byte[] { 0, (byte)((deviceCode >> 8) & 0xff), (byte)(deviceCode & 0xff), 1 };
             if (commandString == On)
             {
@@ -49,25 +48,17 @@ namespace HE853
 
             byte[] gbuf = new byte[] { (byte)(buf[0] >> 4), (byte)(buf[0] & 15), (byte)(buf[1] >> 4), (byte)(buf[1] & 15), (byte)(buf[2] >> 4), (byte)(buf[2] & 15), (byte)(buf[3] >> 4), (byte)(buf[3] & 15) };
             byte[] kbuf = new byte[8];
-            for (i = 0; i < 8; i++)
+            for (int i = 0; i < kbuf.Length; ++i)
             {
-                kbuf[i] = (byte)tbFx[gbuf[i]];
-            }
-
-            for (i = 0; i < 8; i++)
-            {
+                kbuf[i] = (byte)seed[gbuf[i]];
                 kbuf[i] = (byte)(kbuf[i] | 0x40);
-            }
-
-            for (i = 0; i < 8; i++)
-            {
                 kbuf[i] = (byte)(kbuf[i] & 0x7f);
             }
 
             kbuf[0] = (byte)(kbuf[0] | 0x80);
             ulong t64 = 0L;
             t64 = kbuf[0];
-            for (i = 1; i < 8; i++)
+            for (int i = 1; i < kbuf.Length; ++i)
             {
                 t64 = (t64 << 7) | kbuf[i];
             }
@@ -81,20 +72,19 @@ namespace HE853
             kbuf[5] = (byte)(t64 >> 0x10);
             kbuf[6] = (byte)(t64 >> 8);
             kbuf[7] = (byte)t64;
-            binaryCommand[2, 1] = kbuf[0];
-            binaryCommand[2, 2] = kbuf[1];
-            binaryCommand[2, 3] = kbuf[2];
-            binaryCommand[2, 4] = kbuf[3];
-            binaryCommand[2, 5] = kbuf[4];
-            binaryCommand[2, 6] = kbuf[5];
-            binaryCommand[2, 7] = kbuf[6];
-            binaryCommand[3, 1] = kbuf[7];
-            binaryCommand[3, 2] = 0;
-            binaryCommand[3, 3] = 0;
-            binaryCommand[3, 4] = 0;
-            binaryCommand[3, 5] = 0;
-            binaryCommand[3, 6] = 0;
-            binaryCommand[3, 7] = 0;
+
+            stream.WriteByte(3);
+            stream.WriteByte(kbuf[0]);
+            stream.WriteByte(kbuf[1]);
+            stream.WriteByte(kbuf[2]);
+            stream.WriteByte(kbuf[3]);
+            stream.WriteByte(kbuf[4]);
+            stream.WriteByte(kbuf[5]);
+            stream.WriteByte(kbuf[6]);
+
+            stream.WriteByte(4);
+            stream.WriteByte(kbuf[7]);
+            this.WriteZero(ref stream, 6);
         }
     }
 }

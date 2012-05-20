@@ -72,8 +72,10 @@ namespace HE853
             return devicePath;
         }
 
-        [DllImport("hid.dll")]
-        public static extern bool HidD_SetOutputReport(IntPtr hidDeviceObject, ref byte reportBuffer, int reportBufferLength);
+        public static bool SetHIDOutputReport(IntPtr hidDeviceObject, byte[] reportBuffer)
+        {
+            return HidD_SetOutputReport(hidDeviceObject, reportBuffer, reportBuffer.Length);
+        }
 
         private static bool IsHIDProduct(IntPtr hidHandle, short vendorID, short productID)
         {
@@ -148,6 +150,9 @@ namespace HE853
 
         [DllImport("hid.dll")]
         private static extern int HidD_GetAttributes(IntPtr hidDeviceObject, ref HIDDAttributes atributes);
+
+        [DllImport("hid.dll")]
+        private static extern bool HidD_SetOutputReport(IntPtr hidDeviceObject, byte[] reportBuffer, int reportBufferLength);
 
         [DllImport("setupapi.dll")]
         private static extern int SetupDiEnumDeviceInterfaces(IntPtr deviceInfoSet, IntPtr deviceInfoData, ref Guid interfaceClassGuid, int memberIndex, ref SPDeviceInterfaceData deviceInterfaceData);

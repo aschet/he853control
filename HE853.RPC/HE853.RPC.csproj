@@ -8,7 +8,7 @@
     <ProjectGuid>{9E0798BC-7005-4064-947E-3A6291233C80}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HE853.App.RPC</RootNamespace>
+    <RootNamespace>HE853.RPC</RootNamespace>
     <AssemblyName>HE853.RPC</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

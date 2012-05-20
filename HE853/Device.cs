@@ -126,69 +126,32 @@ namespace HE853
             return result;
         }
 
-        private bool SendCommand(byte[,] binaryCommand)
+        private bool SendCommand(byte[] binaryCommand)
         {
-            bool result = this.DownloadCommand(binaryCommand);
-            if (result)
-            {
-                result = this.ExecuteCommand();
-            }
-
-            return result;
-        }
-
-        private bool DownloadCommand(byte[,] binaryCommand)
-        {
+            if (this.writeHandle == IntPtr.Zero)
+                return false;
+            
             bool result = true;
-            byte[] binaryCommandPart = new byte[8];
+            const int ChunkLength = 8;
+            byte[] chunk = new byte[ChunkLength + 1];
+            chunk[0] = 0;
 
-            for (int i = 0; i < 4 && result; ++i)
+            for (int i = 0; i < (binaryCommand.Length / ChunkLength) && result; ++i)
             {
-                for (int j = 0; j < 8; ++j)
+                for (int j = 0; j < ChunkLength; ++j)
                 {
-                    binaryCommandPart[j] = binaryCommand[i, j];
+                    chunk[j + 1] = binaryCommand[(i * ChunkLength) + j];
                 }
 
-                result = this.SetOutputReport(binaryCommandPart);
+                result = result && PInvoke.SetHIDOutputReport(this.writeHandle, chunk);
             }
 
             return result;
-        }
-
-        private bool ExecuteCommand()
-        {
-            byte[] buf = new byte[8];
-            buf[0] = 5;
-            return this.SetOutputReport(buf);
-        }
-
-        private bool SetOutputReport(byte[] binaryCommandPart)
-        {
-            if (this.writeHandle != IntPtr.Zero)
-            {
-                byte[] outputBuffer = new byte[binaryCommandPart.Length + 1];
-                outputBuffer[0] = 0;
-                for (int count = 0; count < 8; ++count)
-                {
-                    outputBuffer[count + 1] = binaryCommandPart[count];
-                }
-
-                if (PInvoke.HidD_SetOutputReport(this.writeHandle, ref outputBuffer[0], outputBuffer.Length))
-                {
-                    return true;
-                }
-            }
-
-            return false;
         }
 
         private bool TestStatus()
         {
-            byte[] buf = new byte[8];
-            buf[0] = 6;
-            buf[1] = 1;
-
-            bool result = this.SetOutputReport(buf);
+            bool result = this.SendCommand(this.commandCN.BuildStatus());
             if (!result)
             {
                 result = this.OpenUnlocked();
