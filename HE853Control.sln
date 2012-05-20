@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HE853.Service", "HE853.Serv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HE853.RPC", "HE853.RPC\HE853.RPC.csproj", "{9E0798BC-7005-4064-947E-3A6291233C80}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "HE853.Setup", "HE853.Setup\HE853.Setup.vdproj", "{EB91DA58-0155-4C68-9053-FA1E07D99506}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,9 @@ Global
 		{9E0798BC-7005-4064-947E-3A6291233C80}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E0798BC-7005-4064-947E-3A6291233C80}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E0798BC-7005-4064-947E-3A6291233C80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB91DA58-0155-4C68-9053-FA1E07D99506}.Debug|Any CPU.ActiveCfg = Debug
+		{EB91DA58-0155-4C68-9053-FA1E07D99506}.Release|Any CPU.ActiveCfg = Release
+		{EB91DA58-0155-4C68-9053-FA1E07D99506}.Release|Any CPU.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
