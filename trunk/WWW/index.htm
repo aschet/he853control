@@ -41,7 +41,8 @@ Provided Tools (.NET Framework 2.0 required):
 <h2>Usage Library</h2>
 
 <p>
-The library is written in C# and provided as .NET assembly (HE853.dll) which works with x86 and x64 platform configurations.
+The library is written in C# and provided as .NET assembly (HE853.dll) which works with x86 and x64 platform configurations. Samples for C#, C++, C++&sol;CLI and Visual Basic
+are included in the package.
 </p>
 
 <h3>C# Sample</h3>
@@ -56,23 +57,6 @@ if (device.Open())
     device.On(1001);
     device.Off(1001);
     device.Close();
-}
-</pre>
-</p>
-
-<h3>C++ COM Interop Sample</h3>
-<p>
-Register HE853.dll .NET with the <a href="http://msdn.microsoft.com/en-us/library/tzat5yw6%28v=vs.80%29.aspx">Assembly Registration-Tool (Regasm.exe)</a>.
-Import the resulting type library with the #import directive and use the following code.
-</p>
-<p>
-<pre>
-HE853::IDevicePtr device(__uuidof(HE853::Device));
-if (device->Open())
-{
-  device->On(1001);
-  device->Off(1001);
-  device->Close();
 }
 </pre>
 </p>
