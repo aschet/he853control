@@ -1093,17 +1093,6 @@
                 {
                 }
             }
-            "{1525181F-901A-416C-8A58-119130FE478E}:_912484689D41464F8312FFF8780BA3B9"
-            {
-            "Name" = "8:#1916"
-            "AlwaysCreate" = "11:FALSE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Property" = "8:DesktopFolder"
-                "Folders"
-                {
-                }
-            }
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_921C019BC581495DB2000BBDF396FAAD"
             {
             "DefaultLocation" = "8:[ProgramFilesFolder][ProductName]"
@@ -1457,20 +1446,6 @@
             "Icon" = "8:"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_993940BA0BB3416CB0B30AEA15B00A3F"
-            {
-            "Name" = "8:lgpl-2.1.txt"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:_E209243AAF4F45AB9A87A1389145A6A6"
-            "Folder" = "8:_35396BCD97844719B50ADF99B2271D3E"
-            "WorkingFolder" = "8:_22CD649D46B348B19722693228BC76D8"
-            "Icon" = "8:"
-            "Feature" = "8:"
-            }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_B77B1F1FD1674363808B233481CE4CCA"
             {
             "Name" = "8:Samples"
@@ -1497,20 +1472,6 @@
             "Folder" = "8:_35396BCD97844719B50ADF99B2271D3E"
             "WorkingFolder" = "8:_921C019BC581495DB2000BBDF396FAAD"
             "Icon" = "8:_85AE27FAD65E4571B4CAB1529DD516A3"
-            "Feature" = "8:"
-            }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_CA6E5BFED04F4416B57691722F03D036"
-            {
-            "Name" = "8:gpl-2.0.txt"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:_445B3AA375EB48599CBE8F165008F1C7"
-            "Folder" = "8:_35396BCD97844719B50ADF99B2271D3E"
-            "WorkingFolder" = "8:_22CD649D46B348B19722693228BC76D8"
-            "Icon" = "8:"
             "Feature" = "8:"
             }
         }
@@ -1998,7 +1959,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_835FDE80299A49BFB81F16608C9443F8"
             {
-            "SourcePath" = "8:..\\HE853.Service\\obj\\Release\\HE853.Service.exe"
+            "SourcePath" = "8:..\\HE853.Service\\obj\\Debug\\HE853.Service.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_921C019BC581495DB2000BBDF396FAAD"
@@ -2026,7 +1987,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_85AE27FAD65E4571B4CAB1529DD516A3"
             {
-            "SourcePath" = "8:..\\HE853.App\\obj\\Release\\HE853.App.exe"
+            "SourcePath" = "8:..\\HE853.App\\obj\\Debug\\HE853.App.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_921C019BC581495DB2000BBDF396FAAD"
@@ -2082,7 +2043,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_9106F4A8387C49A0A7009FE62DA96193"
             {
-            "SourcePath" = "8:..\\HE853\\obj\\Release\\HE853.dll"
+            "SourcePath" = "8:..\\HE853\\obj\\Debug\\HE853.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_921C019BC581495DB2000BBDF396FAAD"
@@ -2110,7 +2071,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_B4F193A7AE4F40498A5C8CD42E36ADE3"
             {
-            "SourcePath" = "8:..\\HE853.Util\\obj\\Release\\HE853.Util.exe"
+            "SourcePath" = "8:..\\HE853.Util\\obj\\Debug\\HE853.Util.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_921C019BC581495DB2000BBDF396FAAD"
@@ -2138,7 +2099,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_B6CCCEE919D744F28FF3CD19FADF5AB9"
             {
-            "SourcePath" = "8:..\\HE853.RPC\\obj\\Release\\HE853.RPC.dll"
+            "SourcePath" = "8:..\\HE853.RPC\\obj\\Debug\\HE853.RPC.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_921C019BC581495DB2000BBDF396FAAD"
@@ -2166,7 +2127,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_C84C9716AA084C8698617637F92B5990"
             {
-            "SourcePath" = "8:..\\HE853\\obj\\Release\\HE853.dll"
+            "SourcePath" = "8:..\\HE853\\obj\\Debug\\HE853.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_5B01C3794D7D4856B6AFDAB666DA776C"
