@@ -22,8 +22,15 @@ namespace HE853.Util
     using System;
 
     public class Program
-    {        
-        public static void Main(string[] args)
+    {
+        public enum ExitCode : int
+        {
+            Success = 0,
+            DeviceNotFound = -1,
+            CommandFailed = -2
+        }
+
+        public static int Main(string[] args)
         {
             Console.WriteLine("Home Easy HE853 Control Utility by Thomas Ascher");
             Console.WriteLine("This program is licensed under the terms of the GNU GPL.");
@@ -37,7 +44,7 @@ namespace HE853.Util
 
             if (!ParseArgs(args, out command, out dim, out deviceCode, out useService))
             {
-                return;
+                return (int)ExitCode.Success;
             }
 
             if (useService)
@@ -52,13 +59,13 @@ namespace HE853.Util
                 if (!device.Open())
                 {
                     Console.WriteLine("The device is not attached or in use!");
-                    return;
+                    return (int)ExitCode.DeviceNotFound;
                 }
             }
             catch (Exception)
             {
                 Console.WriteLine("The service does not respond!");
-                return;
+                return (int)ExitCode.DeviceNotFound;
             }
 
             bool result = false;
@@ -80,7 +87,10 @@ namespace HE853.Util
             if (!result)
             {
                 Console.WriteLine("Error during command send!");
+                return (int)ExitCode.CommandFailed;
             }
+
+            return (int)ExitCode.Success;
         }
 
         private static bool ParseArgs(string[] args, out string command, out int dim, out int deviceCode, out bool useService)
