@@ -21,7 +21,7 @@ namespace HE853
 {
     using System.IO;
 
-    internal sealed class CommandUK : Command
+    public sealed class CommandUK : Command
     {
         public CommandUK()
         {
