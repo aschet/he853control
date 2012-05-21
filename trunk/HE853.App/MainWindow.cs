@@ -78,7 +78,7 @@ namespace HE853.App
 
         private int GetDeviceCode()
         {
-            return int.Parse(this.deviceCodeEdit.Text);
+            return Convert.ToInt32(this.deviceCodeUpDown.Value);
         }
     }
 }
