@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="CommandCNTest.cs" />
     <Compile Include="CommandEUTest.cs" />
+    <Compile Include="CommandTest.cs" />
     <Compile Include="CommandUKTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
