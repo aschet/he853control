@@ -35,8 +35,8 @@
             this.dimLabel = new System.Windows.Forms.Label();
             this.dimButton = new System.Windows.Forms.Button();
             this.deviceCodeEdit = new System.Windows.Forms.TextBox();
-            this.dimEdit = new System.Windows.Forms.TextBox();
             this.dimUnitLabel = new System.Windows.Forms.Label();
+            this.dimComboBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // onButton
@@ -95,14 +95,6 @@
             this.deviceCodeEdit.TabIndex = 1;
             this.deviceCodeEdit.Text = "1001";
             // 
-            // dimEdit
-            // 
-            this.dimEdit.Location = new System.Drawing.Point(90, 68);
-            this.dimEdit.Name = "dimEdit";
-            this.dimEdit.Size = new System.Drawing.Size(61, 20);
-            this.dimEdit.TabIndex = 5;
-            this.dimEdit.Text = "10";
-            // 
             // dimUnitLabel
             // 
             this.dimUnitLabel.AutoSize = true;
@@ -112,13 +104,31 @@
             this.dimUnitLabel.TabIndex = 6;
             this.dimUnitLabel.Text = "%";
             // 
+            // dimComboBox
+            // 
+            this.dimComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.dimComboBox.FormattingEnabled = true;
+            this.dimComboBox.Items.AddRange(new object[] {
+            "10",
+            "20",
+            "30",
+            "40",
+            "50",
+            "60",
+            "70",
+            "80"});
+            this.dimComboBox.Location = new System.Drawing.Point(90, 67);
+            this.dimComboBox.Name = "dimComboBox";
+            this.dimComboBox.Size = new System.Drawing.Size(61, 21);
+            this.dimComboBox.TabIndex = 5;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(184, 124);
+            this.Controls.Add(this.dimComboBox);
             this.Controls.Add(this.dimUnitLabel);
-            this.Controls.Add(this.dimEdit);
             this.Controls.Add(this.deviceCodeEdit);
             this.Controls.Add(this.dimButton);
             this.Controls.Add(this.dimLabel);
@@ -144,7 +154,7 @@
         private System.Windows.Forms.Label dimLabel;
         private System.Windows.Forms.Button dimButton;
         private System.Windows.Forms.TextBox deviceCodeEdit;
-        private System.Windows.Forms.TextBox dimEdit;
         private System.Windows.Forms.Label dimUnitLabel;
+        private System.Windows.Forms.ComboBox dimComboBox;
     }
 }
