@@ -118,7 +118,7 @@ namespace HE853.Util
 
             Console.WriteLine("Usage: " + name + " <command> <device_code> [/service]");
             Console.WriteLine();
-            Console.WriteLine("<command> := ON | OFF | 1..100");
+            Console.WriteLine("<command> := ON | OFF | 10..80");
             Console.WriteLine("<device_code> := 1..6000");
             Console.WriteLine();
             Console.WriteLine("The device code has to programmed to a receiver first.");

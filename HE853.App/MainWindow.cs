@@ -29,6 +29,7 @@ namespace HE853.App
         public MainWindow()
         {
             this.InitializeComponent();
+            this.dimComboBox.SelectedIndex = 0;
         }
 
         private void OnButton_Click(object sender, EventArgs e)
@@ -48,7 +49,7 @@ namespace HE853.App
         private void DimButton_Click(object sender, EventArgs e)
         {
             this.dimButton.Enabled = false;
-            this.Notify(this.device.Dim(this.GetDeviceCode(), int.Parse(this.dimEdit.Text)));
+            this.Notify(this.device.Dim(this.GetDeviceCode(), int.Parse(this.dimComboBox.Text)));
             this.dimButton.Enabled = true;
         }
 
