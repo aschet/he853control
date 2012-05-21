@@ -66,5 +66,24 @@ namespace HE853.Test
 
             CollectionAssert.AreEqual(dataExpected, data);
         }
+
+        [TestMethod()]
+        public void BuildTest()
+        {
+            byte[] dataExpected =
+            {
+                1, 0, 32, 1, 224, 0, 0, 0,
+                2, 0, 32, 96, 96, 32, 28, 7,
+                3, 37, 101, 73, 224, 0, 0, 0,
+                4, 0, 0, 0, 0, 0, 0, 0,
+                5, 0, 0, 0, 0, 0, 0, 0
+            };
+
+            CommandCN_Accessor target = new CommandCN_Accessor();
+            MemoryStream stream = new MemoryStream();
+            byte[] data = target.Build(1001, Command.On);
+
+            CollectionAssert.AreEqual(dataExpected, data);
+        }
     }
 }

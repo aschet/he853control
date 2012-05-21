@@ -45,7 +45,7 @@ namespace HE853.Test
 
         internal virtual Command_Accessor CreateCommand_Accessor()
         {
-           Command_Accessor target = new Command_Accessor(new PrivateObject(new CommandCN(), new PrivateType(typeof(Command))));
+            Command_Accessor target = new Command_Accessor(new PrivateObject(CreateCommand(), new PrivateType(typeof(Command))));
            return target;
         }
 
