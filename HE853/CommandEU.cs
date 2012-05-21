@@ -39,37 +39,36 @@ namespace HE853
 
         protected override void BuildData(ref MemoryStream stream, int deviceCode, string commandString)
         {
-            int[] seed = new int[] { 7, 11, 13, 14, 0x13, 0x15, 0x16, 0x19, 0x1a, 0x1c, 3, 5, 6, 9, 10, 12 };
-            byte[] buf = new byte[] { 0, (byte)((deviceCode >> 8) & 0xff), (byte)(deviceCode & 0xff), 1 };
+            int[] seed = new int[] { 0x7, 0xB, 0xD, 0xE, 0x13, 0x15, 0x16, 0x19, 0x1A, 0x1C, 0x3, 0x5, 0x6, 0x9, 0xA, 0xC };
+            byte[] buf = new byte[] { 0, (byte)((deviceCode >> 8) & 0xFF), (byte)(deviceCode & 0xFF), 1 };
             if (commandString == On)
             {
                 buf[3] = (byte)(buf[3] | 0x10);
             }
 
-            byte[] gbuf = new byte[] { (byte)(buf[0] >> 4), (byte)(buf[0] & 15), (byte)(buf[1] >> 4), (byte)(buf[1] & 15), (byte)(buf[2] >> 4), (byte)(buf[2] & 15), (byte)(buf[3] >> 4), (byte)(buf[3] & 15) };
+            byte[] gbuf = new byte[] { (byte)(buf[0] >> 4), (byte)(buf[0] & 0xF), (byte)(buf[1] >> 4), (byte)(buf[1] & 0xF), (byte)(buf[2] >> 4), (byte)(buf[2] & 0xF), (byte)(buf[3] >> 4), (byte)(buf[3] & 0xF) };
             byte[] kbuf = new byte[8];
             for (int i = 0; i < kbuf.Length; ++i)
             {
                 kbuf[i] = (byte)seed[gbuf[i]];
                 kbuf[i] = (byte)(kbuf[i] | 0x40);
-                kbuf[i] = (byte)(kbuf[i] & 0x7f);
+                kbuf[i] = (byte)(kbuf[i] & 0x7F);
             }
 
             kbuf[0] = (byte)(kbuf[0] | 0x80);
-            ulong t64 = 0L;
-            t64 = kbuf[0];
+            ulong t64 = kbuf[0];
             for (int i = 1; i < kbuf.Length; ++i)
             {
                 t64 = (t64 << 7) | kbuf[i];
             }
 
             t64 = t64 << 7;
-            kbuf[0] = (byte)(t64 >> 0x38);
-            kbuf[1] = (byte)(t64 >> 0x30);
+            kbuf[0] = (byte)(t64 >> 56);
+            kbuf[1] = (byte)(t64 >> 48);
             kbuf[2] = (byte)(t64 >> 40);
-            kbuf[3] = (byte)(t64 >> 0x20);
-            kbuf[4] = (byte)(t64 >> 0x18);
-            kbuf[5] = (byte)(t64 >> 0x10);
+            kbuf[3] = (byte)(t64 >> 32);
+            kbuf[4] = (byte)(t64 >> 24);
+            kbuf[5] = (byte)(t64 >> 16);
             kbuf[6] = (byte)(t64 >> 8);
             kbuf[7] = (byte)t64;
 

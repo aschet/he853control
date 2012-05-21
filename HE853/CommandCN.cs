@@ -93,9 +93,9 @@ namespace HE853
             cbuf[4] = (byte)(seed[idx] & 0xFF);
             idx = kbuf[5] ^ cbuf[4];
             cbuf[5] = (byte)(seed[idx] & 0xFF);
-            cbuf[6] = (byte)(kbuf[6] ^ 9);
+            cbuf[6] = (byte)(kbuf[6] ^ 0x9);
             int temp = ((((((cbuf[6] << 24) | (cbuf[5] << 20)) | (cbuf[4] << 16)) | (cbuf[3] << 12)) | (cbuf[2] << 8)) | (cbuf[1] << 4)) | cbuf[0];
-            temp = (temp >> 2) | ((temp & 3) << 0x1A);
+            temp = (temp >> 2) | ((temp & 0x3) << 26);
 
             stream.WriteByte(3);
             stream.WriteByte((byte)(temp >> 20));
