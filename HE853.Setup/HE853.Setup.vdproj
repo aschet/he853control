@@ -183,36 +183,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_AED3B7099571088045490ACD7FB65DDE"
-        "OwnerKey" = "8:_835FDE80299A49BFB81F16608C9443F8"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_AED3B7099571088045490ACD7FB65DDE"
-        "OwnerKey" = "8:_83DA11EBCEC0AC386108CD6B881899DE"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_AED3B7099571088045490ACD7FB65DDE"
-        "OwnerKey" = "8:_B6CCCEE919D744F28FF3CD19FADF5AB9"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_AED3B7099571088045490ACD7FB65DDE"
-        "OwnerKey" = "8:_B4F193A7AE4F40498A5C8CD42E36ADE3"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_AED3B7099571088045490ACD7FB65DDE"
-        "OwnerKey" = "8:_85AE27FAD65E4571B4CAB1529DD516A3"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_B4F193A7AE4F40498A5C8CD42E36ADE3"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -267,6 +237,36 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_EAEF212546BA8D63BD8934E09C62B98E"
+        "OwnerKey" = "8:_835FDE80299A49BFB81F16608C9443F8"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_EAEF212546BA8D63BD8934E09C62B98E"
+        "OwnerKey" = "8:_B6CCCEE919D744F28FF3CD19FADF5AB9"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_EAEF212546BA8D63BD8934E09C62B98E"
+        "OwnerKey" = "8:_B4F193A7AE4F40498A5C8CD42E36ADE3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_EAEF212546BA8D63BD8934E09C62B98E"
+        "OwnerKey" = "8:_85AE27FAD65E4571B4CAB1529DD516A3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_EAEF212546BA8D63BD8934E09C62B98E"
+        "OwnerKey" = "8:_83DA11EBCEC0AC386108CD6B881899DE"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_F8412CE5BE33453DAEC14AF963FFB0CB"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -287,12 +287,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_9106F4A8387C49A0A7009FE62DA96193"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_83DA11EBCEC0AC386108CD6B881899DE"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -328,7 +322,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_AED3B7099571088045490ACD7FB65DDE"
+        "OwnerKey" = "8:_83DA11EBCEC0AC386108CD6B881899DE"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_EAEF212546BA8D63BD8934E09C62B98E"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -786,9 +786,14 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:HE853.RPC, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:HE853.RPC, Version=1.2.0.0, Culture=neutral, PublicKeyToken=e6c4268b42973f65, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_83DA11EBCEC0AC386108CD6B881899DE"
+                    {
+                    "Name" = "8:HE853.RPC.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:HE853.RPC.dll"
             "TargetName" = "8:"
@@ -948,32 +953,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_AED3B7099571088045490ACD7FB65DDE"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:HE853, Version=1.2.0.0, Culture=neutral, PublicKeyToken=c5b100a8b7cb8aff, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                }
-            "SourcePath" = "8:HE853.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_921C019BC581495DB2000BBDF396FAAD"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:TRUE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BE5600CD6A8D482DB109F8CB0BBC3BB3"
             {
             "SourcePath" = "8:..\\Samples\\VB\\My Project\\Resources.Designer.vb"
@@ -1092,6 +1071,37 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_EAEF212546BA8D63BD8934E09C62B98E"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:HE853, Version=1.2.0.0, Culture=neutral, PublicKeyToken=c5b100a8b7cb8aff, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_EAEF212546BA8D63BD8934E09C62B98E"
+                    {
+                    "Name" = "8:HE853.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:HE853.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_921C019BC581495DB2000BBDF396FAAD"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:TRUE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F8412CE5BE33453DAEC14AF963FFB0CB"
@@ -1387,11 +1397,11 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:HE853 Control"
         "ProductCode" = "8:{DDFFFC5F-890A-4EEF-8E98-D004C085E3C5}"
-        "PackageCode" = "8:{0B1D2063-2C36-456D-9379-A2A8D756988F}"
+        "PackageCode" = "8:{AD621093-99F9-44C3-A5CB-C98493FA7398}"
         "UpgradeCode" = "8:{5D5BA8E3-E724-4900-A438-A3C3EBD4E6FE}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
-        "RemovePreviousVersions" = "11:TRUE"
+        "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
         "ProductVersion" = "8:1.2.0"
@@ -1404,8 +1414,8 @@
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:https://he853control.sourceforge.net"
-        "ARPPRODUCTICON" = "8:"
-        "ARPIconIndex" = "3:0"
+        "ARPPRODUCTICON" = "8:_85AE27FAD65E4571B4CAB1529DD516A3"
+        "ARPIconIndex" = "3:32512"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
         "TargetPlatform" = "3:0"
