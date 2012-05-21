@@ -61,6 +61,17 @@ TODO
 
 \section{Coupling Dongle with Receivers}
 
+Before a receiver react to commands of the USB dongle a specific device code has to be
+programmed to the receiver first. A device code is a number between 1 and 6000 and can
+be used by multiple receivers.
+
+To program a device code use the command line utility or the GUI application. Press the
+learn button on a receiver for about 1 second. Then send an ON command with the desired
+device code from the command line utility or the GUI application. The receiver will
+react to commands with this device code.
+
+To clear the programmed device code press the learn button on a receiver util the LED
+on the receiver starts to flash.
 
 \section{Service -- HE853.Service.exe}
 
