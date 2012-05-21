@@ -89,7 +89,7 @@ namespace HE853
         {
             this.CloseUnlocked();
 
-            string devicePath = PInvoke.GetHIDDevicePath(0x4d9, 0x1357);
+            string devicePath = PInvoke.GetHIDDevicePath(0x4D9, 0x1357);
             if (devicePath.Length != 0)
             {
                 this.writeHandle = PInvoke.CreateFile(devicePath, PInvoke.GenericWrite);
