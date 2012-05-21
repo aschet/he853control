@@ -9,6 +9,7 @@ normalheadings,
 \usepackage[english]{babel}
 \usepackage[ansinew]{inputenc}
 \usepackage{graphicx}
+\usepackage{url}
 
 \begin{document}
 
@@ -16,7 +17,6 @@ normalheadings,
 \author{Thomas Ascher}
 \maketitle
 \tableofcontents
-\frontmatter
 \mainmatter
 
 \chapter{Introduction}
@@ -32,34 +32,80 @@ Out target audience are power users and software developers who whish to extend 
 usage of the HE853 USB dongle beyond the limits of the vendor software.
 
 Most information this project is based on was gathered through reverse engineering.
-So not all details of the used communiation protocol are known and doumented.
+So not all details of the used communiation protocol are known and documented.
+
+For more information about the Home Easy home automation products please refer to
+the vendor page: \url{http://www.elro.eu/en/products/category/home_automation/home_easy/zenders2/pc_afstandsbediening_usb_dongle}
+
+For more information and the latest packages please refer to the project page:
+\url{http://he853control.sourceforge.net/}
+
+\section{Prequesites}
+For installation, usage and development Microsoft .NET Framework 2.0 has to be installed on
+your system: \url{http://go.microsoft.com/fwlink/?LinkId=131000}
+
+
+
 
 \chapter{Tools}
 
-\section{Command Line Utility}
+All tools are located in the installation directory. 
 
-\section{GUI Application}
+\section{Command Line Utility -- HE853.Util.exe}
 
-\section{Service}
+TODO
+
+\section{GUI Application -- HE853.App.exe}
+
+TODO
+
+\section{Coupling Dongle with Receivers}
+
+
+\section{Service -- HE853.Service.exe}
 
 The service HE853.Service is for advanced users. It is meant for scenare where multiple
 applications have to access the HE853 dongle concurrently. Both the utility and the
 GUI application support the \textit{/service} switch that makes them use the service
 instead of using the device directly.
 
+TODO
+
 \subsection{Configuration}
 
+TODO
+
 \subsection{Manual Installation}
+
+TODO
+
+If the service was not installed with the MSI installer
+
 To install the service you have to use Installer Tool (Installutil.exe). The service is
 configured to not start automatically per default. 
 
 
 
+
 \chapter{Development}
 
-\section{Using the Library}
+For development at least Microsoft .NET Framework 2.0 and or Visual Studio 2005 is required.
+
+\section{Using the Library -- HE853.dll}
+
+The library can be used by any .NET language by referencing the HE853.dll assembly from the
+installation directory or via COM. Please note that the assembly is compiled as Any CPU
+and works with x86 and x64 platform configurations.
+
+Visual Studio 2010 sample projects for the languages C++, C++/CLI, CSharp and Visual Basic
+are located in the installation folder in \textit{\textbackslash Samples}.
+
+Please note that the library is licensed under the term of the LGPL. This means it is
+possible to use the library in commercial applications but code changes to the library
+have to be made available on distribution.
 
 \subsection{CSharp Sample Code}
+
 \begin{verbatim}
 HE853.IDevice device = new HE853.Device();
 if (device.Open())
@@ -70,15 +116,17 @@ if (device.Open())
 }
 \end{verbatim}
 
-
-
 \section{Depolyment}
-One can simply install the HE853 Control MSI setup on a 
+The easiest method of depolyment is by installing the HE853 Control MSI setup on the target
+system. The installation performs all required steps:
 
-\subsection{Manual COM Registration}
+\begin{itemize}
+  \item Installation of HE853.dll to the global assembly cache
+	\item Registration of HE853.dll for COM usage
+	\item Registration of HE853.Service.exe
+\end{itemize}
 
-\chapter{HE853 Control Development}
-
-
+If you deploy .NET applications you can simply install or copy the HE853.dll with your application
+as private assembly.
 
 \end{document}
