@@ -6,7 +6,7 @@ normalheadings,
 ]
 {scrbook}
 
-\usepackage[ngerman]{babel}
+\usepackage[english]{babel}
 \usepackage[ansinew]{inputenc}
 \usepackage{graphicx}
 
@@ -17,11 +17,68 @@ normalheadings,
 \maketitle
 \tableofcontents
 \frontmatter
-
-%\chapter{Einleitung}
-
 \mainmatter
-\chapter{Test}
+
+\chapter{Introduction}
+
+The HE853 Control project is dedicated to create a Windows SDK for the HE853 USB
+dongle of the Home Easy home automation products since the vendor does not provide
+one.
+
+The SDK consists of GPL licensed tools and a LGPL licensed library that can be
+used from other applications.
+
+Out target audience are power users and software developers who whish to extend the
+usage of the HE853 USB dongle beyond the limits of the vendor software.
+
+Most information this project is based on was gathered through reverse engineering.
+So not all details of the used communiation protocol are known and doumented.
+
+\chapter{Tools}
+
+\section{Command Line Utility}
+
+\section{GUI Application}
+
+\section{Service}
+
+The service HE853.Service is for advanced users. It is meant for scenare where multiple
+applications have to access the HE853 dongle concurrently. Both the utility and the
+GUI application support the \textit{/service} switch that makes them use the service
+instead of using the device directly.
+
+\subsection{Configuration}
+
+\subsection{Manual Installation}
+To install the service you have to use Installer Tool (Installutil.exe). The service is
+configured to not start automatically per default. 
+
+
+
+\chapter{Development}
+
+\section{Using the Library}
+
+\subsection{CSharp Sample Code}
+\begin{verbatim}
+HE853.IDevice device = new HE853.Device();
+if (device.Open())
+{
+    device.On(1001);
+    device.Off(1001);
+    device.Close();
+}
+\end{verbatim}
+
+
+
+\section{Depolyment}
+One can simply install the HE853 Control MSI setup on a 
+
+\subsection{Manual COM Registration}
+
+\chapter{HE853 Control Development}
+
 
 
 \end{document}
