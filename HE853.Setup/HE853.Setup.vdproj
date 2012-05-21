@@ -112,13 +112,13 @@
         "Entry"
         {
         "MsmKey" = "8:_83DA11EBCEC0AC386108CD6B881899DE"
-        "OwnerKey" = "8:_B4F193A7AE4F40498A5C8CD42E36ADE3"
+        "OwnerKey" = "8:_85AE27FAD65E4571B4CAB1529DD516A3"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_83DA11EBCEC0AC386108CD6B881899DE"
-        "OwnerKey" = "8:_85AE27FAD65E4571B4CAB1529DD516A3"
+        "OwnerKey" = "8:_B4F193A7AE4F40498A5C8CD42E36ADE3"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -178,13 +178,7 @@
         "Entry"
         {
         "MsmKey" = "8:_AED3B7099571088045490ACD7FB65DDE"
-        "OwnerKey" = "8:_83DA11EBCEC0AC386108CD6B881899DE"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_AED3B7099571088045490ACD7FB65DDE"
-        "OwnerKey" = "8:_B6CCCEE919D744F28FF3CD19FADF5AB9"
+        "OwnerKey" = "8:_85AE27FAD65E4571B4CAB1529DD516A3"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -196,7 +190,13 @@
         "Entry"
         {
         "MsmKey" = "8:_AED3B7099571088045490ACD7FB65DDE"
-        "OwnerKey" = "8:_85AE27FAD65E4571B4CAB1529DD516A3"
+        "OwnerKey" = "8:_B6CCCEE919D744F28FF3CD19FADF5AB9"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_AED3B7099571088045490ACD7FB65DDE"
+        "OwnerKey" = "8:_83DA11EBCEC0AC386108CD6B881899DE"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -274,31 +274,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_83DA11EBCEC0AC386108CD6B881899DE"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C84C9716AA084C8698617637F92B5990"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_B6CCCEE919D744F28FF3CD19FADF5AB9"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_B4F193A7AE4F40498A5C8CD42E36ADE3"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_85AE27FAD65E4571B4CAB1529DD516A3"
+        "OwnerKey" = "8:_AED3B7099571088045490ACD7FB65DDE"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -310,7 +286,31 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_AED3B7099571088045490ACD7FB65DDE"
+        "OwnerKey" = "8:_85AE27FAD65E4571B4CAB1529DD516A3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_B4F193A7AE4F40498A5C8CD42E36ADE3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_B6CCCEE919D744F28FF3CD19FADF5AB9"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_C84C9716AA084C8698617637F92B5990"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_83DA11EBCEC0AC386108CD6B881899DE"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -751,11 +751,6 @@
             "AssemblyAsmDisplayName" = "8:HE853.RPC, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_83DA11EBCEC0AC386108CD6B881899DE"
-                    {
-                    "Name" = "8:HE853.RPC.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:HE853.RPC.dll"
             "TargetName" = "8:"
@@ -902,11 +897,6 @@
             "AssemblyAsmDisplayName" = "8:HE853, Version=1.2.0.0, Culture=neutral, PublicKeyToken=c5b100a8b7cb8aff, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_AED3B7099571088045490ACD7FB65DDE"
-                    {
-                    "Name" = "8:HE853.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:HE853.dll"
             "TargetName" = "8:"
@@ -1335,7 +1325,7 @@
         "ARPCONTACT" = "8:Thomas Ascher"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
-        "ARPURLINFOABOUT" = "8:http://he853control.sourceforge.net"
+        "ARPURLINFOABOUT" = "8:https://he853control.sourceforge.net"
         "ARPPRODUCTICON" = "8:"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
