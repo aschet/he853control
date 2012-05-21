@@ -25,16 +25,16 @@ namespace HE853
     {
         public CommandUK()
         {
-            StartBitHTime = 32;
-            StartBitLTime = 970;
-            EndBitHTime = 0;
-            EndBitLTime = 0;
-            DataBit0HTime = 32;
-            DataBit0LTime = 96;
-            DataBit1HTime = 96;
-            DataBit1LTime = 32;
-            DataBitCount = 24;
-            FrameCount = 18;
+            this.StartBitHTime = 32;
+            this.StartBitLTime = 970;
+            this.EndBitHTime = 0;
+            this.EndBitLTime = 0;
+            this.DataBit0HTime = 32;
+            this.DataBit0LTime = 96;
+            this.DataBit1HTime = 96;
+            this.DataBit1LTime = 32;
+            this.DataBitCount = 24;
+            this.FrameCount = 18;
         }
 
         protected override void BuildData(ref MemoryStream stream, int deviceCode, string commandString)
@@ -46,7 +46,7 @@ namespace HE853
             stream.WriteByte((byte)(address & 0xFF));
             
             byte command = 20;
-            if (commandString == On)
+            if (commandString == Command.On)
             {
                 command = (byte)(command | 1);
             }
@@ -77,7 +77,7 @@ namespace HE853
             }
 
             ushort encodedDeviceCode = 0;
-            for (int i = (encodingBuffer.Length - 1); i >= 0; --i)
+            for (int i = encodingBuffer.Length - 1; i >= 0; --i)
             {
                 encodedDeviceCode = (ushort)(encodedDeviceCode << 2);
                 encodedDeviceCode = (ushort)(encodedDeviceCode | ((ushort)encodingBuffer[i]));

@@ -27,16 +27,16 @@ namespace HE853
 
         public CommandCN()
         {
-            StartBitHTime = 32;
-            StartBitLTime = 480;
-            EndBitHTime = 0;
-            EndBitLTime = 0;
-            DataBit0HTime = 32;
-            DataBit0LTime = 96;
-            DataBit1HTime = 96;
-            DataBit1LTime = 32;
-            DataBitCount = 28;
-            FrameCount = 7;
+            this.StartBitHTime = 32;
+            this.StartBitLTime = 480;
+            this.EndBitHTime = 0;
+            this.EndBitLTime = 0;
+            this.DataBit0HTime = 32;
+            this.DataBit0LTime = 96;
+            this.DataBit1HTime = 96;
+            this.DataBit1LTime = 32;
+            this.DataBitCount = 28;
+            this.FrameCount = 7;
         }
 
         protected override void BuildData(ref MemoryStream stream, int deviceCode, string commandString)
@@ -46,7 +46,7 @@ namespace HE853
             int[] gbuf = new int[10];
             gbuf[0] = 1;
             gbuf[1] = (this.count << 2) & 0xF;
-            if (commandString != Off)
+            if (commandString != Command.Off)
             {
                 gbuf[1] |= 2;
             }
@@ -55,7 +55,7 @@ namespace HE853
             gbuf[3] = (deviceCode >> 4) & 0xF;
             gbuf[4] = (deviceCode >> 8) & 0xF;
             gbuf[5] = (deviceCode >> 12) & 0xF;
-            if ((commandString == On) || (commandString == Off))
+            if ((commandString == Command.On) || (commandString == Command.Off))
             {
                 gbuf[6] = 0;
             }
