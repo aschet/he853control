@@ -21,7 +21,7 @@ namespace HE853
 {
     using System.IO;
 
-    internal sealed class CommandCN : Command
+    public sealed class CommandCN : Command
     {
         private byte count = 0;
 

@@ -21,7 +21,7 @@ namespace HE853
 {
     using System.IO;
 
-    internal abstract class Command
+    public abstract class Command
     {
         public const string On = "ON";
         public const string Off = "OFF";
