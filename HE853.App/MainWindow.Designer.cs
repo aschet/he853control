@@ -34,9 +34,10 @@
             this.deviceCodeLabel = new System.Windows.Forms.Label();
             this.dimLabel = new System.Windows.Forms.Label();
             this.dimButton = new System.Windows.Forms.Button();
-            this.deviceCodeEdit = new System.Windows.Forms.TextBox();
             this.dimUnitLabel = new System.Windows.Forms.Label();
             this.dimComboBox = new System.Windows.Forms.ComboBox();
+            this.deviceCodeUpDown = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.deviceCodeUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // onButton
@@ -87,14 +88,6 @@
             this.dimButton.UseVisualStyleBackColor = true;
             this.dimButton.Click += new System.EventHandler(this.DimButton_Click);
             // 
-            // deviceCodeEdit
-            // 
-            this.deviceCodeEdit.Location = new System.Drawing.Point(90, 6);
-            this.deviceCodeEdit.Name = "deviceCodeEdit";
-            this.deviceCodeEdit.Size = new System.Drawing.Size(86, 20);
-            this.deviceCodeEdit.TabIndex = 1;
-            this.deviceCodeEdit.Text = "1001";
-            // 
             // dimUnitLabel
             // 
             this.dimUnitLabel.AutoSize = true;
@@ -122,14 +115,36 @@
             this.dimComboBox.Size = new System.Drawing.Size(61, 21);
             this.dimComboBox.TabIndex = 5;
             // 
+            // deviceCodeUpDown
+            // 
+            this.deviceCodeUpDown.Location = new System.Drawing.Point(90, 7);
+            this.deviceCodeUpDown.Maximum = new decimal(new int[] {
+            6000,
+            0,
+            0,
+            0});
+            this.deviceCodeUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.deviceCodeUpDown.Name = "deviceCodeUpDown";
+            this.deviceCodeUpDown.Size = new System.Drawing.Size(86, 20);
+            this.deviceCodeUpDown.TabIndex = 1;
+            this.deviceCodeUpDown.Value = new decimal(new int[] {
+            1001,
+            0,
+            0,
+            0});
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(184, 124);
+            this.Controls.Add(this.deviceCodeUpDown);
             this.Controls.Add(this.dimComboBox);
             this.Controls.Add(this.dimUnitLabel);
-            this.Controls.Add(this.deviceCodeEdit);
             this.Controls.Add(this.dimButton);
             this.Controls.Add(this.dimLabel);
             this.Controls.Add(this.deviceCodeLabel);
@@ -141,6 +156,7 @@
             this.Name = "MainWindow";
             this.Text = "HE853 Control";
             this.Load += new System.EventHandler(this.MainWindow_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.deviceCodeUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -153,8 +169,8 @@
         private System.Windows.Forms.Label deviceCodeLabel;
         private System.Windows.Forms.Label dimLabel;
         private System.Windows.Forms.Button dimButton;
-        private System.Windows.Forms.TextBox deviceCodeEdit;
         private System.Windows.Forms.Label dimUnitLabel;
         private System.Windows.Forms.ComboBox dimComboBox;
+        private System.Windows.Forms.NumericUpDown deviceCodeUpDown;
     }
 }
