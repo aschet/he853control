@@ -129,7 +129,9 @@ namespace HE853
         private bool SendCommand(byte[] binaryCommand)
         {
             if (this.writeHandle == IntPtr.Zero)
+            {
                 return false;
+            }
             
             bool result = true;
             const int ChunkLength = 8;

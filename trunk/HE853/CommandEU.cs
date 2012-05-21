@@ -25,23 +25,23 @@ namespace HE853
     {
         public CommandEU()
         {
-            StartBitHTime = 26;
-            StartBitLTime = 860;
-            EndBitHTime = 0;
-            EndBitLTime = 0;
-            DataBit0HTime = 26;
-            DataBit0LTime = 26;
-            DataBit1HTime = 26;
-            DataBit1LTime = 130;
-            DataBitCount = 57;
-            FrameCount = 7;
+            this.StartBitHTime = 26;
+            this.StartBitLTime = 860;
+            this.EndBitHTime = 0;
+            this.EndBitLTime = 0;
+            this.DataBit0HTime = 26;
+            this.DataBit0LTime = 26;
+            this.DataBit1HTime = 26;
+            this.DataBit1LTime = 130;
+            this.DataBitCount = 57;
+            this.FrameCount = 7;
         }
 
         protected override void BuildData(ref MemoryStream stream, int deviceCode, string commandString)
         {
             int[] seed = new int[] { 0x7, 0xB, 0xD, 0xE, 0x13, 0x15, 0x16, 0x19, 0x1A, 0x1C, 0x3, 0x5, 0x6, 0x9, 0xA, 0xC };
             byte[] buf = new byte[] { 0, (byte)((deviceCode >> 8) & 0xFF), (byte)(deviceCode & 0xFF), 1 };
-            if (commandString == On)
+            if (commandString == Command.On)
             {
                 buf[3] = (byte)(buf[3] | 0x10);
             }

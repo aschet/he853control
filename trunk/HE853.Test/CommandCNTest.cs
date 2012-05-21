@@ -22,10 +22,10 @@ namespace HE853.Test
     using System.IO;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    [TestClass()]
+    [TestClass]
     public class CommandCNTest
     {
-        [TestMethod()]
+        [TestMethod]
         [DeploymentItem("HE853.dll")]
         public void BuildOnTest()
         {
@@ -39,7 +39,7 @@ namespace HE853.Test
             CollectionAssert.AreEqual(dataExpected, data);
         }
 
-        [TestMethod()]
+        [TestMethod]
         [DeploymentItem("HE853.dll")]
         public void BuildOffTest()
         {
@@ -53,7 +53,7 @@ namespace HE853.Test
             CollectionAssert.AreEqual(dataExpected, data);
         }
 
-        [TestMethod()]
+        [TestMethod]
         [DeploymentItem("HE853.dll")]
         public void BuildDimTest()
         {
@@ -67,7 +67,7 @@ namespace HE853.Test
             CollectionAssert.AreEqual(dataExpected, data);
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void BuildTest()
         {
             byte[] dataExpected =
