@@ -61,8 +61,8 @@ namespace HE853
             }
             else
             {
-                int percent = byte.Parse(commandString) - 1;
-                gbuf[6] = percent;
+                string firstDigitString = commandString.Substring(0, 1);
+                gbuf[6] = byte.Parse(firstDigitString) - 1;
                 gbuf[6] |= 8;
             }
 
