@@ -51,7 +51,7 @@ Reference HE853.dll in your project and use the following code.
 </p>
 <p>
 <pre>
-HE853.Device device = new HE853.Device();
+HE853.IDevice device = new HE853.Device();
 if (device.Open())
 {
     device.On(1001);
@@ -65,11 +65,9 @@ if (device.Open())
 
 <p>
 <pre>
-Home Easy HE853 Control Utility by Thomas Ascher
-
 Usage: HE853.Util &lt;command&gt; &lt;device_code&gt;
 
-&lt;command&gt; := ON | OFF | 1..100
+&lt;command&gt; := ON | OFF | 10..80
 &lt;device_code&gt; := 1..6000
 
 The device code has to programmed to a receiver first.
@@ -78,23 +76,6 @@ about 2 seconds and send an ON command with the specific code.
 
 Example: HE853.Util ON 1001
 </pre>
-</p>
-
-<h2>Usage Service</h2>
-<p>
-The service application HE853.Service is for advanced users. It is meant when multiple
-applications have to access the HE853 dongle in a synchronized manner. Both the utility
-and the GUI application support the /service switch that makes them use the service
-instead of using the device directly. To install the service you have to use <a href="http://msdn.microsoft.com/en-us/library/50614e95%28v=vs.71%29.aspx">Installer Tool (Installutil.exe)</a>.
-The service is configured to not start automatically per default.
-</p>
-
-<h2>TODO</h2>
-<p>
-<ul>
-<li>Better source and user documentation
-<li>Make Device a singleton
-</ul>
 </p>
 
 <p>
