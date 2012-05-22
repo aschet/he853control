@@ -71,6 +71,7 @@
             this.deviceCodeLabel.Size = new System.Drawing.Size(81, 13);
             this.deviceCodeLabel.TabIndex = 0;
             this.deviceCodeLabel.Text = "Device Code:";
+            this.deviceCodeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // dimButton
             // 
