@@ -1,0 +1,87 @@
+<html>
+
+<head>
+<link rel="SHORTCUT ICON" href="HE853.ico">
+<link rel="stylesheet" type="text/css" href="style.css">
+<title>HE853 Control Project</title>
+<meta name="description" content="A library, command line application and GUI application to control the Home Easy HE853 home automation USB dongel on Windows." />
+<meta name="keywords" content="HE853, HE853 usb, home easy, home outomation, source, develop, library, .NET" />
+</head>
+
+<body>
+
+<h1>HE853 Control Project</h1>
+
+<h2>Introduction</h2>
+
+<p>
+This project is dedicated to create a set of Windows tools for the <a href="http://www.elro.eu/en/products/category/home_automation/home_easy/zenders2/pc_afstandsbediening_usb_dongle">HE853 USB dongle</a> of the
+Home Easy home automation products since the vendor does not provide an API. Most information this project is based on was gathered through reverse engineering.
+For more resources please refer to the project page: <a href="https://sourceforge.net/projects/he853control/">https://sourceforge.net/projects/he853control/</a>
+</p>
+
+<p>
+Provided Tools (.NET Framework 2.0 required):
+<ul>
+<li>HE853.dll, <a href="http://www.gnu.org/licenses/old-licenses/lgpl-2.1.en.html">LGPL</a> licensed library
+<li>HE853.Util.exe, <a href="http://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html">GPL</a> licensed command line utility
+<li>HE853.App.exe, <a href="http://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html">GPL</a> licensed simple GUI application
+<li>HE853.Service.exe, <a href="http://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html">GPL</a> licensed service
+</ul>
+</p>
+
+<p>
+<img src="shot.png">
+</p>
+
+<h2>Download</h2>
+
+<p>The current package can be obtained from the <a href="http://sourceforge.net/projects/he853control/files/">project download page</a>.</p>
+
+<h2>Usage Library</h2>
+
+<p>
+The library is written in C# and provided as .NET assembly (HE853.dll) which works with x86 and x64 platform configurations. Samples for C#, C++, C++&sol;CLI and Visual Basic
+are included in the package.
+</p>
+
+<h3>C# Sample</h3>
+<p>
+Reference HE853.dll in your project and use the following code.
+</p>
+<p>
+<pre>
+HE853.IDevice device = new HE853.Device();
+if (device.Open())
+{
+    device.On(1001);
+    device.Off(1001);
+    device.Close();
+}
+</pre>
+</p>
+
+<h2>Usage Command Line Utility</h2>
+
+<p>
+<pre>
+Usage: HE853.Util &lt;command&gt; &lt;device_code&gt;
+
+&lt;command&gt; := ON | OFF | 10..80
+&lt;device_code&gt; := 1..6000
+
+The device code has to programmed to a receiver first.
+To program the code hold the learn button on the receiver for
+about 2 seconds and send an ON command with the specific code.
+
+Example: HE853.Util ON 1001
+</pre>
+</p>
+
+<p>
+&copy; 2012 Thomas Ascher
+</p>
+
+</body>
+
+</html>
