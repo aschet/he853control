@@ -49,7 +49,14 @@ your system: \url{http://go.microsoft.com/fwlink/?LinkId=131000}
 
 \chapter{Tools}
 
-All tools are located in the installation directory. 
+All tools are located in the installation directory and support the following commands:
+
+\begin{itemize}
+	\item On: receiver will perform switch on
+	\item Off: receiver will perform switch off
+	\item Dim 10--80: reciver will perform dim to specific level if supported
+\end{itemize}
+
 
 \section{Command Line Utility -- HE853.Util.exe}
 
@@ -64,10 +71,9 @@ Example: HE853.Util ON 1001
 
 \section{GUI Application -- HE853.App.exe}
 
-TODO
-
 \includegraphics[width=100px]{gui.png}
 
+Enter a specifi device code and click the buttons to send a specific command.
 
 \section{Coupling Dongle with Receivers}
 
@@ -85,25 +91,22 @@ on the receiver starts to flash.
 
 \section{Service -- HE853.Service.exe}
 
-The service HE853.Service is for advanced users. It is meant for scenare where multiple
+The service HE853.Service is for advanced users. It is meant for scenarios where multiple
 applications have to access the HE853 dongle concurrently. Both the utility and the
 GUI application support the \textit{/service} switch that makes them use the service
 instead of using the device directly.
 
-TODO
-
 \subsection{Configuration}
 
-TODO
+The service is configured to start manually per default. This behavior has to be changed
+in the service control panel. Configure the HE853 RPC Service to start automatically and
+or start it. 
 
 \subsection{Manual Installation}
 
-TODO
+If the service was not installed with the MSI installer is has to be registered with
+the Installer Tool (Installutil.exe).
 
-If the service was not installed with the MSI installer
-
-To install the service you have to use Installer Tool (Installutil.exe). The service is
-configured to not start automatically per default. 
 
 
 
@@ -140,6 +143,10 @@ if (device.Open())
 \section{Using the RPC Library -- HE853.RPC.dll}
 
 The RPC library ist not designed for general usage yet and is not available via COM.
+It uses .NET Remoting IPC for communication. The library does only work in combination
+with the service application.
+
+Use the folloging code in combination with the RPC library:
 
 \begin{verbatim}
 HE853.RPC.RegisterClient();
@@ -164,5 +171,41 @@ system. The installation performs all required steps:
 
 If you deploy .NET applications you can simply install or copy the HE853.dll with your application
 as private assembly.
+
+
+
+
+\chapter{Support HE853 Control}
+
+You can support this project by testing, writing code or documentation and suggesting features
+and reporting bugs.
+For writing documentation a good knowledge of LaTeX is required. For writing code one should
+have knowledge of:
+
+\begin{itemize}
+	\item Visual Studio 2010 (required for development)
+	\item C\#
+	\item PInvoke and Windows API
+	\item HID Devices
+	\item Unit Tests
+\end{itemize}
+
+\section{TODOs}
+
+\begin{itemize}
+  \item Correct spelling errors in documentation
+	\item Improve user documentation
+	\item Improve source documentation (at least for public interfaces)
+	\item Better input validation in program
+	\item Rewrite code to use exceptions instead of return values
+	\item Refactor code so it is more suiteable for test driven development
+	\item Write more unit tests
+	\item Add installation path to PATH variable during installation
+	\item Make Command classes internal again, exposed now for unit tests
+	\item Test on more 32 and 64 bit platforms: XP, Vista, Windows 7, Windows 8
+	\item Implement GUI as custom control
+	\item Improve GUI application (help integration, layout, etc.)
+	\item Maybe translate the package into other languages
+\end{itemize}
 
 \end{document}
