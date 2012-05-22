@@ -53,11 +53,21 @@ All tools are located in the installation directory.
 
 \section{Command Line Utility -- HE853.Util.exe}
 
-TODO
+\includegraphics[width=300px]{cmd.png}
+
+Usage: HE853.Util \textless command\textgreater \textless device\textunderscore code\textgreater [/service]
+
+\textless command\textgreater := ON | OFF | 10..80
+\textless device\textunderscore code\textgreater := 1..6000
+
+Example: HE853.Util ON 1001
 
 \section{GUI Application -- HE853.App.exe}
 
 TODO
+
+\includegraphics[width=100px]{gui.png}
+
 
 \section{Coupling Dongle with Receivers}
 
@@ -108,16 +118,31 @@ The library can be used by any .NET language by referencing the HE853.dll assemb
 installation directory or via COM. Please note that the assembly is compiled as Any CPU
 and works with x86 and x64 platform configurations.
 
-Visual Studio 2010 sample projects for the languages C++, C++/CLI, CSharp and Visual Basic
+Visual Studio 2010 sample projects for the languages C++, C++/CLI, C\# and Visual Basic
 are located in the installation folder in \textit{\textbackslash Samples}.
 
 Please note that the library is licensed under the term of the LGPL. This means it is
 possible to use the library in commercial applications but code changes to the library
 have to be made available on distribution.
 
-\subsection{CSharp Sample Code}
+\subsection{C\# Sample Code}
 
 \begin{verbatim}
+HE853.IDevice device = new HE853.Device();
+if (device.Open())
+{
+    device.On(1001);
+    device.Off(1001);
+    device.Close();
+}
+\end{verbatim}
+
+\section{Using the RPC Library -- HE853.RPC.dll}
+
+The RPC library ist not designed for general usage yet and is not available via COM.
+
+\begin{verbatim}
+HE853.RPC.RegisterClient();
 HE853.IDevice device = new HE853.Device();
 if (device.Open())
 {
