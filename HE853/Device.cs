@@ -148,6 +148,8 @@ namespace HE853
                 result = result && PInvoke.SetHIDOutputReport(this.writeHandle, chunk);
             }
 
+            System.Threading.Thread.Sleep(10);
+
             return result;
         }
 
