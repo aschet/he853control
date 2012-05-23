@@ -40,18 +40,16 @@ namespace HE853
         protected override void BuildData(ref MemoryStream stream, int deviceCode, string commandString)
         {
             ushort address = this.EncodeDeviceCode(deviceCode);
-            stream.WriteByte((byte)((address >> 8) & 0xFF));
-            stream.WriteByte((byte)(address & 0xFF));
+            this.WriteInt(ref stream, address);
             
-            byte command = 20;
+            byte command = 0x14;
             if (commandString == Command.On)
             {
-                command = (byte)(command | 1);
+                command = (byte)(command | 0x1);
             }
 
             stream.WriteByte(command);
-            this.WriteZero(ref stream, 4);
-            this.WriteZero(ref stream, 7);
+            this.WriteZero(ref stream, 11);
         }
 
         private ushort EncodeDeviceCode(int deviceCode)

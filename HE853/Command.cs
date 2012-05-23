@@ -118,17 +118,19 @@ namespace HE853
             }
         }
 
+        protected void WriteInt(ref MemoryStream stream, int value)
+        {
+            stream.WriteByte((byte)((value >> 8) & 0xFF));
+            stream.WriteByte((byte)(value & 0xFF));
+        }
+
         private void BuildSpec(ref MemoryStream stream)
         {
-            stream.WriteByte((byte)((this.StartBitHTime >> 8) & 0xff));
-            stream.WriteByte((byte)(this.StartBitHTime & 0xff));
-            stream.WriteByte((byte)((this.StartBitLTime >> 8) & 0xff));
-            stream.WriteByte((byte)(this.StartBitLTime & 0xff));
-            stream.WriteByte((byte)((this.EndBitHTime >> 8) & 0xff));
-            stream.WriteByte((byte)(this.EndBitHTime & 0xff));
-            stream.WriteByte((byte)((this.EndBitLTime >> 8) & 0xff));
-        
-            stream.WriteByte((byte)(this.EndBitLTime & 0xff));
+            this.WriteInt(ref stream, this.StartBitHTime);
+            this.WriteInt(ref stream, this.StartBitLTime);
+            this.WriteInt(ref stream, this.EndBitHTime);
+            this.WriteInt(ref stream, this.EndBitLTime);
+
             stream.WriteByte(this.DataBit0HTime);
             stream.WriteByte(this.DataBit0LTime);
             stream.WriteByte(this.DataBit1HTime);
