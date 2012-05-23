@@ -29,7 +29,7 @@ namespace HE853.Test
         [DeploymentItem("HE853.dll")]
         public void BuildOnTest()
         {            
-            byte[] dataExpected = { 3, 60, 193, 21, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0 };
+            byte[] dataExpected = { 60, 193, 21, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
             CommandUK_Accessor target = new CommandUK_Accessor();
             MemoryStream stream = new MemoryStream();
@@ -43,7 +43,7 @@ namespace HE853.Test
         [DeploymentItem("HE853.dll")]
         public void BuildOffTest()
         {
-            byte[] dataExpected = { 3, 60, 193, 20, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0 };
+            byte[] dataExpected = { 60, 193, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
             CommandUK_Accessor target = new CommandUK_Accessor();
             MemoryStream stream = new MemoryStream();

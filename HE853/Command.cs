@@ -105,7 +105,7 @@ namespace HE853
             this.BuildData(ref stream, deviceCode, commandString);
             this.BuildExec(ref stream);
 
-            return stream.ToArray();
+            return this.PackSevenWithSequenceNumber(stream.ToArray());
         }
 
         protected abstract void BuildData(ref MemoryStream stream, int deviceCode, string commandString);
@@ -120,7 +120,6 @@ namespace HE853
 
         private void BuildSpec(ref MemoryStream stream)
         {
-            stream.WriteByte(1);
             stream.WriteByte((byte)((this.StartBitHTime >> 8) & 0xff));
             stream.WriteByte((byte)(this.StartBitHTime & 0xff));
             stream.WriteByte((byte)((this.StartBitLTime >> 8) & 0xff));
@@ -128,8 +127,7 @@ namespace HE853
             stream.WriteByte((byte)((this.EndBitHTime >> 8) & 0xff));
             stream.WriteByte((byte)(this.EndBitHTime & 0xff));
             stream.WriteByte((byte)((this.EndBitLTime >> 8) & 0xff));
-
-            stream.WriteByte(2);            
+        
             stream.WriteByte((byte)(this.EndBitLTime & 0xff));
             stream.WriteByte(this.DataBit0HTime);
             stream.WriteByte(this.DataBit0LTime);
@@ -141,8 +139,31 @@ namespace HE853
 
         private void BuildExec(ref System.IO.MemoryStream stream)
         {
-            stream.WriteByte(5);
             this.WriteZero(ref stream, 7);
+        }
+
+        private byte[] PackSevenWithSequenceNumber(byte[] command)
+        {
+            MemoryStream stream = new MemoryStream();
+
+            const int ChunkSize = 7;
+            int chunkCount = 1;
+            int chunkIndex = ChunkSize;
+
+            foreach (byte value in command)
+            {
+                if (chunkIndex == ChunkSize)
+                {
+                    stream.WriteByte((byte)chunkCount);
+                    ++chunkCount;
+                    chunkIndex = 0;
+                }
+
+                ++chunkIndex;
+                stream.WriteByte(value);
+            }
+
+            return stream.ToArray();            
         }
     }
 }

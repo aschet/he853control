@@ -39,8 +39,6 @@ namespace HE853
 
         protected override void BuildData(ref MemoryStream stream, int deviceCode, string commandString)
         {
-            stream.WriteByte(3);
-
             ushort address = this.EncodeDeviceCode(deviceCode);
             stream.WriteByte((byte)((address >> 8) & 0xFF));
             stream.WriteByte((byte)(address & 0xFF));
@@ -53,8 +51,6 @@ namespace HE853
 
             stream.WriteByte(command);
             this.WriteZero(ref stream, 4);
-
-            stream.WriteByte(4);
             this.WriteZero(ref stream, 7);
         }
 
