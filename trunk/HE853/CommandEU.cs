@@ -40,7 +40,7 @@ namespace HE853
         protected override void BuildData(ref MemoryStream stream, int deviceCode, string commandString)
         {
             int[] seed = new int[] { 0x7, 0xB, 0xD, 0xE, 0x13, 0x15, 0x16, 0x19, 0x1A, 0x1C, 0x3, 0x5, 0x6, 0x9, 0xA, 0xC };
-            byte[] buf = new byte[] { 0, (byte)((deviceCode >> 8) & 0xFF), (byte)(deviceCode & 0xFF), 1 };
+            byte[] buf = new byte[] { 0x0, (byte)((deviceCode >> 8) & 0xFF), (byte)(deviceCode & 0xFF), 0x1 };
             if (commandString == Command.On)
             {
                 buf[3] = (byte)(buf[3] | 0x10);

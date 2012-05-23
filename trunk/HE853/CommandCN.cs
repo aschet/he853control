@@ -44,11 +44,11 @@ namespace HE853
             int[] seed = new int[] { 0x609, 0x306, 0x803, 0xA08, 0xA, 0x200, 0xC02, 0x40C, 0xE04, 0x70E, 0x507, 0x105, 0xF01, 0xB0F, 0xD0B, 0x90D };
             this.count = (byte)(this.count + 1);
             int[] gbuf = new int[10];
-            gbuf[0] = 1;
+            gbuf[0] = 0x1;
             gbuf[1] = (this.count << 2) & 0xF;
             if (commandString != Command.Off)
             {
-                gbuf[1] |= 2;
+                gbuf[1] |= 0x2;
             }
 
             gbuf[2] = deviceCode & 0xF;
@@ -57,13 +57,13 @@ namespace HE853
             gbuf[5] = (deviceCode >> 12) & 0xF;
             if ((commandString == Command.On) || (commandString == Command.Off))
             {
-                gbuf[6] = 0;
+                gbuf[6] = 0x0;
             }
             else
             {
                 string firstDigitString = commandString.Substring(0, 1);
                 gbuf[6] = byte.Parse(firstDigitString) - 1;
-                gbuf[6] |= 8;
+                gbuf[6] |= 0x8;
             }
 
             byte[] kbuf = new byte[7];
@@ -80,6 +80,7 @@ namespace HE853
             idx = gbuf[5] ^ kbuf[4];
             kbuf[5] = (byte)(seed[idx] >> 8);
             kbuf[6] = (byte)gbuf[6];
+
             byte[] cbuf = new byte[7];
             idx = kbuf[0];
             cbuf[0] = (byte)(seed[idx] & 0xFF);
@@ -94,6 +95,7 @@ namespace HE853
             idx = kbuf[5] ^ cbuf[4];
             cbuf[5] = (byte)(seed[idx] & 0xFF);
             cbuf[6] = (byte)(kbuf[6] ^ 0x9);
+
             int temp = ((((((cbuf[6] << 24) | (cbuf[5] << 20)) | (cbuf[4] << 16)) | (cbuf[3] << 12)) | (cbuf[2] << 8)) | (cbuf[1] << 4)) | cbuf[0];
             temp = (temp >> 2) | ((temp & 0x3) << 26);
 
