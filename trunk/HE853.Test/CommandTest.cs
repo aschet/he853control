@@ -41,7 +41,7 @@ namespace HE853.Test
         [DeploymentItem("HE853.dll")]
         public void BuildSpecTest()
         {
-            byte[] dataExpected = { 1, 0, 32, 1, 224, 0, 0, 0, 2, 0, 32, 96, 96, 32, 28, 7 };
+            byte[] dataExpected = { 0, 32, 1, 224, 0, 0, 0, 0, 32, 96, 96, 32, 28, 7 };
 
             Command_Accessor target = this.CreateCommand_Accessor();
             MemoryStream stream = new MemoryStream();
@@ -54,7 +54,7 @@ namespace HE853.Test
         [DeploymentItem("HE853.dll")]
         public void BuildExecTest()
         {
-            byte[] dataExpected = { 5, 0, 0, 0, 0, 0, 0, 0 };
+            byte[] dataExpected = { 0, 0, 0, 0, 0, 0, 0 };
 
             Command_Accessor target = this.CreateCommand_Accessor();
             MemoryStream stream = new MemoryStream();

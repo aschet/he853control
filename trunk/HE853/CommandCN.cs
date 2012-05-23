@@ -99,14 +99,11 @@ namespace HE853
             int temp = ((((((cbuf[6] << 24) | (cbuf[5] << 20)) | (cbuf[4] << 16)) | (cbuf[3] << 12)) | (cbuf[2] << 8)) | (cbuf[1] << 4)) | cbuf[0];
             temp = (temp >> 2) | ((temp & 0x3) << 26);
 
-            stream.WriteByte(3);
             stream.WriteByte((byte)(temp >> 20));
             stream.WriteByte((byte)(temp >> 12));
             stream.WriteByte((byte)(temp >> 4));
             stream.WriteByte((byte)(temp << 4));
             this.WriteZero(ref stream, 3);
-
-            stream.WriteByte(4);
             this.WriteZero(ref stream, 7);
         }
     }

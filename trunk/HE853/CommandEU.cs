@@ -72,7 +72,6 @@ namespace HE853
             kbuf[6] = (byte)(t64 >> 8);
             kbuf[7] = (byte)t64;
 
-            stream.WriteByte(3);
             stream.WriteByte(kbuf[0]);
             stream.WriteByte(kbuf[1]);
             stream.WriteByte(kbuf[2]);
@@ -80,8 +79,6 @@ namespace HE853
             stream.WriteByte(kbuf[4]);
             stream.WriteByte(kbuf[5]);
             stream.WriteByte(kbuf[6]);
-
-            stream.WriteByte(4);
             stream.WriteByte(kbuf[7]);
             this.WriteZero(ref stream, 6);
         }
