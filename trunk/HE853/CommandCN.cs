@@ -103,8 +103,7 @@ namespace HE853
             stream.WriteByte((byte)(temp >> 12));
             stream.WriteByte((byte)(temp >> 4));
             stream.WriteByte((byte)(temp << 4));
-            this.WriteZero(ref stream, 3);
-            this.WriteZero(ref stream, 7);
+            this.WriteZero(ref stream, 10);
         }
     }
 }

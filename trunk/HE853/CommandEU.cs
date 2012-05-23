@@ -39,20 +39,17 @@ namespace HE853
 
         protected override void BuildData(ref MemoryStream stream, int deviceCode, string commandString)
         {
-            int[] seed = new int[] { 0x7, 0xB, 0xD, 0xE, 0x13, 0x15, 0x16, 0x19, 0x1A, 0x1C, 0x3, 0x5, 0x6, 0x9, 0xA, 0xC };
+            byte[] seed = new byte[] { 0x7, 0xB, 0xD, 0xE, 0x13, 0x15, 0x16, 0x19, 0x1A, 0x1C, 0x3, 0x5, 0x6, 0x9, 0xA, 0xC };
             byte[] buf = new byte[] { 0x0, (byte)((deviceCode >> 8) & 0xFF), (byte)(deviceCode & 0xFF), 0x1 };
             if (commandString == Command.On)
             {
                 buf[3] = (byte)(buf[3] | 0x10);
             }
 
-            byte[] gbuf = new byte[] { (byte)(buf[0] >> 4), (byte)(buf[0] & 0xF), (byte)(buf[1] >> 4), (byte)(buf[1] & 0xF), (byte)(buf[2] >> 4), (byte)(buf[2] & 0xF), (byte)(buf[3] >> 4), (byte)(buf[3] & 0xF) };
-            byte[] kbuf = new byte[8];
+            byte[] kbuf = new byte[] { (byte)(buf[0] >> 4), (byte)(buf[0] & 0xF), (byte)(buf[1] >> 4), (byte)(buf[1] & 0xF), (byte)(buf[2] >> 4), (byte)(buf[2] & 0xF), (byte)(buf[3] >> 4), (byte)(buf[3] & 0xF) };
             for (int i = 0; i < kbuf.Length; ++i)
             {
-                kbuf[i] = (byte)seed[gbuf[i]];
-                kbuf[i] = (byte)(kbuf[i] | 0x40);
-                kbuf[i] = (byte)(kbuf[i] & 0x7F);
+                kbuf[i] = (byte)((seed[kbuf[i]] | 0x40) & 0x7F);
             }
 
             kbuf[0] = (byte)(kbuf[0] | 0x80);
@@ -72,14 +69,11 @@ namespace HE853
             kbuf[6] = (byte)(t64 >> 8);
             kbuf[7] = (byte)t64;
 
-            stream.WriteByte(kbuf[0]);
-            stream.WriteByte(kbuf[1]);
-            stream.WriteByte(kbuf[2]);
-            stream.WriteByte(kbuf[3]);
-            stream.WriteByte(kbuf[4]);
-            stream.WriteByte(kbuf[5]);
-            stream.WriteByte(kbuf[6]);
-            stream.WriteByte(kbuf[7]);
+            foreach (byte value in kbuf)
+            {
+                stream.WriteByte(value);
+            }
+
             this.WriteZero(ref stream, 6);
         }
     }
