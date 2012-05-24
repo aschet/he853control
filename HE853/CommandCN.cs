@@ -43,50 +43,46 @@ namespace HE853
         {
             ushort[] lookup = new ushort[] { 0x609, 0x306, 0x803, 0xA08, 0xA, 0x200, 0xC02, 0x40C, 0xE04, 0x70E, 0x507, 0x105, 0xF01, 0xB0F, 0xD0B, 0x90D };
             this.count = (byte)(this.count + 1);
-            byte[] encodingBuffer1 = new byte[7];
-            encodingBuffer1[0] = 0x1;
-            encodingBuffer1[1] = (byte)((this.count << 2) & 0xF);
+            byte[] encodingBuffer = new byte[7];
+            encodingBuffer[0] = 0x1;
+            encodingBuffer[1] = (byte)((this.count << 2) & 0xF);
             if (commandString != Command.Off)
             {
-                encodingBuffer1[1] |= 0x2;
+                encodingBuffer[1] |= 0x2;
             }
 
-            encodingBuffer1[2] = (byte)(deviceCode & 0xF);
-            encodingBuffer1[3] = (byte)((deviceCode >> 4) & 0xF);
-            encodingBuffer1[4] = (byte)((deviceCode >> 8) & 0xF);
-            encodingBuffer1[5] = (byte)((deviceCode >> 12) & 0xF);
+            encodingBuffer[2] = (byte)(deviceCode & 0xF);
+            encodingBuffer[3] = (byte)((deviceCode >> 4) & 0xF);
+            encodingBuffer[4] = (byte)((deviceCode >> 8) & 0xF);
+            encodingBuffer[5] = (byte)((deviceCode >> 12) & 0xF);
             if ((commandString == Command.On) || (commandString == Command.Off))
             {
-                encodingBuffer1[6] = 0x0;
+                encodingBuffer[6] = 0x0;
             }
             else
             {
                 string firstDigitString = commandString.Substring(0, 1);
-                encodingBuffer1[6] = (byte)(byte.Parse(firstDigitString) - 1);
-                encodingBuffer1[6] |= 0x8;
+                encodingBuffer[6] = (byte)(byte.Parse(firstDigitString) - 1);
+                encodingBuffer[6] |= 0x8;
             }
 
-            byte[] encodingBuffer2 = new byte[7];
-            int idx = encodingBuffer1[0];
-            for (int i = 0; i < encodingBuffer1.Length - 1; ++i)
+            int idx = encodingBuffer[0];
+            for (int i = 0; i < encodingBuffer.Length - 1; ++i)
             {
-                encodingBuffer2[i] = (byte)(lookup[idx] >> 8);
-                idx = encodingBuffer1[i + 1] ^ encodingBuffer2[i];
+                encodingBuffer[i] = (byte)(lookup[idx] >> 8);
+                idx = encodingBuffer[i + 1] ^ encodingBuffer[i];
             }
             
-            encodingBuffer2[6] = (byte)encodingBuffer1[6];
-
-            byte[] encodingBuffer3 = new byte[7];
-            idx = encodingBuffer2[0];
-            for (int i = 0; i < encodingBuffer2.Length - 1; ++i)
+            idx = encodingBuffer[0];
+            for (int i = 0; i < encodingBuffer.Length - 1; ++i)
             {
-                encodingBuffer3[i] = (byte)(lookup[idx] & 0xFF);
-                idx = encodingBuffer2[i + 1] ^ encodingBuffer3[i];
+                encodingBuffer[i] = (byte)(lookup[idx] & 0xFF);
+                idx = encodingBuffer[i + 1] ^ encodingBuffer[i];
             }
 
-            encodingBuffer3[6] = (byte)(encodingBuffer2[6] ^ 0x9);
+            encodingBuffer[6] = (byte)(encodingBuffer[6] ^ 0x9);
 
-            int temp = ((((((encodingBuffer3[6] << 24) | (encodingBuffer3[5] << 20)) | (encodingBuffer3[4] << 16)) | (encodingBuffer3[3] << 12)) | (encodingBuffer3[2] << 8)) | (encodingBuffer3[1] << 4)) | encodingBuffer3[0];
+            int temp = ((((((encodingBuffer[6] << 24) | (encodingBuffer[5] << 20)) | (encodingBuffer[4] << 16)) | (encodingBuffer[3] << 12)) | (encodingBuffer[2] << 8)) | (encodingBuffer[1] << 4)) | encodingBuffer[0];
             temp = (temp >> 2) | ((temp & 0x3) << 26);
 
             stream.WriteByte((byte)(temp >> 20));
