@@ -33,7 +33,7 @@ namespace HE853.Test
 
             CommandCN_Accessor target = new CommandCN_Accessor();
             MemoryStream stream = new MemoryStream();
-            target.BuildData(ref stream, 1001, Command.On);
+            target.BuildData(stream, 1001, Command.On);
             byte[] data = stream.ToArray();
 
             CollectionAssert.AreEqual(dataExpected, data);
@@ -47,7 +47,7 @@ namespace HE853.Test
 
             CommandCN_Accessor target = new CommandCN_Accessor();
             MemoryStream stream = new MemoryStream();
-            target.BuildData(ref stream, 1001, Command.Off);
+            target.BuildData(stream, 1001, Command.Off);
             byte[] data = stream.ToArray();
 
             CollectionAssert.AreEqual(dataExpected, data);
@@ -61,7 +61,7 @@ namespace HE853.Test
 
             CommandCN_Accessor target = new CommandCN_Accessor();
             MemoryStream stream = new MemoryStream();
-            target.BuildData(ref stream, 1001, "10");
+            target.BuildData(stream, 1001, "10");
             byte[] data = stream.ToArray();
 
             CollectionAssert.AreEqual(dataExpected, data);

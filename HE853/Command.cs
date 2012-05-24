@@ -88,29 +88,31 @@ namespace HE853
 
         public byte[] BuildStatus()
         {
-            MemoryStream stream = new MemoryStream();
+            using (MemoryStream stream = new MemoryStream())
+            {
+                stream.WriteByte(6);
+                stream.WriteByte(1);
+                this.WriteZero(stream, 6);
 
-            stream.WriteByte(6);
-            stream.WriteByte(1);
-            this.WriteZero(ref stream, 6);
-
-            return stream.ToArray();
+                return stream.ToArray();
+            }
         }
 
         public byte[] Build(int deviceCode, string commandString)
         {
-            MemoryStream stream = new MemoryStream();
+            using (MemoryStream stream = new MemoryStream())
+            {
+                this.BuildSpec(stream);
+                this.BuildData(stream, deviceCode, commandString);
+                this.BuildExec(stream);
 
-            this.BuildSpec(ref stream);
-            this.BuildData(ref stream, deviceCode, commandString);
-            this.BuildExec(ref stream);
-
-            return this.PackSevenWithSequenceNumber(stream.ToArray());
+                return this.PackSevenWithSequenceNumber(stream.ToArray());
+            }
         }
 
-        protected abstract void BuildData(ref MemoryStream stream, int deviceCode, string commandString);
+        protected abstract void BuildData(MemoryStream stream, int deviceCode, string commandString);
 
-        protected void WriteZero(ref MemoryStream stream, int count)
+        protected void WriteZero(MemoryStream stream, int count)
         {
             for (int i = 0; i < count; ++i)
             {
@@ -118,18 +120,18 @@ namespace HE853
             }
         }
 
-        protected void WriteShort(ref MemoryStream stream, ushort value)
+        protected void WriteShort(MemoryStream stream, ushort value)
         {
             stream.WriteByte((byte)((value >> 8) & 0xFF));
             stream.WriteByte((byte)(value & 0xFF));
         }
 
-        private void BuildSpec(ref MemoryStream stream)
+        private void BuildSpec(MemoryStream stream)
         {
-            this.WriteShort(ref stream, this.StartBitHTime);
-            this.WriteShort(ref stream, this.StartBitLTime);
-            this.WriteShort(ref stream, this.EndBitHTime);
-            this.WriteShort(ref stream, this.EndBitLTime);
+            this.WriteShort(stream, this.StartBitHTime);
+            this.WriteShort(stream, this.StartBitLTime);
+            this.WriteShort(stream, this.EndBitHTime);
+            this.WriteShort(stream, this.EndBitLTime);
 
             stream.WriteByte(this.DataBit0HTime);
             stream.WriteByte(this.DataBit0LTime);
@@ -139,33 +141,34 @@ namespace HE853
             stream.WriteByte(this.FrameCount);
         }
 
-        private void BuildExec(ref System.IO.MemoryStream stream)
+        private void BuildExec(System.IO.MemoryStream stream)
         {
-            this.WriteZero(ref stream, 7);
+            this.WriteZero(stream, 7);
         }
 
         private byte[] PackSevenWithSequenceNumber(byte[] command)
         {
-            MemoryStream stream = new MemoryStream();
-
-            const int ChunkSize = 7;
-            int chunkCount = 1;
-            int chunkIndex = ChunkSize;
-
-            foreach (byte value in command)
+            using (MemoryStream stream = new MemoryStream())
             {
-                if (chunkIndex == ChunkSize)
+                const int ChunkSize = 7;
+                int chunkCount = 1;
+                int chunkIndex = ChunkSize;
+
+                foreach (byte value in command)
                 {
-                    stream.WriteByte((byte)chunkCount);
-                    ++chunkCount;
-                    chunkIndex = 0;
+                    if (chunkIndex == ChunkSize)
+                    {
+                        stream.WriteByte((byte)chunkCount);
+                        ++chunkCount;
+                        chunkIndex = 0;
+                    }
+
+                    ++chunkIndex;
+                    stream.WriteByte(value);
                 }
 
-                ++chunkIndex;
-                stream.WriteByte(value);
+                return stream.ToArray();
             }
-
-            return stream.ToArray();            
         }
     }
 }

@@ -37,7 +37,7 @@ namespace HE853
             this.FrameCount = 18;
         }
 
-        protected override void BuildData(ref MemoryStream stream, int deviceCode, string commandString)
+        protected override void BuildData(MemoryStream stream, int deviceCode, string commandString)
         {
             int[] encodingBuffer = new int[8];
             for (int i = 0; i < encodingBuffer.Length; ++i)
@@ -61,7 +61,7 @@ namespace HE853
                 encodedDeviceCode = (ushort)((encodedDeviceCode << 2) | encodingBuffer[i]);
             }
 
-            this.WriteShort(ref stream, encodedDeviceCode);
+            this.WriteShort(stream, encodedDeviceCode);
             
             byte command = 0x14;
             if (commandString == Command.On)
@@ -70,7 +70,7 @@ namespace HE853
             }
 
             stream.WriteByte(command);
-            this.WriteZero(ref stream, 11);
+            this.WriteZero(stream, 11);
         }
     }
 }
