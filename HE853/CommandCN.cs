@@ -43,7 +43,7 @@ namespace HE853
         {
             ushort[] lookup = new ushort[] { 0x609, 0x306, 0x803, 0xA08, 0xA, 0x200, 0xC02, 0x40C, 0xE04, 0x70E, 0x507, 0x105, 0xF01, 0xB0F, 0xD0B, 0x90D };
             this.count = (byte)(this.count + 1);
-            byte[] encodingBuffer1 = new byte[10];
+            byte[] encodingBuffer1 = new byte[7];
             encodingBuffer1[0] = 0x1;
             encodingBuffer1[1] = (byte)((this.count << 2) & 0xF);
             if (commandString != Command.Off)
@@ -68,32 +68,22 @@ namespace HE853
 
             byte[] encodingBuffer2 = new byte[7];
             int idx = encodingBuffer1[0];
-            encodingBuffer2[0] = (byte)(lookup[idx] >> 8);
-            idx = encodingBuffer1[1] ^ encodingBuffer2[0];
-            encodingBuffer2[1] = (byte)(lookup[idx] >> 8);
-            idx = encodingBuffer1[2] ^ encodingBuffer2[1];
-            encodingBuffer2[2] = (byte)(lookup[idx] >> 8);
-            idx = encodingBuffer1[3] ^ encodingBuffer2[2];
-            encodingBuffer2[3] = (byte)(lookup[idx] >> 8);
-            idx = encodingBuffer1[4] ^ encodingBuffer2[3];
-            encodingBuffer2[4] = (byte)(lookup[idx] >> 8);
-            idx = encodingBuffer1[5] ^ encodingBuffer2[4];
-            encodingBuffer2[5] = (byte)(lookup[idx] >> 8);
+            for (int i = 0; i < encodingBuffer1.Length - 1; ++i)
+            {
+                encodingBuffer2[i] = (byte)(lookup[idx] >> 8);
+                idx = encodingBuffer1[i + 1] ^ encodingBuffer2[i];
+            }
+            
             encodingBuffer2[6] = (byte)encodingBuffer1[6];
 
             byte[] encodingBuffer3 = new byte[7];
             idx = encodingBuffer2[0];
-            encodingBuffer3[0] = (byte)(lookup[idx] & 0xFF);
-            idx = encodingBuffer2[1] ^ encodingBuffer3[0];
-            encodingBuffer3[1] = (byte)(lookup[idx] & 0xFF);
-            idx = encodingBuffer2[2] ^ encodingBuffer3[1];
-            encodingBuffer3[2] = (byte)(lookup[idx] & 0xFF);
-            idx = encodingBuffer2[3] ^ encodingBuffer3[2];
-            encodingBuffer3[3] = (byte)(lookup[idx] & 0xFF);
-            idx = encodingBuffer2[4] ^ encodingBuffer3[3];
-            encodingBuffer3[4] = (byte)(lookup[idx] & 0xFF);
-            idx = encodingBuffer2[5] ^ encodingBuffer3[4];
-            encodingBuffer3[5] = (byte)(lookup[idx] & 0xFF);
+            for (int i = 0; i < encodingBuffer2.Length - 1; ++i)
+            {
+                encodingBuffer3[i] = (byte)(lookup[idx] & 0xFF);
+                idx = encodingBuffer2[i + 1] ^ encodingBuffer3[i];
+            }
+
             encodingBuffer3[6] = (byte)(encodingBuffer2[6] ^ 0x9);
 
             int temp = ((((((encodingBuffer3[6] << 24) | (encodingBuffer3[5] << 20)) | (encodingBuffer3[4] << 16)) | (encodingBuffer3[3] << 12)) | (encodingBuffer3[2] << 8)) | (encodingBuffer3[1] << 4)) | encodingBuffer3[0];
