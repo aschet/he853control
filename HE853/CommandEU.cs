@@ -39,7 +39,7 @@ namespace HE853
 
         protected override void BuildData(ref MemoryStream stream, int deviceCode, string commandString)
         {
-            byte[] seed = new byte[] { 0x7, 0xB, 0xD, 0xE, 0x13, 0x15, 0x16, 0x19, 0x1A, 0x1C, 0x3, 0x5, 0x6, 0x9, 0xA, 0xC };
+            byte[] lookup = new byte[] { 0x7, 0xB, 0xD, 0xE, 0x13, 0x15, 0x16, 0x19, 0x1A, 0x1C, 0x3, 0x5, 0x6, 0x9, 0xA, 0xC };
 
             int command = 0x1;
             if (commandString == Command.On)
@@ -50,7 +50,7 @@ namespace HE853
             byte[] encodingBuffer = new byte[] { 0x0, 0x0, (byte)((deviceCode >> 12) & 0xF), (byte)((deviceCode >> 8) & 0xF), (byte)((deviceCode >> 4) & 0xF), (byte)(deviceCode & 0xF), (byte)(command >> 4), (byte)(command & 0xF) };
             for (int i = 0; i < encodingBuffer.Length; ++i)
             {
-                encodingBuffer[i] = (byte)((seed[encodingBuffer[i]] | 0x40) & 0x7F);
+                encodingBuffer[i] = (byte)((lookup[encodingBuffer[i]] | 0x40) & 0x7F);
             }
 
             encodingBuffer[0] |= 0x80;
