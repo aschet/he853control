@@ -61,7 +61,7 @@ namespace HE853
                 encodedDeviceCode = (encodedDeviceCode << 2) | encodingBuffer[i];
             }
 
-            this.WriteInt(ref stream, encodedDeviceCode);
+            this.WriteShort(ref stream, encodedDeviceCode);
             
             byte command = 0x14;
             if (commandString == Command.On)
