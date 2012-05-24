@@ -87,5 +87,16 @@ namespace HE853.Test
             Command_Accessor target = new Command_Accessor(new PrivateObject(this.CreateCommand(), new PrivateType(typeof(Command))));
             return target;
         }
+
+        [TestMethod()]
+        [DeploymentItem("HE853.dll")]
+        public void PackSevenWithSequenceNumberTest()
+        {
+            byte[] dataExpected = new byte[] { 1, 0, 1, 2, 3, 4, 5, 6, 2, 7, 8, 9, 10, 11, 12, 13 };
+
+            Command_Accessor target = this.CreateCommand_Accessor();
+            byte[] data = target.PackSevenWithSequenceNumber(new byte[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 });
+            CollectionAssert.AreEqual(dataExpected, data);
+        }
     }
 }
