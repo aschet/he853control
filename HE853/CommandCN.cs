@@ -43,60 +43,60 @@ namespace HE853
         {
             int[] seed = new int[] { 0x609, 0x306, 0x803, 0xA08, 0xA, 0x200, 0xC02, 0x40C, 0xE04, 0x70E, 0x507, 0x105, 0xF01, 0xB0F, 0xD0B, 0x90D };
             this.count = (byte)(this.count + 1);
-            int[] gbuf = new int[10];
-            gbuf[0] = 0x1;
-            gbuf[1] = (this.count << 2) & 0xF;
+            byte[] encodingBuffer1 = new byte[10];
+            encodingBuffer1[0] = 0x1;
+            encodingBuffer1[1] = (byte)((this.count << 2) & 0xF);
             if (commandString != Command.Off)
             {
-                gbuf[1] |= 0x2;
+                encodingBuffer1[1] |= 0x2;
             }
 
-            gbuf[2] = deviceCode & 0xF;
-            gbuf[3] = (deviceCode >> 4) & 0xF;
-            gbuf[4] = (deviceCode >> 8) & 0xF;
-            gbuf[5] = (deviceCode >> 12) & 0xF;
+            encodingBuffer1[2] = (byte)(deviceCode & 0xF);
+            encodingBuffer1[3] = (byte)((deviceCode >> 4) & 0xF);
+            encodingBuffer1[4] = (byte)((deviceCode >> 8) & 0xF);
+            encodingBuffer1[5] = (byte)((deviceCode >> 12) & 0xF);
             if ((commandString == Command.On) || (commandString == Command.Off))
             {
-                gbuf[6] = 0x0;
+                encodingBuffer1[6] = 0x0;
             }
             else
             {
                 string firstDigitString = commandString.Substring(0, 1);
-                gbuf[6] = byte.Parse(firstDigitString) - 1;
-                gbuf[6] |= 0x8;
+                encodingBuffer1[6] = (byte)(byte.Parse(firstDigitString) - 1);
+                encodingBuffer1[6] |= 0x8;
             }
 
-            byte[] kbuf = new byte[7];
-            int idx = gbuf[0];
-            kbuf[0] = (byte)(seed[idx] >> 8);
-            idx = gbuf[1] ^ kbuf[0];
-            kbuf[1] = (byte)(seed[idx] >> 8);
-            idx = gbuf[2] ^ kbuf[1];
-            kbuf[2] = (byte)(seed[idx] >> 8);
-            idx = gbuf[3] ^ kbuf[2];
-            kbuf[3] = (byte)(seed[idx] >> 8);
-            idx = gbuf[4] ^ kbuf[3];
-            kbuf[4] = (byte)(seed[idx] >> 8);
-            idx = gbuf[5] ^ kbuf[4];
-            kbuf[5] = (byte)(seed[idx] >> 8);
-            kbuf[6] = (byte)gbuf[6];
+            byte[] encodingBuffer2 = new byte[7];
+            int idx = encodingBuffer1[0];
+            encodingBuffer2[0] = (byte)(seed[idx] >> 8);
+            idx = encodingBuffer1[1] ^ encodingBuffer2[0];
+            encodingBuffer2[1] = (byte)(seed[idx] >> 8);
+            idx = encodingBuffer1[2] ^ encodingBuffer2[1];
+            encodingBuffer2[2] = (byte)(seed[idx] >> 8);
+            idx = encodingBuffer1[3] ^ encodingBuffer2[2];
+            encodingBuffer2[3] = (byte)(seed[idx] >> 8);
+            idx = encodingBuffer1[4] ^ encodingBuffer2[3];
+            encodingBuffer2[4] = (byte)(seed[idx] >> 8);
+            idx = encodingBuffer1[5] ^ encodingBuffer2[4];
+            encodingBuffer2[5] = (byte)(seed[idx] >> 8);
+            encodingBuffer2[6] = (byte)encodingBuffer1[6];
 
-            byte[] cbuf = new byte[7];
-            idx = kbuf[0];
-            cbuf[0] = (byte)(seed[idx] & 0xFF);
-            idx = kbuf[1] ^ cbuf[0];
-            cbuf[1] = (byte)(seed[idx] & 0xFF);
-            idx = kbuf[2] ^ cbuf[1];
-            cbuf[2] = (byte)(seed[idx] & 0xFF);
-            idx = kbuf[3] ^ cbuf[2];
-            cbuf[3] = (byte)(seed[idx] & 0xFF);
-            idx = kbuf[4] ^ cbuf[3];
-            cbuf[4] = (byte)(seed[idx] & 0xFF);
-            idx = kbuf[5] ^ cbuf[4];
-            cbuf[5] = (byte)(seed[idx] & 0xFF);
-            cbuf[6] = (byte)(kbuf[6] ^ 0x9);
+            byte[] encodingBuffer3 = new byte[7];
+            idx = encodingBuffer2[0];
+            encodingBuffer3[0] = (byte)(seed[idx] & 0xFF);
+            idx = encodingBuffer2[1] ^ encodingBuffer3[0];
+            encodingBuffer3[1] = (byte)(seed[idx] & 0xFF);
+            idx = encodingBuffer2[2] ^ encodingBuffer3[1];
+            encodingBuffer3[2] = (byte)(seed[idx] & 0xFF);
+            idx = encodingBuffer2[3] ^ encodingBuffer3[2];
+            encodingBuffer3[3] = (byte)(seed[idx] & 0xFF);
+            idx = encodingBuffer2[4] ^ encodingBuffer3[3];
+            encodingBuffer3[4] = (byte)(seed[idx] & 0xFF);
+            idx = encodingBuffer2[5] ^ encodingBuffer3[4];
+            encodingBuffer3[5] = (byte)(seed[idx] & 0xFF);
+            encodingBuffer3[6] = (byte)(encodingBuffer2[6] ^ 0x9);
 
-            int temp = ((((((cbuf[6] << 24) | (cbuf[5] << 20)) | (cbuf[4] << 16)) | (cbuf[3] << 12)) | (cbuf[2] << 8)) | (cbuf[1] << 4)) | cbuf[0];
+            int temp = ((((((encodingBuffer3[6] << 24) | (encodingBuffer3[5] << 20)) | (encodingBuffer3[4] << 16)) | (encodingBuffer3[3] << 12)) | (encodingBuffer3[2] << 8)) | (encodingBuffer3[1] << 4)) | encodingBuffer3[0];
             temp = (temp >> 2) | ((temp & 0x3) << 26);
 
             stream.WriteByte((byte)(temp >> 20));
