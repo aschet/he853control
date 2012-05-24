@@ -47,30 +47,30 @@ namespace HE853
                 command |= 0x10;
             }
 
-            byte[] kbuf = new byte[] { 0x0, 0x0, (byte)((deviceCode >> 12) & 0xF), (byte)((deviceCode >> 8) & 0xF), (byte)((deviceCode >> 4) & 0xF), (byte)(deviceCode & 0xF), (byte)(command >> 4), (byte)(command & 0xF) };
-            for (int i = 0; i < kbuf.Length; ++i)
+            byte[] encodingBuffer = new byte[] { 0x0, 0x0, (byte)((deviceCode >> 12) & 0xF), (byte)((deviceCode >> 8) & 0xF), (byte)((deviceCode >> 4) & 0xF), (byte)(deviceCode & 0xF), (byte)(command >> 4), (byte)(command & 0xF) };
+            for (int i = 0; i < encodingBuffer.Length; ++i)
             {
-                kbuf[i] = (byte)((seed[kbuf[i]] | 0x40) & 0x7F);
+                encodingBuffer[i] = (byte)((seed[encodingBuffer[i]] | 0x40) & 0x7F);
             }
 
-            kbuf[0] |= 0x80;
-            ulong t64 = kbuf[0];
-            for (int i = 1; i < kbuf.Length; ++i)
+            encodingBuffer[0] |= 0x80;
+            ulong t64 = encodingBuffer[0];
+            for (int i = 1; i < encodingBuffer.Length; ++i)
             {
-                t64 = (t64 << 7) | kbuf[i];
+                t64 = (t64 << 7) | encodingBuffer[i];
             }
 
             t64 = t64 << 7;
-            kbuf[0] = (byte)(t64 >> 56);
-            kbuf[1] = (byte)(t64 >> 48);
-            kbuf[2] = (byte)(t64 >> 40);
-            kbuf[3] = (byte)(t64 >> 32);
-            kbuf[4] = (byte)(t64 >> 24);
-            kbuf[5] = (byte)(t64 >> 16);
-            kbuf[6] = (byte)(t64 >> 8);
-            kbuf[7] = (byte)t64;
+            encodingBuffer[0] = (byte)(t64 >> 56);
+            encodingBuffer[1] = (byte)(t64 >> 48);
+            encodingBuffer[2] = (byte)(t64 >> 40);
+            encodingBuffer[3] = (byte)(t64 >> 32);
+            encodingBuffer[4] = (byte)(t64 >> 24);
+            encodingBuffer[5] = (byte)(t64 >> 16);
+            encodingBuffer[6] = (byte)(t64 >> 8);
+            encodingBuffer[7] = (byte)t64;
 
-            foreach (byte value in kbuf)
+            foreach (byte value in encodingBuffer)
             {
                 stream.WriteByte(value);
             }
