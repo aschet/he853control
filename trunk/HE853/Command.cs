@@ -26,25 +26,25 @@ namespace HE853
         public const string On = "ON";
         public const string Off = "OFF";
         
-        protected int StartBitHTime
+        protected ushort StartBitHTime
         {
             get;
             set;
         }
 
-        protected int StartBitLTime
+        protected ushort StartBitLTime
         {
             get;
             set;
         }
 
-        protected int EndBitHTime
+        protected ushort EndBitHTime
         {
             get;
             set;
         }
 
-        protected int EndBitLTime
+        protected ushort EndBitLTime
         {
             get;
             set;
@@ -118,7 +118,7 @@ namespace HE853
             }
         }
 
-        protected void WriteShort(ref MemoryStream stream, int value)
+        protected void WriteShort(ref MemoryStream stream, ushort value)
         {
             stream.WriteByte((byte)((value >> 8) & 0xFF));
             stream.WriteByte((byte)(value & 0xFF));

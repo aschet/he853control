@@ -55,10 +55,10 @@ namespace HE853
                 }
             }
 
-            int encodedDeviceCode = 0;
+            ushort encodedDeviceCode = 0;
             for (int i = encodingBuffer.Length - 1; i >= 0; --i)
             {
-                encodedDeviceCode = (encodedDeviceCode << 2) | encodingBuffer[i];
+                encodedDeviceCode = (ushort)((encodedDeviceCode << 2) | encodingBuffer[i]);
             }
 
             this.WriteShort(ref stream, encodedDeviceCode);
