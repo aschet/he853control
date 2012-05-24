@@ -66,18 +66,18 @@ namespace HE853
                 encodingBuffer[6] |= 0x8;
             }
 
-            int idx = encodingBuffer[0];
+            int nextLookup = encodingBuffer[0];
             for (int i = 0; i < encodingBuffer.Length - 1; ++i)
             {
-                encodingBuffer[i] = (byte)(lookup[idx] >> 8);
-                idx = encodingBuffer[i + 1] ^ encodingBuffer[i];
+                encodingBuffer[i] = (byte)(lookup[nextLookup] >> 8);
+                nextLookup = encodingBuffer[i + 1] ^ encodingBuffer[i];
             }
             
-            idx = encodingBuffer[0];
+            nextLookup = encodingBuffer[0];
             for (int i = 0; i < encodingBuffer.Length - 1; ++i)
             {
-                encodingBuffer[i] = (byte)(lookup[idx] & 0xFF);
-                idx = encodingBuffer[i + 1] ^ encodingBuffer[i];
+                encodingBuffer[i] = (byte)(lookup[nextLookup] & 0xFF);
+                nextLookup = encodingBuffer[i + 1] ^ encodingBuffer[i];
             }
 
             encodingBuffer[6] = (byte)(encodingBuffer[6] ^ 0x9);
