@@ -28,13 +28,13 @@
         "Entry"
         {
         "MsmKey" = "8:_27D0BAF0C0D52F89DEE114C19A0DA66A"
-        "OwnerKey" = "8:_85AE27FAD65E4571B4CAB1529DD516A3"
+        "OwnerKey" = "8:_B4F193A7AE4F40498A5C8CD42E36ADE3"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_27D0BAF0C0D52F89DEE114C19A0DA66A"
-        "OwnerKey" = "8:_B4F193A7AE4F40498A5C8CD42E36ADE3"
+        "OwnerKey" = "8:_85AE27FAD65E4571B4CAB1529DD516A3"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -76,13 +76,7 @@
         "Entry"
         {
         "MsmKey" = "8:_46C7E9DAE6AAB6A2D5DDF2716AB9CB47"
-        "OwnerKey" = "8:_27D0BAF0C0D52F89DEE114C19A0DA66A"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_46C7E9DAE6AAB6A2D5DDF2716AB9CB47"
-        "OwnerKey" = "8:_85AE27FAD65E4571B4CAB1529DD516A3"
+        "OwnerKey" = "8:_B6CCCEE919D744F28FF3CD19FADF5AB9"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -94,7 +88,13 @@
         "Entry"
         {
         "MsmKey" = "8:_46C7E9DAE6AAB6A2D5DDF2716AB9CB47"
-        "OwnerKey" = "8:_B6CCCEE919D744F28FF3CD19FADF5AB9"
+        "OwnerKey" = "8:_85AE27FAD65E4571B4CAB1529DD516A3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_46C7E9DAE6AAB6A2D5DDF2716AB9CB47"
+        "OwnerKey" = "8:_27D0BAF0C0D52F89DEE114C19A0DA66A"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -316,31 +316,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_46C7E9DAE6AAB6A2D5DDF2716AB9CB47"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_27D0BAF0C0D52F89DEE114C19A0DA66A"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_835FDE80299A49BFB81F16608C9443F8"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_85AE27FAD65E4571B4CAB1529DD516A3"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_B4F193A7AE4F40498A5C8CD42E36ADE3"
+        "OwnerKey" = "8:_C84C9716AA084C8698617637F92B5990"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -352,7 +328,31 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C84C9716AA084C8698617637F92B5990"
+        "OwnerKey" = "8:_B4F193A7AE4F40498A5C8CD42E36ADE3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_85AE27FAD65E4571B4CAB1529DD516A3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_835FDE80299A49BFB81F16608C9443F8"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_27D0BAF0C0D52F89DEE114C19A0DA66A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_46C7E9DAE6AAB6A2D5DDF2716AB9CB47"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -1501,15 +1501,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:HE853 Control"
-        "ProductCode" = "8:{DDFFFC5F-890A-4EEF-8E98-D004C085E3C5}"
-        "PackageCode" = "8:{82223D10-F1FF-483E-925E-B122A32DF50C}"
+        "ProductCode" = "8:{E39C4AFB-48E1-41F0-B5CE-DCEB0354ECD2}"
+        "PackageCode" = "8:{D704862F-0CF6-4DCA-BC65-A3B99E6FD328}"
         "UpgradeCode" = "8:{5D5BA8E3-E724-4900-A438-A3C3EBD4E6FE}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.2.0"
+        "ProductVersion" = "8:1.3"
         "Manufacturer" = "8:Thomas Ascher"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://he853control.sourceforge.net"
@@ -2177,7 +2177,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_835FDE80299A49BFB81F16608C9443F8"
             {
-            "SourcePath" = "8:..\\HE853.Service\\obj\\Release\\HE853.Service.exe"
+            "SourcePath" = "8:..\\HE853.Service\\obj\\Debug\\HE853.Service.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_921C019BC581495DB2000BBDF396FAAD"
@@ -2205,7 +2205,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_85AE27FAD65E4571B4CAB1529DD516A3"
             {
-            "SourcePath" = "8:..\\HE853.App\\obj\\Release\\HE853.App.exe"
+            "SourcePath" = "8:..\\HE853.App\\obj\\Debug\\HE853.App.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_921C019BC581495DB2000BBDF396FAAD"
@@ -2261,7 +2261,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_9106F4A8387C49A0A7009FE62DA96193"
             {
-            "SourcePath" = "8:..\\HE853\\obj\\Release\\HE853.dll"
+            "SourcePath" = "8:..\\HE853\\obj\\Debug\\HE853.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_921C019BC581495DB2000BBDF396FAAD"
@@ -2289,7 +2289,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_B4F193A7AE4F40498A5C8CD42E36ADE3"
             {
-            "SourcePath" = "8:..\\HE853.Util\\obj\\Release\\HE853.Util.exe"
+            "SourcePath" = "8:..\\HE853.Util\\obj\\Debug\\HE853.Util.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_921C019BC581495DB2000BBDF396FAAD"
@@ -2317,7 +2317,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_B6CCCEE919D744F28FF3CD19FADF5AB9"
             {
-            "SourcePath" = "8:..\\HE853.RPC\\obj\\Release\\HE853.RPC.dll"
+            "SourcePath" = "8:..\\HE853.RPC\\obj\\Debug\\HE853.RPC.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_921C019BC581495DB2000BBDF396FAAD"
@@ -2345,7 +2345,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_C84C9716AA084C8698617637F92B5990"
             {
-            "SourcePath" = "8:..\\HE853\\obj\\Release\\HE853.dll"
+            "SourcePath" = "8:..\\HE853\\obj\\Debug\\HE853.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_5B01C3794D7D4856B6AFDAB666DA776C"
