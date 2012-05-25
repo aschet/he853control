@@ -19,6 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace HE853
 {
+    using System;
     using System.IO;
 
     public abstract class Command
@@ -105,7 +106,6 @@ namespace HE853
                 this.BuildSpec(stream);
                 this.BuildData(stream, deviceCode, commandString);
                 this.BuildExec(stream);
-
                 return this.PackSevenWithSequenceNumber(stream.ToArray());
             }
         }
@@ -120,18 +120,20 @@ namespace HE853
             }
         }
 
-        protected void WriteShort(MemoryStream stream, ushort value)
+        protected void WriteUShort(MemoryStream stream, ushort value)
         {
-            stream.WriteByte((byte)((value >> 8) & 0xFF));
-            stream.WriteByte((byte)(value & 0xFF));
+            byte[] bytes = BitConverter.GetBytes(value);
+            if (BitConverter.IsLittleEndian)
+                Array.Reverse(bytes);
+            stream.Write(bytes, 0, bytes.Length);
         }
 
         private void BuildSpec(MemoryStream stream)
         {
-            this.WriteShort(stream, this.StartBitHTime);
-            this.WriteShort(stream, this.StartBitLTime);
-            this.WriteShort(stream, this.EndBitHTime);
-            this.WriteShort(stream, this.EndBitLTime);
+            this.WriteUShort(stream, this.StartBitHTime);
+            this.WriteUShort(stream, this.StartBitLTime);
+            this.WriteUShort(stream, this.EndBitHTime);
+            this.WriteUShort(stream, this.EndBitLTime);
 
             stream.WriteByte(this.DataBit0HTime);
             stream.WriteByte(this.DataBit0LTime);
