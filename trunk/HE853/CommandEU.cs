@@ -70,10 +70,7 @@ namespace HE853
             encodingBuffer[6] = (byte)(t64 >> 8);
             encodingBuffer[7] = (byte)t64;
 
-            foreach (byte value in encodingBuffer)
-            {
-                stream.WriteByte(value);
-            }
+            stream.Write(encodingBuffer, 0, encodingBuffer.Length);
 
             this.WriteZero(stream, 6);
         }
