@@ -26,7 +26,7 @@ namespace HE853
     {
         public const string On = "ON";
         public const string Off = "OFF";
-        
+
         protected ushort StartBitHTime
         {
             get;
@@ -94,7 +94,6 @@ namespace HE853
                 stream.WriteByte(6);
                 stream.WriteByte(1);
                 this.WriteZero(stream, 6);
-
                 return stream.ToArray();
             }
         }
@@ -114,17 +113,18 @@ namespace HE853
 
         protected void WriteZero(MemoryStream stream, int count)
         {
-            for (int i = 0; i < count; ++i)
-            {
-                stream.WriteByte(0);
-            }
+            byte[] bytes = new byte[count];
+            stream.Write(bytes, 0, bytes.Length);
         }
 
         protected void WriteUShort(MemoryStream stream, ushort value)
         {
             byte[] bytes = BitConverter.GetBytes(value);
             if (BitConverter.IsLittleEndian)
+            {
                 Array.Reverse(bytes);
+            }
+
             stream.Write(bytes, 0, bytes.Length);
         }
 
