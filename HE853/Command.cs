@@ -19,7 +19,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace HE853
 {
-    using System;
     using System.IO;
 
     public abstract class Command
@@ -119,13 +118,8 @@ namespace HE853
 
         protected void WriteUShort(MemoryStream stream, ushort value)
         {
-            byte[] bytes = BitConverter.GetBytes(value);
-            if (BitConverter.IsLittleEndian)
-            {
-                Array.Reverse(bytes);
-            }
-
-            stream.Write(bytes, 0, bytes.Length);
+            stream.WriteByte((byte)((value >> 8) & 0xFF));
+            stream.WriteByte((byte)(value & 0xFF));
         }
 
         private void BuildSpec(MemoryStream stream)
