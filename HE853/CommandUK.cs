@@ -37,7 +37,7 @@ namespace HE853
             this.FrameCount = 18;
         }
 
-        protected override void BuildData(MemoryStream stream, int deviceCode, string commandString)
+        protected override void WriteData(Stream stream, int deviceCode, string commandString)
         {
             int[] encodingBuffer = new int[8];
             for (int i = 0; i < encodingBuffer.Length; ++i)

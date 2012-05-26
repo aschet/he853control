@@ -27,48 +27,42 @@ namespace HE853.Test
     {
         [TestMethod]
         [DeploymentItem("HE853.dll")]
-        public void BuildOnTest()
+        public void CommandCN_WriteData_On()
         {
             byte[] dataExpected = { 37, 101, 73, 224, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
             CommandCN_Accessor target = new CommandCN_Accessor();
             MemoryStream stream = new MemoryStream();
-            target.BuildData(stream, 1001, Command.On);
-            byte[] data = stream.ToArray();
-
-            CollectionAssert.AreEqual(dataExpected, data);
+            target.WriteData(stream, 1001, Command.On);
+            CollectionAssert.AreEqual(dataExpected, stream.ToArray());
         }
 
         [TestMethod]
         [DeploymentItem("HE853.dll")]
-        public void BuildOffTest()
+        public void CommandCN_WriteData_Off()
         {
             byte[] dataExpected = { 36, 224, 28, 96, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
             CommandCN_Accessor target = new CommandCN_Accessor();
             MemoryStream stream = new MemoryStream();
-            target.BuildData(stream, 1001, Command.Off);
-            byte[] data = stream.ToArray();
-
-            CollectionAssert.AreEqual(dataExpected, data);
+            target.WriteData(stream, 1001, Command.Off);
+            CollectionAssert.AreEqual(dataExpected, stream.ToArray());
         }
 
         [TestMethod]
         [DeploymentItem("HE853.dll")]
-        public void BuildDimTest()
+        public void CommandCN_WriteData_Dim10()
         {
             byte[] dataExpected = { 5, 101, 73, 224, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
             CommandCN_Accessor target = new CommandCN_Accessor();
             MemoryStream stream = new MemoryStream();
-            target.BuildData(stream, 1001, "10");
-            byte[] data = stream.ToArray();
-
-            CollectionAssert.AreEqual(dataExpected, data);
+            target.WriteData(stream, 1001, "10");
+            CollectionAssert.AreEqual(dataExpected, stream.ToArray());
         }
 
         [TestMethod]
-        public void BuildTest()
+        public void CommandCN_Build()
         {
             byte[] dataExpected =
             {

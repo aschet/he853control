@@ -39,7 +39,7 @@ namespace HE853
             this.FrameCount = 7;
         }
 
-        protected override void BuildData(MemoryStream stream, int deviceCode, string commandString)
+        protected override void WriteData(Stream stream, int deviceCode, string commandString)
         {
             ushort[] lookup = new ushort[] { 0x609, 0x306, 0x803, 0xA08, 0xA, 0x200, 0xC02, 0x40C, 0xE04, 0x70E, 0x507, 0x105, 0xF01, 0xB0F, 0xD0B, 0x90D };
             this.count = (byte)(this.count + 1);
