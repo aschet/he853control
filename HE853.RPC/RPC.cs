@@ -27,6 +27,7 @@ namespace HE853
 
     public sealed class RPC
     {
+        public const string ServiceArg = "/service";
         private const string ChannelName = "HE853";
         private const string InterfaceName = "Device";
         
@@ -59,7 +60,7 @@ namespace HE853
 
             foreach (string arg in args)
             {
-                if (arg == "/service")
+                if (arg == ServiceArg)
                 {
                     has = true;
                     break;
