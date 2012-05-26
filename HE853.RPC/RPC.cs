@@ -46,7 +46,7 @@ namespace HE853
         private const string InterfaceName = "Device";
         
         /// <summary>
-        /// Registeres server side IPC remoting channel for all users.
+        /// Registeres server side Ipc remoting channel for all users.
         /// </summary>
         public static void RegisterServer()
         {
@@ -65,7 +65,7 @@ namespace HE853
         }
 
         /// <summary>
-        /// Registeres client side IPC channel and Device as remote type.
+        /// Registeres client side Ipc channel and Device as remote type.
         /// </summary>
         public static void RegisterClient()
         {
