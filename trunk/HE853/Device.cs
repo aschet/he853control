@@ -102,7 +102,7 @@ namespace HE853
             bool result = false;
             lock (this.locker)
             {
-                result = this.SendTextCommand(deviceCode, Command.On, shortCommand);
+                result = this.SendCommand(deviceCode, Command.On, shortCommand);
             }
 
             return result;
@@ -129,7 +129,7 @@ namespace HE853
             bool result = false;
             lock (this.locker)
             {
-                result = this.SendTextCommand(deviceCode, Command.Off, shortCommand);
+                result = this.SendCommand(deviceCode, Command.Off, shortCommand);
             }
 
             return result;
@@ -146,7 +146,7 @@ namespace HE853
             bool result = false;
             lock (this.locker)
             {
-                result = this.SendTextCommand(deviceCode, Convert.ToString(percent), false);
+                result = this.SendCommand(deviceCode, Convert.ToString(percent), false);
             }
 
             return result;
@@ -181,10 +181,10 @@ namespace HE853
         /// Encodes and sends a command in text form to the HE853 device.
         /// </summary>
         /// <param name="deviceCode">Device code of receivers.</param>
-        /// <param name="command">Command sequence to send.</param>
+        /// <param name="command">Text command to send.</param>
         /// <param name="shortCommand">Sends shorter less compatible command sequence.</param> 
         /// <returns>True if command could be send.</returns>
-        private bool SendTextCommand(int deviceCode, string command, bool shortCommand)
+        private bool SendCommand(int deviceCode, string command, bool shortCommand)
         {
             bool result = this.TestStatus();
             if (result)
