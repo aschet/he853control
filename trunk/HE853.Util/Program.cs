@@ -21,7 +21,7 @@ namespace HE853.Util
 {
     using System;
 
-    public class Program
+    public static class Program
     {
         public enum ExitCode : int
         {
