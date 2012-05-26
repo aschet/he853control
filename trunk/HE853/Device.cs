@@ -28,10 +28,29 @@ namespace HE853
     public sealed class Device : MarshalByRefObject, IDevice
     {
         private IntPtr writeHandle = IntPtr.Zero;
-
         private CommandCN commandCN = new CommandCN();
         private CommandEU commandEU = new CommandEU();
         private CommandUK commandUK = new CommandUK();
+        private bool shortCommands = false;
+
+        public bool ShortCommands
+        {
+            get
+            {
+                lock (this)
+                {
+                    return this.shortCommands;
+                }
+            }
+
+            set
+            {
+                lock (this)
+                {
+                    this.shortCommands = value;
+                }
+            }
+        }
 
         public bool Open()
         {
@@ -109,7 +128,7 @@ namespace HE853
             if (result)
             {
                 result = this.SendCommand(this.commandCN.Build(deviceCode, commandString));
-                if ((commandString == Command.On) || (commandString == Command.Off))
+                if (!this.shortCommands && (commandString == Command.On || commandString == Command.Off))
                 {
                     if (result)
                     {

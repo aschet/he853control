@@ -25,6 +25,12 @@ namespace HE853
     [InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IDevice
     {
+        bool ShortCommands
+        {
+            get;
+            set;
+        }
+
         bool Open();
 
         void Close();
