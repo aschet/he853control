@@ -21,21 +21,15 @@ namespace HE853.Service
 {
     using System.ServiceProcess;
     
+    /// <summary>
+    /// Service implementation.
+    /// </summary>
     public partial class Service : ServiceBase
     {        
         public Service()
         {
             this.InitializeComponent();
-
             HE853.Rpc.RegisterServer();        
-        }
-
-        protected override void OnStart(string[] args)
-        {
-        }
-
-        protected override void OnStop()
-        {
         }
     }
 }

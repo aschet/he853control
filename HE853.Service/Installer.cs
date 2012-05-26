@@ -21,7 +21,10 @@ namespace HE853.Service
 {
     using System.ComponentModel;
     using System.ServiceProcess;
-    
+
+    /// <summary>
+    /// Register service on system with manual startup.
+    /// </summary>
     [RunInstaller(true)]
     public partial class Installer : System.Configuration.Install.Installer
     {
@@ -33,7 +36,6 @@ namespace HE853.Service
             process.Account = ServiceAccount.LocalSystem;
 
             ServiceInstaller serviceAdmin = new ServiceInstaller();
-
             serviceAdmin.StartType = ServiceStartMode.Manual;
             serviceAdmin.ServiceName = "HE853";
             serviceAdmin.DisplayName = "HE853 RPC Service";
