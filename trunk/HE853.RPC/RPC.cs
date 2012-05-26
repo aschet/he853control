@@ -28,7 +28,7 @@ namespace HE853
     /// <summary>
     /// RPC protocol implementation for service usage.
     /// </summary>
-    public static class RPC
+    public static class Rpc
     {
         /// <summary>
         /// Constant for service arg. 

@@ -27,7 +27,7 @@ namespace HE853.Service
         {
             this.InitializeComponent();
 
-            HE853.RPC.RegisterServer();        
+            HE853.Rpc.RegisterServer();        
         }
 
         protected override void OnStart(string[] args)
