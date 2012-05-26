@@ -51,13 +51,18 @@ namespace HE853
         private CommandUK commandUK = new CommandUK();
 
         /// <summary>
+        /// Lock object for command synchronisation.
+        /// </summary>
+        private object locker = new object();
+
+        /// <summary>
         /// Prepares the HE853 device for usage. Uses locking.
         /// </summary>
         /// <returns>True if the device is available.</returns>
         public bool Open()
         {
             bool result = false;
-            lock (this)
+            lock (this.locker)
             {
                 result = this.OpenUnlocked();
             }
@@ -70,7 +75,7 @@ namespace HE853
         /// </summary>
         public void Close()
         {
-            lock (this)
+            lock (this.locker)
             {
                 this.CloseUnlocked();
             }
@@ -95,7 +100,7 @@ namespace HE853
         public bool On(int deviceCode, bool shortCommand)
         {
             bool result = false;
-            lock (this)
+            lock (this.locker)
             {
                 result = this.SendTextCommand(deviceCode, Command.On, shortCommand);
             }
@@ -110,7 +115,7 @@ namespace HE853
         /// <returns>True if command could be send.</returns>
         public bool Off(int deviceCode)
         {
-            return this.Off(deviceCode);
+            return this.Off(deviceCode, false);
         }
 
         /// <summary>
@@ -122,7 +127,7 @@ namespace HE853
         public bool Off(int deviceCode, bool shortCommand)
         {
             bool result = false;
-            lock (this)
+            lock (this.locker)
             {
                 result = this.SendTextCommand(deviceCode, Command.Off, shortCommand);
             }
@@ -139,7 +144,7 @@ namespace HE853
         public bool Dim(int deviceCode, int percent)
         {
             bool result = false;
-            lock (this)
+            lock (this.locker)
             {
                 result = this.SendTextCommand(deviceCode, Convert.ToString(percent), false);
             }
