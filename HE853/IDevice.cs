@@ -21,24 +21,60 @@ namespace HE853
 {
     using System.Runtime.InteropServices;
 
+    /// <summary>
+    /// Interface to perform tasks with the HE853 device.
+    /// </summary>
     [ComVisible(true), GuidAttribute("A968C162-5E23-4448-A92C-95588B21A0B7")]
     [InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface IDevice
     {
-        bool ShortCommands
-        {
-            get;
-            set;
-        }
-
+        /// <summary>
+        /// Prepares the HE853 device for usage.
+        /// </summary>
+        /// <returns>True if the device is available.</returns>
         bool Open();
 
+        /// <summary>
+        /// Shuts down the HE853 device.
+        /// </summary>
         void Close();
 
+        /// <summary>
+        /// Swiches receivers with specific device code on.
+        /// </summary>
+        /// <param name="deviceCode">Device code of receivers.</param>
+        /// <returns>True if command could be send.</returns>
         bool On(int deviceCode);
 
+        /// <summary>
+        /// Swiches receivers with specific device code on.
+        /// </summary>
+        /// <param name="deviceCode">Device code of receivers.</param>
+        /// <param name="shortCommand">Sends shorter less compatible command sequence.</param>
+        /// <returns>True if command could be send.</returns>
+        bool On(int deviceCode, bool shortCommand);
+
+        /// <summary>
+        /// Swiches receivers with specific device code off.
+        /// </summary>
+        /// <param name="deviceCode">Device code of receivers.</param>
+        /// <returns>True if command could be send.</returns>
         bool Off(int deviceCode);
 
+        /// <summary>
+        /// Swiches receivers with specific device code off.
+        /// </summary>
+        /// <param name="deviceCode">Device code of receivers.</param>
+        /// <param name="shortCommand">Sends shorter less compatible command sequence.</param>
+        /// <returns>True if command could be send.</returns>
+        bool Off(int deviceCode, bool shortCommand);
+        
+        /// <summary>
+        /// Adjusts dim level on receivers with specific device code.
+        /// </summary>
+        /// <param name="deviceCode">Device code of receivers.</param>
+        /// <param name="percent">Amount of dim. A value between 10 an 80.</param>
+        /// <returns>True if command could be send.</returns>
         bool Dim(int deviceCode, int percent);
     }
 }
