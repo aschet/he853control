@@ -25,12 +25,29 @@ namespace HE853
     using System.Runtime.Remoting.Channels.Ipc;
     using System.Security.Principal;
 
-    public sealed class RPC
+    /// <summary>
+    /// RPC protocol implementation for service usage.
+    /// </summary>
+    public static class RPC
     {
+        /// <summary>
+        /// Constant for service arg. 
+        /// </summary>
         public const string ServiceArg = "/service";
+        
+        /// <summary>
+        /// Constant for IPC channel name.
+        /// </summary>
         private const string ChannelName = "HE853";
+        
+        /// <summary>
+        /// Constant for IPC channel singelton interface name.
+        /// </summary>
         private const string InterfaceName = "Device";
         
+        /// <summary>
+        /// Registeres server side IPC remoting channel for all users.
+        /// </summary>
         public static void RegisterServer()
         {
             SecurityIdentifier sid = new SecurityIdentifier(WellKnownSidType.WorldSid, null);
@@ -47,6 +64,9 @@ namespace HE853
             RemotingConfiguration.RegisterWellKnownServiceType(typeof(HE853.Device), InterfaceName, WellKnownObjectMode.Singleton);
         }
 
+        /// <summary>
+        /// Registeres client side IPC channel and Device as remote type.
+        /// </summary>
         public static void RegisterClient()
         {
             IpcClientChannel channel = new IpcClientChannel();
@@ -54,16 +74,24 @@ namespace HE853
             RemotingConfiguration.RegisterWellKnownClientType(typeof(HE853.Device), "ipc://" + ChannelName + "/" + InterfaceName);
         }
 
+        /// <summary>
+        /// Tests wether the list of command line arguments contains the service arg.
+        /// </summary>
+        /// <param name="args">Command line arguments.</param>
+        /// <returns>True if contains service arg.</returns>
         public static bool HasServiceArg(string[] args)
         {
             bool has = false;
 
-            foreach (string arg in args)
+            if (args != null)
             {
-                if (arg == ServiceArg)
+                foreach (string arg in args)
                 {
-                    has = true;
-                    break;
+                    if (arg == ServiceArg)
+                    {
+                        has = true;
+                        break;
+                    }
                 }
             }
 
