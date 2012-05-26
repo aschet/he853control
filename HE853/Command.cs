@@ -32,12 +32,12 @@ namespace HE853
         /// <summary>
         /// Minimum possible device code.
         /// </summary>
-        public const ushort MinDeviceCode = 1;
+        public const int MinDeviceCode = 1;
 
         /// <summary>
         /// Maximum possible device code.
         /// </summary>
-        public const ushort MaxDeviceCode = 6000;
+        public const int MaxDeviceCode = 6000;
 
         /// <summary>
         /// Minimum possible dim level.
