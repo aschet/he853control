@@ -49,6 +49,7 @@
     <Compile Include="CommandUK.cs" />
     <Compile Include="Device.cs" />
     <Compile Include="IDevice.cs" />
+    <Compile Include="Interface1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PInvoke.cs" />
   </ItemGroup>

@@ -22,36 +22,38 @@ namespace HE853
     using System;
     using System.Runtime.InteropServices;
 
+    /// <summary>
+    /// Implementation for communication with the HE853 device.
+    /// </summary>
     [ComVisible(true), GuidAttribute("D4A99D66-CAB0-40A9-A288-AED3BDBF6092")]
     [ProgId("HE853.Device")]
     [ClassInterface(ClassInterfaceType.None)]
     public sealed class Device : MarshalByRefObject, IDevice
     {
+        /// <summary>
+        /// Handle to the device.
+        /// </summary>
         private IntPtr writeHandle = IntPtr.Zero;
+        
+        /// <summary>
+        /// Command sequence generator for CN specific receivers.
+        /// </summary>
         private CommandCN commandCN = new CommandCN();
+        
+        /// <summary>
+        /// Command sequence generator for EU specific receivers.
+        /// </summary>
         private CommandEU commandEU = new CommandEU();
+        
+        /// <summary>
+        /// Command sequence generator for UK specific receivers.
+        /// </summary>
         private CommandUK commandUK = new CommandUK();
-        private bool shortCommands = false;
 
-        public bool ShortCommands
-        {
-            get
-            {
-                lock (this)
-                {
-                    return this.shortCommands;
-                }
-            }
-
-            set
-            {
-                lock (this)
-                {
-                    this.shortCommands = value;
-                }
-            }
-        }
-
+        /// <summary>
+        /// Prepares the HE853 device for usage. Uses locking.
+        /// </summary>
+        /// <returns>True if the device is available.</returns>
         public bool Open()
         {
             bool result = false;
@@ -63,6 +65,9 @@ namespace HE853
             return result;
         }
 
+        /// <summary>
+        /// Shuts down the HE853 device. Uses locking.
+        /// </summary>
         public void Close()
         {
             lock (this)
@@ -71,39 +76,81 @@ namespace HE853
             }
         }
 
+        /// <summary>
+        /// Swiches receivers with specific device code on.
+        /// </summary>
+        /// <param name="deviceCode">Device code of receivers.</param>
+        /// <returns>True if command could be send.</returns>
         public bool On(int deviceCode)
         {
-            bool result = false;
-            lock (this)
-            {
-                result = this.SendTextCommand(deviceCode, Command.On);
-            }
-
-            return result;
+            return this.On(deviceCode, false);
         }
 
-        public bool Off(int deviceCode)
+        /// <summary>
+        /// Swiches receivers with specific device code on.
+        /// </summary>
+        /// <param name="deviceCode">Device code of receivers.</param>
+        /// <param name="shortCommand">Sends shorter less compatible command sequence.</param>
+        /// <returns>True if command could be send.</returns>
+        public bool On(int deviceCode, bool shortCommand)
         {
             bool result = false;
             lock (this)
             {
-                result = this.SendTextCommand(deviceCode, Command.Off);
+                result = this.SendTextCommand(deviceCode, Command.On, shortCommand);
             }
 
             return result;
         }
 
+        /// <summary>
+        /// Swiches receivers with specific device code off.
+        /// </summary>
+        /// <param name="deviceCode">Device code of receivers.</param>
+        /// <returns>True if command could be send.</returns>
+        public bool Off(int deviceCode)
+        {
+            return this.Off(deviceCode);
+        }
+
+        /// <summary>
+        /// Swiches receivers with specific device code off.
+        /// </summary>
+        /// <param name="deviceCode">Device code of receivers.</param>
+        /// <param name="shortCommand">Sends shorter less compatible command sequence.</param>
+        /// <returns>True if command could be send.</returns>
+        public bool Off(int deviceCode, bool shortCommand)
+        {
+            bool result = false;
+            lock (this)
+            {
+                result = this.SendTextCommand(deviceCode, Command.Off, shortCommand);
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Adjusts dim level on receivers with specific device code.
+        /// </summary>
+        /// <param name="deviceCode">Device code of receivers.</param>
+        /// <param name="percent">Amount of dim. A value between 10 an 80.</param>
+        /// <returns>True if command could be send.</returns>
         public bool Dim(int deviceCode, int percent)
         {
             bool result = false;
             lock (this)
             {
-                result = this.SendTextCommand(deviceCode, Convert.ToString(percent));
+                result = this.SendTextCommand(deviceCode, Convert.ToString(percent), false);
             }
 
             return result;
         }
 
+        /// <summary>
+        /// Prepares the HE853 device for usage.
+        /// </summary>
+        /// <returns>True if the device is available.</returns>
         private bool OpenUnlocked()
         {
             this.CloseUnlocked();
@@ -117,27 +164,37 @@ namespace HE853
             return this.writeHandle != IntPtr.Zero;
         }
 
+        /// <summary>
+        /// Shuts down the HE853 device.
+        /// </summary>
         private void CloseUnlocked()
         {
             PInvoke.CloseHandle(ref this.writeHandle);     
         }
 
-        private bool SendTextCommand(int deviceCode, string commandString)
+        /// <summary>
+        /// Encodes and sends a command in text form to the HE853 device.
+        /// </summary>
+        /// <param name="deviceCode">Device code of receivers.</param>
+        /// <param name="command">Command sequence to send.</param>
+        /// <param name="shortCommand">Sends shorter less compatible command sequence.</param> 
+        /// <returns>True if command could be send.</returns>
+        private bool SendTextCommand(int deviceCode, string command, bool shortCommand)
         {
             bool result = this.TestStatus();
             if (result)
             {
-                result = this.SendCommand(this.commandCN.Build(deviceCode, commandString));
-                if (!this.shortCommands && (commandString == Command.On || commandString == Command.Off))
+                result = this.SendCommand(this.commandCN.Build(deviceCode, command));
+                if (!shortCommand && (command == Command.On || command == Command.Off))
                 {
                     if (result)
                     {
-                        result = this.SendCommand(this.commandUK.Build(deviceCode, commandString));
+                        result = this.SendCommand(this.commandUK.Build(deviceCode, command));
                     }
 
                     if (result)
                     {
-                        result = this.SendCommand(this.commandEU.Build(deviceCode, commandString));
+                        result = this.SendCommand(this.commandEU.Build(deviceCode, command));
                     }
                 }
             }
@@ -145,7 +202,12 @@ namespace HE853
             return result;
         }
 
-        private bool SendCommand(byte[] binaryCommand)
+        /// <summary>
+        /// Sends a command sequence as series of 9 byte long HID reports to the HE853 device.
+        /// </summary>
+        /// <param name="command">Command sequence to send.</param>
+        /// <returns>True if command could be send.</returns>
+        private bool SendCommand(byte[] command)
         {
             if (this.writeHandle == IntPtr.Zero)
             {
@@ -157,11 +219,11 @@ namespace HE853
             byte[] chunk = new byte[ChunkLength + 1];
             chunk[0] = 0;
 
-            for (int i = 0; i < (binaryCommand.Length / ChunkLength) && result; ++i)
+            for (int i = 0; i < (command.Length / ChunkLength) && result; ++i)
             {
                 for (int j = 0; j < ChunkLength; ++j)
                 {
-                    chunk[j + 1] = binaryCommand[(i * ChunkLength) + j];
+                    chunk[j + 1] = command[(i * ChunkLength) + j];
                 }
 
                 result = result && PInvoke.SetHIDOutputReport(this.writeHandle, chunk);
@@ -172,6 +234,10 @@ namespace HE853
             return result;
         }
 
+        /// <summary>
+        /// Tests if the HE853 device is still available and if not tries to reopen it.
+        /// </summary>
+        /// <returns>True if the device is available.</returns>
         private bool TestStatus()
         {
             bool result = this.SendCommand(this.commandCN.BuildStatus());

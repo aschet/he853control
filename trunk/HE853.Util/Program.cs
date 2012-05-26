@@ -41,9 +41,9 @@ namespace HE853.Util
             int dim;
             int deviceCode;
             bool useService;
-            bool shortCommands;
+            bool shortCommand;
 
-            if (!ParseArgs(args, out command, out dim, out deviceCode, out useService, out shortCommands))
+            if (!ParseArgs(args, out command, out dim, out deviceCode, out useService, out shortCommand))
             {
                 return (int)ExitCode.Success;
             }
@@ -69,16 +69,14 @@ namespace HE853.Util
                 return (int)ExitCode.DeviceNotFound;
             }
 
-            device.ShortCommands = shortCommands;
-
             bool result = false;
             if (command == "ON")
             {
-                result = device.On(deviceCode);
+                result = device.On(deviceCode, shortCommand);
             }
             else if (command == "OFF")
             {
-                result = device.Off(deviceCode);
+                result = device.Off(deviceCode, shortCommand);
             }
             else
             {
@@ -96,13 +94,13 @@ namespace HE853.Util
             return (int)ExitCode.Success;
         }
 
-        private static bool ParseArgs(string[] args, out string command, out int dim, out int deviceCode, out bool useService, out bool shortCommnds)
+        private static bool ParseArgs(string[] args, out string command, out int dim, out int deviceCode, out bool useService, out bool shortCommnd)
         {
             command = string.Empty;
             dim = 0;
             deviceCode = 0;
             useService = RPC.HasServiceArg(args);
-            shortCommnds = false;
+            shortCommnd = false;
             
             if (args.Length < 2)
             {
@@ -127,7 +125,7 @@ namespace HE853.Util
             {
                 if (arg == "/short")
                 {
-                    shortCommnds = true;
+                    shortCommnd = true;
                     break;
                 }
             }
