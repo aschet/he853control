@@ -70,11 +70,11 @@ namespace HE853.Util
             }
 
             bool result = false;
-            if (command == "ON")
+            if (command == Command.On)
             {
                 result = device.On(deviceCode, shortCommand);
             }
-            else if (command == "OFF")
+            else if (command == Command.Off)
             {
                 result = device.Off(deviceCode, shortCommand);
             }
@@ -109,7 +109,7 @@ namespace HE853.Util
             }
 
             command = args[0];
-            if (!(command == "ON" || command == "OFF" || int.TryParse(command, out dim)))
+            if (!(command == Command.On || command == Command.Off || int.TryParse(command, out dim)))
             {
                 PrintUsage();
                 return false;
@@ -137,10 +137,10 @@ namespace HE853.Util
         {
             string name = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
 
-            Console.WriteLine("Usage: " + name + " <command> <device_code> [/service] [/short]");
+            Console.WriteLine("Usage: " + name + " <command> <device_code> [" + RPC.ServiceArg + "] [/short]");
             Console.WriteLine();
-            Console.WriteLine("<command> := ON | OFF | 10..80");
-            Console.WriteLine("<device_code> := 1..6000");
+            Console.WriteLine("<command> := " + Command.On + " | " + Command.Off + " | " + Command.MinDim + ".." + Command.MaxDim);
+            Console.WriteLine("<device_code> := " + Command.MinDeviceCode + ".." + Command.MaxDeviceCode);
             Console.WriteLine();
             Console.WriteLine("/service use service instead of device");
             Console.WriteLine("/short use short command sequence, less compatible");
@@ -149,7 +149,7 @@ namespace HE853.Util
             Console.WriteLine("To program the code hold the learn button on the receiver for");
             Console.WriteLine("about 2 seconds and send an ON command with the specific code.");
             Console.WriteLine();
-            Console.WriteLine("Example: " + name + " ON 1001");
+            Console.WriteLine("Example: " + name + " " + Command.On + " 1001");
         }
     }
 }

@@ -30,6 +30,26 @@ namespace HE853
     public abstract class Command
     {
         /// <summary>
+        /// Minimum possible device code.
+        /// </summary>
+        public const ushort MinDeviceCode = 1;
+
+        /// <summary>
+        /// Maximum possible device code.
+        /// </summary>
+        public const ushort MaxDeviceCode = 6000;
+
+        /// <summary>
+        /// Minimum possible dim level.
+        /// </summary>
+        public const byte MinDim = 10;
+
+        /// <summary>
+        /// Maximum possible dim level.
+        /// </summary>
+        public const byte MaxDim = 80;
+
+        /// <summary>
         /// Constant for the On command.
         /// </summary>
         public const string On = "ON";
