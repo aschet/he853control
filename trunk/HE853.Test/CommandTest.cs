@@ -26,7 +26,7 @@ namespace HE853.Test
     public class CommandTest
     {
         [TestMethod]
-        public void BuildStatusTest()
+        public void Command_BuildStatus()
         {
             byte[] dataExpected = { 6, 1, 0, 0, 0, 0, 0, 0 };
 
@@ -39,58 +39,53 @@ namespace HE853.Test
 
         [TestMethod]
         [DeploymentItem("HE853.dll")]
-        public void BuildSpecTest()
+        public void Command_WriteRFSpec()
         {
             byte[] dataExpected = { 0, 32, 1, 224, 0, 0, 0, 0, 32, 96, 96, 32, 28, 7 };
 
             Command_Accessor target = this.CreateCommand_Accessor();
             MemoryStream stream = new MemoryStream();
-            target.BuildSpec(stream);
-            byte[] data = stream.ToArray();
-            CollectionAssert.AreEqual(dataExpected, data);
+            target.WriteRFSpec(stream);
+            CollectionAssert.AreEqual(dataExpected, stream.ToArray());
         }
 
         [TestMethod]
         [DeploymentItem("HE853.dll")]
-        public void BuildExecTest()
+        public void Command_WriteExec()
         {
             byte[] dataExpected = { 0, 0, 0, 0, 0, 0, 0 };
 
             Command_Accessor target = this.CreateCommand_Accessor();
             MemoryStream stream = new MemoryStream();
-            target.BuildExec(stream);
-            byte[] data = stream.ToArray();
-            CollectionAssert.AreEqual(dataExpected, data);
+            target.WriteExec(stream);
+            CollectionAssert.AreEqual(dataExpected, stream.ToArray());
         }
 
         [TestMethod]
         [DeploymentItem("HE853.dll")]
-        public void WriteZeroTest()
+        public void Command_WriteZero()
         {
             byte[] dataExpected = { 0, 0, 0 };
 
             Command_Accessor target = this.CreateCommand_Accessor();
             MemoryStream stream = new MemoryStream();
             target.WriteZero(stream, 3);
-            byte[] data = stream.ToArray();
-            CollectionAssert.AreEqual(dataExpected, data);
+            CollectionAssert.AreEqual(dataExpected, stream.ToArray());
         }
 
         internal virtual Command CreateCommand()
         {
-            Command target = new CommandCN();
-            return target;
+            return new CommandCN();
         }
 
         internal virtual Command_Accessor CreateCommand_Accessor()
         {
-            Command_Accessor target = new Command_Accessor(new PrivateObject(this.CreateCommand(), new PrivateType(typeof(Command))));
-            return target;
+            return new Command_Accessor(new PrivateObject(this.CreateCommand(), new PrivateType(typeof(Command))));
         }
 
         [TestMethod()]
         [DeploymentItem("HE853.dll")]
-        public void PackSevenWithSequenceNumberTest()
+        public void Command_PackSevenWithSequenceNumber()
         {
             byte[] dataExpected = new byte[] { 1, 0, 1, 2, 3, 4, 5, 6, 2, 7, 8, 9, 10, 11, 12, 13 };
 

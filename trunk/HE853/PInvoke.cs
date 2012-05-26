@@ -58,7 +58,7 @@ namespace HE853
 
                 if (hidHandle != IntPtr.Zero)
                 {
-                    bool isHIDProduct = IsHIDProduct(hidHandle, 0x4D9, 0x1357);
+                    bool isHIDProduct = IsSpecificHIDDevice(hidHandle, 0x4D9, 0x1357);
                     CloseHandle(ref hidHandle);
 
                     if (isHIDProduct)
@@ -77,7 +77,7 @@ namespace HE853
             return HidD_SetOutputReport(hidDeviceObject, reportBuffer, reportBuffer.Length);
         }
 
-        private static bool IsHIDProduct(IntPtr hidHandle, short vendorID, short productID)
+        private static bool IsSpecificHIDDevice(IntPtr hidHandle, short vendorID, short productID)
         {
             HIDDAttributes deviceAttributes = new HIDDAttributes();
             deviceAttributes.Size = Marshal.SizeOf(deviceAttributes);

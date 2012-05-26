@@ -101,28 +101,28 @@ namespace HE853
         {
             using (MemoryStream stream = new MemoryStream())
             {
-                this.BuildSpec(stream);
-                this.BuildData(stream, deviceCode, commandString);
-                this.BuildExec(stream);
+                this.WriteRFSpec(stream);
+                this.WriteData(stream, deviceCode, commandString);
+                this.WriteExec(stream);
                 return this.PackSevenWithSequenceNumber(stream.ToArray());
             }
         }
 
-        protected abstract void BuildData(MemoryStream stream, int deviceCode, string commandString);
+        protected abstract void WriteData(Stream stream, int deviceCode, string commandString);
 
-        protected void WriteZero(MemoryStream stream, int count)
+        protected void WriteZero(Stream stream, int count)
         {
             byte[] bytes = new byte[count];
             stream.Write(bytes, 0, bytes.Length);
         }
 
-        protected void WriteUShort(MemoryStream stream, ushort value)
+        protected void WriteUShort(Stream stream, ushort value)
         {
             stream.WriteByte((byte)((value >> 8) & 0xFF));
             stream.WriteByte((byte)(value & 0xFF));
         }
 
-        private void BuildSpec(MemoryStream stream)
+        private void WriteRFSpec(MemoryStream stream)
         {
             this.WriteUShort(stream, this.StartBitHTime);
             this.WriteUShort(stream, this.StartBitLTime);
@@ -137,7 +137,7 @@ namespace HE853
             stream.WriteByte(this.FrameCount);
         }
 
-        private void BuildExec(System.IO.MemoryStream stream)
+        private void WriteExec(Stream stream)
         {
             this.WriteZero(stream, 7);
         }
