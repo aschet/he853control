@@ -50,7 +50,7 @@ namespace HE853.Util
 
             if (useService)
             {
-                RPC.RegisterClient();
+                Rpc.RegisterClient();
             }
 
             Device device = new Device();
@@ -99,7 +99,7 @@ namespace HE853.Util
             command = string.Empty;
             dim = 0;
             deviceCode = 0;
-            useService = RPC.HasServiceArg(args);
+            useService = Rpc.HasServiceArg(args);
             shortCommnd = false;
             
             if (args.Length < 2)
@@ -137,7 +137,7 @@ namespace HE853.Util
         {
             string name = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
 
-            Console.WriteLine("Usage: " + name + " <command> <device_code> [" + RPC.ServiceArg + "] [/short]");
+            Console.WriteLine("Usage: " + name + " <command> <device_code> [" + Rpc.ServiceArg + "] [/short]");
             Console.WriteLine();
             Console.WriteLine("<command> := " + Command.On + " | " + Command.Off + " | " + Command.MinDim + ".." + Command.MaxDim);
             Console.WriteLine("<device_code> := " + Command.MinDeviceCode + ".." + Command.MaxDeviceCode);

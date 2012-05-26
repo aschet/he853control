@@ -27,9 +27,9 @@ namespace HE853.App
         [STAThread]
         private static void Main(string[] args)
         {
-            if (RPC.HasServiceArg(args))
+            if (Rpc.HasServiceArg(args))
             {
-                RPC.RegisterClient();
+                Rpc.RegisterClient();
             }
 
             Application.EnableVisualStyles();
