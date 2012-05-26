@@ -41,8 +41,9 @@ namespace HE853.Util
             int dim;
             int deviceCode;
             bool useService;
+            bool shortCommands;
 
-            if (!ParseArgs(args, out command, out dim, out deviceCode, out useService))
+            if (!ParseArgs(args, out command, out dim, out deviceCode, out useService, out shortCommands))
             {
                 return (int)ExitCode.Success;
             }
@@ -67,6 +68,8 @@ namespace HE853.Util
                 Console.WriteLine("The service does not respond!");
                 return (int)ExitCode.DeviceNotFound;
             }
+
+            device.ShortCommands = shortCommands;
 
             bool result = false;
             if (command == "ON")
@@ -93,12 +96,13 @@ namespace HE853.Util
             return (int)ExitCode.Success;
         }
 
-        private static bool ParseArgs(string[] args, out string command, out int dim, out int deviceCode, out bool useService)
+        private static bool ParseArgs(string[] args, out string command, out int dim, out int deviceCode, out bool useService, out bool shortCommnds)
         {
             command = string.Empty;
             dim = 0;
             deviceCode = 0;
             useService = RPC.HasServiceArg(args);
+            shortCommnds = false;
             
             if (args.Length < 2)
             {
@@ -119,6 +123,15 @@ namespace HE853.Util
                 return false;
             }
 
+            foreach (string arg in args)
+            {
+                if (arg == "/short")
+                {
+                    shortCommnds = true;
+                    break;
+                }
+            }
+
             return true;
         }
 
@@ -126,10 +139,13 @@ namespace HE853.Util
         {
             string name = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
 
-            Console.WriteLine("Usage: " + name + " <command> <device_code> [/service]");
+            Console.WriteLine("Usage: " + name + " <command> <device_code> [/service] [/short]");
             Console.WriteLine();
             Console.WriteLine("<command> := ON | OFF | 10..80");
             Console.WriteLine("<device_code> := 1..6000");
+            Console.WriteLine();
+            Console.WriteLine("/service use service instead of device");
+            Console.WriteLine("/short use short command sequence, less compatible");
             Console.WriteLine();
             Console.WriteLine("The device code has to programmed to a receiver first.");
             Console.WriteLine("To program the code hold the learn button on the receiver for");
