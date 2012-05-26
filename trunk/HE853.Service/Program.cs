@@ -21,8 +21,14 @@ namespace HE853.Service
 {
     using System.ServiceProcess;
 
+    /// <summary>
+    /// Service main program.
+    /// </summary>
     public static class Program
     {
+        /// <summary>
+        /// Service main program.
+        /// </summary>
         public static void Main()
         {
             ServiceBase[] servicesToRun;
