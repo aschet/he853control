@@ -124,6 +124,11 @@ namespace HE853
         /// <returns>True if command could be send.</returns>
         public bool AdjustDim(int deviceCode, int amount)
         {
+            if (!Command.IsValidDim(amount))
+            {
+                throw new ArgumentOutOfRangeException("amount", "Must be value between " + Command.MinDim + " and " + Command.MaxDim);
+            }
+
             bool result = false;
             lock (this.locker)
             {
@@ -167,6 +172,11 @@ namespace HE853
         /// <returns>True if command could be send.</returns>
         private bool SendCommand(int deviceCode, string command, bool shortCommand)
         {
+            if (!Command.IsValidDeviceCode(deviceCode))
+            {
+                throw new ArgumentOutOfRangeException("deviceCode", "Must be value between " + Command.MinDeviceCode + " and " + Command.MaxDeviceCode);
+            }
+            
             bool result = this.TestStatus();
             if (result)
             {
