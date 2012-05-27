@@ -21,8 +21,16 @@ namespace HE853
 {
     using System.IO;
 
+    /// <summary>
+    /// Encoder for command strings and device code for some UK specific
+    /// receivers. Maybe for legacy support.
+    /// </summary>
     public sealed class CommandUK : Command
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CommandUK"/> class. Sets
+        /// region specific RF specification.
+        /// </summary>
         public CommandUK()
         {
             this.StartBitHTime = 32;
@@ -37,6 +45,12 @@ namespace HE853
             this.FrameCount = 18;
         }
 
+        /// <summary>
+        /// Writes encoded data part of command sequence.
+        /// </summary>
+        /// <param name="stream">Receiving output stream.</param>
+        /// <param name="deviceCode">Device code of receivers to encode.</param>
+        /// <param name="commandString">Text command to encode.</param>
         protected override void WriteData(Stream stream, int deviceCode, string commandString)
         {
             int[] encodingBuffer = new int[8];

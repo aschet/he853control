@@ -21,10 +21,22 @@ namespace HE853
 {
     using System.IO;
 
+    /// <summary>
+    /// Encoder for command strings and device code for some CN specific
+    /// receivers. This seems to be the most common one and the only
+    /// that supports dim.
+    /// </summary>
     public sealed class CommandCN : Command
     {
+        /// <summary>
+        /// Per command incremented counter that will be embedded into the data part.
+        /// </summary>
         private byte count = 0;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CommandCN"/> class. Sets
+        /// region specific RF specification.
+        /// </summary>
         public CommandCN()
         {
             this.StartBitHTime = 32;
@@ -39,14 +51,20 @@ namespace HE853
             this.FrameCount = 7;
         }
 
-        protected override void WriteData(Stream stream, int deviceCode, string commandString)
+        /// <summary>
+        /// Writes encoded data part of command sequence.
+        /// </summary>
+        /// <param name="stream">Receiving output stream.</param>
+        /// <param name="deviceCode">Device code of receivers to encode.</param>
+        /// <param name="command">Text command to encode.</param>
+        protected override void WriteData(Stream stream, int deviceCode, string command)
         {
             ushort[] lookup = new ushort[] { 0x609, 0x306, 0x803, 0xA08, 0xA, 0x200, 0xC02, 0x40C, 0xE04, 0x70E, 0x507, 0x105, 0xF01, 0xB0F, 0xD0B, 0x90D };
             this.count = (byte)(this.count + 1);
             byte[] encodingBuffer = new byte[7];
             encodingBuffer[0] = 0x1;
             encodingBuffer[1] = (byte)((this.count << 2) & 0xF);
-            if (commandString != Command.Off)
+            if (command != Command.Off)
             {
                 encodingBuffer[1] |= 0x2;
             }
@@ -55,13 +73,13 @@ namespace HE853
             encodingBuffer[3] = (byte)((deviceCode >> 4) & 0xF);
             encodingBuffer[4] = (byte)((deviceCode >> 8) & 0xF);
             encodingBuffer[5] = (byte)((deviceCode >> 12) & 0xF);
-            if ((commandString == Command.On) || (commandString == Command.Off))
+            if ((command == Command.On) || (command == Command.Off))
             {
                 encodingBuffer[6] = 0x0;
             }
             else
             {
-                string firstDigitString = commandString.Substring(0, 1);
+                string firstDigitString = command.Substring(0, 1);
                 encodingBuffer[6] = (byte)(byte.Parse(firstDigitString) - 1);
                 encodingBuffer[6] |= 0x8;
             }
