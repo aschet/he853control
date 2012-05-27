@@ -83,7 +83,7 @@ namespace HE853.Test
             return new Command_Accessor(new PrivateObject(this.CreateCommand(), new PrivateType(typeof(Command))));
         }
 
-        [TestMethod()]
+        [TestMethod]
         [DeploymentItem("HE853.dll")]
         public void Command_PackSevenWithSequenceNumber()
         {
