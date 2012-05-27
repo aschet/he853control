@@ -21,8 +21,16 @@ namespace HE853
 {
     using System.IO;
 
+    /// <summary>
+    /// Encoder for command strings and device code for some EU specific
+    /// receivers. Maybe for legacy support.
+    /// </summary>
     public sealed class CommandEU : Command
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CommandEU"/> class. Sets
+        /// region specific RF specification.
+        /// </summary>
         public CommandEU()
         {
             this.StartBitHTime = 26;
@@ -37,6 +45,12 @@ namespace HE853
             this.FrameCount = 7;
         }
 
+        /// <summary>
+        /// Writes encoded data part of command sequence.
+        /// </summary>
+        /// <param name="stream">Receiving output stream.</param>
+        /// <param name="deviceCode">Device code of receivers to encode.</param>
+        /// <param name="commandString">Text command to encode.</param>
         protected override void WriteData(Stream stream, int deviceCode, string commandString)
         {
             byte[] lookup = new byte[] { 0x7, 0xB, 0xD, 0xE, 0x13, 0x15, 0x16, 0x19, 0x1A, 0x1C, 0x3, 0x5, 0x6, 0x9, 0xA, 0xC };
