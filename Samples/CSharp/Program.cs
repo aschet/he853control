@@ -7,8 +7,7 @@
             HE853.IDevice device = new HE853.Device();
             if (device.Open())
             {
-                device.On(1001);
-                device.Off(1001);
+                device.SwitchOn(1001);
                 device.Close();
             }
         }

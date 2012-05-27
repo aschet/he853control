@@ -44,7 +44,7 @@ namespace HE853
         /// </summary>
         /// <param name="deviceCode">Device code of receivers.</param>
         /// <returns>True if command could be send.</returns>
-        bool On(int deviceCode);
+        bool SwitchOn(int deviceCode);
 
         /// <summary>
         /// Swiches receivers with specific device code on.
@@ -52,14 +52,14 @@ namespace HE853
         /// <param name="deviceCode">Device code of receivers.</param>
         /// <param name="shortCommand">Sends shorter less compatible command sequence.</param>
         /// <returns>True if command could be send.</returns>
-        bool On(int deviceCode, bool shortCommand);
+        bool SwitchOn(int deviceCode, bool shortCommand);
 
         /// <summary>
         /// Swiches receivers with specific device code off.
         /// </summary>
         /// <param name="deviceCode">Device code of receivers.</param>
         /// <returns>True if command could be send.</returns>
-        bool Off(int deviceCode);
+        bool SwitchOff(int deviceCode);
 
         /// <summary>
         /// Swiches receivers with specific device code off.
@@ -67,7 +67,7 @@ namespace HE853
         /// <param name="deviceCode">Device code of receivers.</param>
         /// <param name="shortCommand">Sends shorter less compatible command sequence.</param>
         /// <returns>True if command could be send.</returns>
-        bool Off(int deviceCode, bool shortCommand);
+        bool SwitchOff(int deviceCode, bool shortCommand);
         
         /// <summary>
         /// Adjusts dim level on receivers with specific device code.
@@ -75,6 +75,6 @@ namespace HE853
         /// <param name="deviceCode">Device code of receivers.</param>
         /// <param name="amount">Amount of dim. A value between 1 an 8.</param>
         /// <returns>True if command could be send.</returns>
-        bool Dim(int deviceCode, int amount);
+        bool AdjustDim(int deviceCode, int amount);
     }
 }

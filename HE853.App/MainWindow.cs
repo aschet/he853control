@@ -70,7 +70,7 @@ namespace HE853.App
         private void OnButton_Click(object sender, EventArgs e)
         {
             this.onButton.Enabled = false;
-            Notify(this.device.On(this.GetDeviceCode(), this.UseShortCommands()));
+            Notify(this.device.SwitchOn(this.GetDeviceCode(), this.UseShortCommands()));
             this.onButton.Enabled = true;
         }
 
@@ -82,7 +82,7 @@ namespace HE853.App
         private void OffButton_Click(object sender, EventArgs e)
         {
             this.offButton.Enabled = false;
-            Notify(this.device.Off(this.GetDeviceCode(), this.UseShortCommands()));
+            Notify(this.device.SwitchOff(this.GetDeviceCode(), this.UseShortCommands()));
             this.offButton.Enabled = true;
         }
 
@@ -94,7 +94,7 @@ namespace HE853.App
         private void DimButton_Click(object sender, EventArgs e)
         {
             this.dimButton.Enabled = false;
-            Notify(this.device.Dim(this.GetDeviceCode(), int.Parse(this.dimComboBox.Text)));
+            Notify(this.device.AdjustDim(this.GetDeviceCode(), int.Parse(this.dimComboBox.Text)));
             this.dimButton.Enabled = true;
         }
 
