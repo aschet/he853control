@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 namespace HE853
 {
     using System;
+    using System.Globalization;
     using System.Runtime.InteropServices;
 
     /// <summary>
@@ -146,7 +147,7 @@ namespace HE853
             bool result = false;
             lock (this.locker)
             {
-                result = this.SendCommand(deviceCode, Convert.ToString(percent), false);
+                result = this.SendCommand(deviceCode, Convert.ToString(percent, CultureInfo.InvariantCulture), false);
             }
 
             return result;
@@ -245,7 +246,7 @@ namespace HE853
         /// <returns>True if the device is available.</returns>
         private bool TestStatus()
         {
-            bool result = this.SendCommand(this.commandCN.BuildStatus());
+            bool result = this.SendCommand(Command.BuildStatus());
             if (!result)
             {
                 result = this.OpenUnlocked();

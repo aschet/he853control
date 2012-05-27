@@ -60,8 +60,8 @@ namespace HE853
         /// Import for HidD_GetAttributes function.
         /// </summary>
         /// <param name="hidDeviceObject">Specifies an open handle to a top-level collection.</param>
-        /// <param name="atributes">Pointer to a caller-allocated HIDD_ATTRIBUTES structure.</param>
-        /// <returns>Returns TRUE if succeeds; otherwise, it returns FALSE.</returns>
+        /// <param name="atributes">Pointer to a caller-allocated structure.</param>
+        /// <returns>Returns true if succeeds; otherwise, it returns false.</returns>
         [DllImport("hid.dll")]
         public static extern int HidD_GetAttributes(IntPtr hidDeviceObject, ref HIDDAttributes atributes);
 
@@ -71,9 +71,9 @@ namespace HE853
         /// <param name="hidDeviceObject">Specifies an open handle to a top-level collection.</param>
         /// <param name="reportBuffer">Pointer to a caller-allocated output report buffer that the caller uses to specify a report ID.</param>
         /// <param name="reportBufferLength">The size in bytes.</param>
-        /// <returns>If HidD_SetOutputReport succeeds, it returns TRUE; otherwise, it returns FALSE.</returns>
+        /// <returns>If HidD_SetOutputReport succeeds, it returns true; otherwise, it returns false.</returns>
         [DllImport("hid.dll")]
-        public static extern bool HidD_SetOutputReport(IntPtr hidDeviceObject, byte[] reportBuffer, int reportBufferLength);
+        public static extern int HidD_SetOutputReport(IntPtr hidDeviceObject, byte[] reportBuffer, int reportBufferLength);
 
         /// <summary>
         /// Import for SetupDiEnumDeviceInterfaces function.
@@ -83,7 +83,7 @@ namespace HE853
         /// <param name="interfaceClassGuid">A pointer to a GUID that specifies the device interface class for the requested interface.</param>
         /// <param name="memberIndex">A zero-based index into the list of interfaces in the device information set.</param>
         /// <param name="deviceInterfaceData">A pointer to a caller-allocated buffer that contains, on successful return, a structure that identifies an interface that meets the search parameters.</param>
-        /// <returns>If succeeds, it returns TRUE; otherwise, it returns FALSE.</returns>
+        /// <returns>If succeeds, it returns true; otherwise, it returns false.</returns>
         [DllImport("setupapi.dll")]
         public static extern int SetupDiEnumDeviceInterfaces(IntPtr deviceInfoSet, IntPtr deviceInfoData, ref Guid interfaceClassGuid, int memberIndex, ref SPDeviceInterfaceData deviceInterfaceData);
 
@@ -91,7 +91,7 @@ namespace HE853
         /// Import for SetupDiDestroyDeviceInfoList function.
         /// </summary>
         /// <param name="deviceInfoSet">A handle to the device information set to delete.</param>
-        /// <returns>The function returns TRUE if it is successful.</returns>
+        /// <returns>The function returns true if it is successful.</returns>
         [DllImport("setupapi.dll")]
         public static extern int SetupDiDestroyDeviceInfoList(IntPtr deviceInfoSet);
 
