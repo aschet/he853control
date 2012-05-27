@@ -91,7 +91,7 @@ namespace HE853
 
             stream.Write(encodingBuffer, 0, encodingBuffer.Length);
 
-            this.WriteZero(stream, 6);
+            Command.WriteZero(stream, 6);
         }
     }
 }

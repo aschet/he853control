@@ -193,7 +193,7 @@ namespace HE853
             {
                 stream.WriteByte(6);
                 stream.WriteByte(1);
-                this.WriteZero(stream, 6);
+                WriteZero(stream, 6);
                 return stream.ToArray();
             }
         }
@@ -210,25 +210,17 @@ namespace HE853
             {
                 this.WriteRFSpec(stream);
                 this.WriteData(stream, deviceCode, command);
-                this.WriteExec(stream);
-                return this.PackSevenWithSequenceNumber(stream.ToArray());
+                WriteExec(stream);
+                return PackSevenWithSequenceNumber(stream.ToArray());
             }
         }
-
-        /// <summary>
-        /// Writes encoded data part of command sequence.
-        /// </summary>
-        /// <param name="stream">Receiving output stream.</param>
-        /// <param name="deviceCode">Device code of receivers to encode.</param>
-        /// <param name="command">Text command to encode.</param>
-        protected abstract void WriteData(Stream stream, int deviceCode, string command);
 
         /// <summary>
         /// Writes a given amount of zeros.
         /// </summary>
         /// <param name="stream">Receiving output stream.</param>
         /// <param name="count">Amount of zeros to write.</param>
-        protected void WriteZero(Stream stream, int count)
+        protected static void WriteZero(Stream stream, int count)
         {
             if (stream != null)
             {
@@ -242,7 +234,7 @@ namespace HE853
         /// </summary>
         /// <param name="stream">Receiving output stream.</param>
         /// <param name="value">Value to write.</param>
-        protected void WriteUShort(Stream stream, int value)
+        protected static void WriteUShort(Stream stream, int value)
         {
             if (stream != null)
             {
@@ -252,36 +244,22 @@ namespace HE853
         }
 
         /// <summary>
-        /// Writes the RF specification part from properties.
+        /// Writes encoded data part of command sequence.
         /// </summary>
         /// <param name="stream">Receiving output stream.</param>
-        private void WriteRFSpec(Stream stream)
-        {
-            if (stream != null)
-            {
-                this.WriteUShort(stream, this.StartBitHTime);
-                this.WriteUShort(stream, this.StartBitLTime);
-                this.WriteUShort(stream, this.EndBitHTime);
-                this.WriteUShort(stream, this.EndBitLTime);
-
-                stream.WriteByte(this.DataBit0HTime);
-                stream.WriteByte(this.DataBit0LTime);
-                stream.WriteByte(this.DataBit1HTime);
-                stream.WriteByte(this.DataBit1LTime);
-                stream.WriteByte(this.DataBitCount);
-                stream.WriteByte(this.FrameCount);
-            }
-        }
+        /// <param name="deviceCode">Device code of receivers to encode.</param>
+        /// <param name="command">Text command to encode.</param>
+        protected abstract void WriteData(Stream stream, int deviceCode, string command);
 
         /// <summary>
         /// Writes the command execution sequence part.
         /// </summary>
         /// <param name="stream">Receiving output stream.</param>
-        private void WriteExec(Stream stream)
+        private static void WriteExec(Stream stream)
         {
-            if (stream.CanWrite)
+            if (stream != null)
             {
-                this.WriteZero(stream, 7);
+                WriteZero(stream, 7);
             }
         }
 
@@ -291,7 +269,7 @@ namespace HE853
         /// </summary>
         /// <param name="command">Command sequence to split.</param>
         /// <returns>Command sequence with sequence numbers.</returns>
-        private byte[] PackSevenWithSequenceNumber(byte[] command)
+        private static byte[] PackSevenWithSequenceNumber(byte[] command)
         {
             using (MemoryStream stream = new MemoryStream())
             {
@@ -313,6 +291,28 @@ namespace HE853
                 }
 
                 return stream.ToArray();
+            }
+        }
+
+        /// <summary>
+        /// Writes the RF specification part from properties.
+        /// </summary>
+        /// <param name="stream">Receiving output stream.</param>
+        private void WriteRFSpec(Stream stream)
+        {
+            if (stream != null)
+            {
+                WriteUShort(stream, this.StartBitHTime);
+                WriteUShort(stream, this.StartBitLTime);
+                WriteUShort(stream, this.EndBitHTime);
+                WriteUShort(stream, this.EndBitLTime);
+
+                stream.WriteByte(this.DataBit0HTime);
+                stream.WriteByte(this.DataBit0LTime);
+                stream.WriteByte(this.DataBit1HTime);
+                stream.WriteByte(this.DataBit1LTime);
+                stream.WriteByte(this.DataBitCount);
+                stream.WriteByte(this.FrameCount);
             }
         }
     }

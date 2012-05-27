@@ -27,30 +27,34 @@ namespace HE853.Test
     {
         [TestMethod]
         [DeploymentItem("HE853.dll")]
-        public void CommandUK_WriteData_On()
+        public void WriteDataOnTest()
         {            
             byte[] dataExpected = { 60, 193, 21, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
             CommandUK_Accessor target = new CommandUK_Accessor();
-            MemoryStream stream = new MemoryStream();
-            target.WriteData(stream, 1001, Command.On);
-            CollectionAssert.AreEqual(dataExpected, stream.ToArray());
+            using (MemoryStream stream = new MemoryStream())
+            {
+                target.WriteData(stream, 1001, Command.On);
+                CollectionAssert.AreEqual(dataExpected, stream.ToArray());
+            }
         }
 
         [TestMethod]
         [DeploymentItem("HE853.dll")]
-        public void CommandUK_WriteData_Off()
+        public void WriteDataOffTest()
         {
             byte[] dataExpected = { 60, 193, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
             CommandUK_Accessor target = new CommandUK_Accessor();
-            MemoryStream stream = new MemoryStream();
-            target.WriteData(stream, 1001, Command.Off);
-            CollectionAssert.AreEqual(dataExpected, stream.ToArray());
+            using (MemoryStream stream = new MemoryStream())
+            {
+                target.WriteData(stream, 1001, Command.Off);
+                CollectionAssert.AreEqual(dataExpected, stream.ToArray());
+            }
         }
 
         [TestMethod]
-        public void CommandUK_Build()
+        public void BuildTest()
         {
             byte[] dataExpected =
             {
@@ -62,9 +66,7 @@ namespace HE853.Test
             };
 
             CommandUK_Accessor target = new CommandUK_Accessor();
-            MemoryStream stream = new MemoryStream();
             byte[] data = target.Build(1001, Command.On);
-
             CollectionAssert.AreEqual(dataExpected, data);
         }
     }

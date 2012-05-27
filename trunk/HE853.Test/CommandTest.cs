@@ -26,61 +26,61 @@ namespace HE853.Test
     public class CommandTest
     {
         [TestMethod]
-        public void Command_BuildStatus()
+        public void BuildStatusTest()
         {
             byte[] dataExpected = { 6, 1, 0, 0, 0, 0, 0, 0 };
 
-            Command target = this.CreateCommand();       
-            MemoryStream stream = new MemoryStream();
+            Command target = this.CreateCommand();
             byte[] data = target.BuildStatus();
-
             CollectionAssert.AreEqual(dataExpected, data);        
         }
 
         [TestMethod]
         [DeploymentItem("HE853.dll")]
-        public void Command_WriteRFSpec()
+        public void WriteRFSpecTest()
         {
             byte[] dataExpected = { 0, 32, 1, 224, 0, 0, 0, 0, 32, 96, 96, 32, 28, 7 };
 
             Command_Accessor target = this.CreateCommand_Accessor();
-            MemoryStream stream = new MemoryStream();
-            target.WriteRFSpec(stream);
-            CollectionAssert.AreEqual(dataExpected, stream.ToArray());
+            using (MemoryStream stream = new MemoryStream())
+            {
+                target.WriteRFSpec(stream);
+                CollectionAssert.AreEqual(dataExpected, stream.ToArray());
+            }
         }
 
         [TestMethod]
         [DeploymentItem("HE853.dll")]
-        public void Command_WriteExec()
+        public void WriteExecTest()
         {
             byte[] dataExpected = { 0, 0, 0, 0, 0, 0, 0 };
 
-            Command_Accessor target = this.CreateCommand_Accessor();
-            MemoryStream stream = new MemoryStream();
-            target.WriteExec(stream);
-            CollectionAssert.AreEqual(dataExpected, stream.ToArray());
+            using (MemoryStream stream = new MemoryStream())
+            {
+                Command_Accessor.WriteExec(stream);
+                CollectionAssert.AreEqual(dataExpected, stream.ToArray());
+            }
         }
 
         [TestMethod]
         [DeploymentItem("HE853.dll")]
-        public void Command_WriteZero()
+        public void WriteZeroTest()
         {
             byte[] dataExpected = { 0, 0, 0 };
 
-            Command_Accessor target = this.CreateCommand_Accessor();
-            MemoryStream stream = new MemoryStream();
-            target.WriteZero(stream, 3);
-            CollectionAssert.AreEqual(dataExpected, stream.ToArray());
+            using (MemoryStream stream = new MemoryStream())
+            {
+                Command_Accessor.WriteZero(stream, 3);
+                CollectionAssert.AreEqual(dataExpected, stream.ToArray());
+            }
         }
 
         [TestMethod]
         [DeploymentItem("HE853.dll")]
-        public void Command_PackSevenWithSequenceNumber()
+        public void PackSevenWithSequenceNumberTest()
         {
             byte[] dataExpected = new byte[] { 1, 0, 1, 2, 3, 4, 5, 6, 2, 7, 8, 9, 10, 11, 12, 13 };
-
-            Command_Accessor target = this.CreateCommand_Accessor();
-            byte[] data = target.PackSevenWithSequenceNumber(new byte[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 });
+            byte[] data = Command_Accessor.PackSevenWithSequenceNumber(new byte[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 });
             CollectionAssert.AreEqual(dataExpected, data);
         }
 
