@@ -150,6 +150,40 @@ namespace HE853
         }
 
         /// <summary>
+        /// Tests if dim is in valid range.
+        /// </summary>
+        /// <param name="dim">Dim to test.</param>
+        /// <returns>True if is in valid range.</returns>
+        public static bool IsValidDim(int dim)
+        {
+            if (dim >= MinDim && dim <= MaxDim)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Tests if device code is in valid range.
+        /// </summary>
+        /// <param name="deviceCode">Device code to test.</param>
+        /// <returns>True if is in valid range.</returns>
+        public static bool IsValidDeviceCode(int deviceCode)
+        {
+            if (deviceCode >= MinDim && deviceCode <= MaxDim)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
         /// Builds command sequence required to query status.
         /// </summary>
         /// <returns>Command sequence required to query status.</returns>
