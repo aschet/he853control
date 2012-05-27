@@ -7,7 +7,8 @@ int main(int argc, char* argv[])
 	HE853::IDevicePtr device(__uuidof(HE853::Device));
 	if (device->Open())
 	{
-	  device->SwitchOn(1001);
+	  device->SwitchOn(1001, false);
+	  device->SwitchOff(1001, false);
 	  device->Close();
 	}
 

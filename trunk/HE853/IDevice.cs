@@ -43,23 +43,9 @@ namespace HE853
         /// Swiches receivers with specific device code on.
         /// </summary>
         /// <param name="deviceCode">Device code of receivers.</param>
-        /// <returns>True if command could be send.</returns>
-        bool SwitchOn(int deviceCode);
-
-        /// <summary>
-        /// Swiches receivers with specific device code on.
-        /// </summary>
-        /// <param name="deviceCode">Device code of receivers.</param>
         /// <param name="shortCommand">Sends shorter less compatible command sequence.</param>
         /// <returns>True if command could be send.</returns>
         bool SwitchOn(int deviceCode, bool shortCommand);
-
-        /// <summary>
-        /// Swiches receivers with specific device code off.
-        /// </summary>
-        /// <param name="deviceCode">Device code of receivers.</param>
-        /// <returns>True if command could be send.</returns>
-        bool SwitchOff(int deviceCode);
 
         /// <summary>
         /// Swiches receivers with specific device code off.
