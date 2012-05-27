@@ -87,9 +87,9 @@ namespace HE853
         /// </summary>
         /// <param name="deviceCode">Device code of receivers.</param>
         /// <returns>True if command could be send.</returns>
-        public bool On(int deviceCode)
+        public bool SwitchOn(int deviceCode)
         {
-            return this.On(deviceCode, false);
+            return this.SwitchOn(deviceCode, false);
         }
 
         /// <summary>
@@ -98,7 +98,7 @@ namespace HE853
         /// <param name="deviceCode">Device code of receivers.</param>
         /// <param name="shortCommand">Sends shorter less compatible command sequence.</param>
         /// <returns>True if command could be send.</returns>
-        public bool On(int deviceCode, bool shortCommand)
+        public bool SwitchOn(int deviceCode, bool shortCommand)
         {
             bool result = false;
             lock (this.locker)
@@ -114,9 +114,9 @@ namespace HE853
         /// </summary>
         /// <param name="deviceCode">Device code of receivers.</param>
         /// <returns>True if command could be send.</returns>
-        public bool Off(int deviceCode)
+        public bool SwitchOff(int deviceCode)
         {
-            return this.Off(deviceCode, false);
+            return this.SwitchOff(deviceCode, false);
         }
 
         /// <summary>
@@ -125,7 +125,7 @@ namespace HE853
         /// <param name="deviceCode">Device code of receivers.</param>
         /// <param name="shortCommand">Sends shorter less compatible command sequence.</param>
         /// <returns>True if command could be send.</returns>
-        public bool Off(int deviceCode, bool shortCommand)
+        public bool SwitchOff(int deviceCode, bool shortCommand)
         {
             bool result = false;
             lock (this.locker)
@@ -142,7 +142,7 @@ namespace HE853
         /// <param name="deviceCode">Device code of receivers.</param>
         /// <param name="amount">Amount of dim. A value between 1 an 8.</param>
         /// <returns>True if command could be send.</returns>
-        public bool Dim(int deviceCode, int amount)
+        public bool AdjustDim(int deviceCode, int amount)
         {
             bool result = false;
             lock (this.locker)

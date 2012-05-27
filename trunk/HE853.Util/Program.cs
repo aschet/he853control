@@ -94,15 +94,15 @@ namespace HE853.Util
             bool result = false;
             if (command == Command.On)
             {
-                result = device.On(deviceCode, shortCommand);
+                result = device.SwitchOn(deviceCode, shortCommand);
             }
             else if (command == Command.Off)
             {
-                result = device.Off(deviceCode, shortCommand);
+                result = device.SwitchOff(deviceCode, shortCommand);
             }
             else
             {
-                result = device.Dim(deviceCode, dim);
+                result = device.AdjustDim(deviceCode, dim);
             }
 
             device.Close();
