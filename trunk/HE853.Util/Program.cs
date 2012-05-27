@@ -21,15 +21,37 @@ namespace HE853.Util
 {
     using System;
 
+    /// <summary>
+    /// Main program.
+    /// </summary>
     public static class Program
     {
+        /// <summary>
+        /// List of possible exit codes.
+        /// </summary>
         public enum ExitCode : int
         {
+            /// <summary>
+            /// Everything was ok.
+            /// </summary>
             Success = 0,
+            
+            /// <summary>
+            /// The device is not attached or available.
+            /// </summary>
             DeviceNotFound = -1,
+            
+            /// <summary>
+            /// Sending of command failed.
+            /// </summary>
             CommandFailed = -2
         }
 
+        /// <summary>
+        /// Main program.
+        /// </summary>
+        /// <param name="args">Command line arguments.</param>
+        /// <returns>0 if no error occured.</returns>
         public static int Main(string[] args)
         {
             Console.WriteLine("Home Easy HE853 Control Utility by Thomas Ascher");
@@ -94,12 +116,22 @@ namespace HE853.Util
             return (int)ExitCode.Success;
         }
 
-        private static bool ParseArgs(string[] args, out string command, out int dim, out int deviceCode, out bool useService, out bool shortCommnd)
+        /// <summary>
+        /// Parse command line arguments.
+        /// </summary>
+        /// <param name="args">Command line arguments.</param>
+        /// <param name="command">Detected command string.</param>
+        /// <param name="dim">Detected dim.</param>
+        /// <param name="deviceCode">Detected device code.</param>
+        /// <param name="service">Status of service flag.</param>
+        /// <param name="shortCommnd">Status of short command flag.</param>
+        /// <returns>True if all required arguments are valid and available.</returns>
+        private static bool ParseArgs(string[] args, out string command, out int dim, out int deviceCode, out bool service, out bool shortCommnd)
         {
             command = string.Empty;
             dim = 0;
             deviceCode = 0;
-            useService = Rpc.HasServiceArg(args);
+            service = Rpc.HasServiceArg(args);
             shortCommnd = false;
             
             if (args.Length < 2)
@@ -133,6 +165,9 @@ namespace HE853.Util
             return true;
         }
 
+        /// <summary>
+        /// Print user documentation.
+        /// </summary>
         private static void PrintUsage()
         {
             string name = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
