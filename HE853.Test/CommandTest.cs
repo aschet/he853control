@@ -30,8 +30,7 @@ namespace HE853.Test
         {
             byte[] dataExpected = { 6, 1, 0, 0, 0, 0, 0, 0 };
 
-            Command target = this.CreateCommand();
-            byte[] data = target.BuildStatus();
+            byte[] data = Command.BuildStatus();
             CollectionAssert.AreEqual(dataExpected, data);        
         }
 

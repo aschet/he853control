@@ -187,7 +187,7 @@ namespace HE853
         /// Builds command sequence required to query status.
         /// </summary>
         /// <returns>Command sequence required to query status.</returns>
-        public byte[] BuildStatus()
+        public static byte[] BuildStatus()
         {
             using (MemoryStream stream = new MemoryStream())
             {

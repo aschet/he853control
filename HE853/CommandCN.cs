@@ -19,6 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace HE853
 {
+    using System.Globalization;
     using System.IO;
 
     /// <summary>
@@ -85,7 +86,7 @@ namespace HE853
             else
             {
                 string firstDigitString = command.Substring(0, 1);
-                encodingBuffer[6] = (byte)(byte.Parse(firstDigitString) - 1);
+                encodingBuffer[6] = (byte)(byte.Parse(firstDigitString, CultureInfo.InvariantCulture) - 1);
                 encodingBuffer[6] |= 0x8;
             }
 

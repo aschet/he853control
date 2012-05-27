@@ -88,7 +88,7 @@ namespace HE853
         /// <returns>True if the data could be send.</returns>
         public static bool SetHIDOutputReport(IntPtr hidDeviceObject, byte[] reportBuffer)
         {
-            return NativeMethods.HidD_SetOutputReport(hidDeviceObject, reportBuffer, reportBuffer.Length);
+            return NativeMethods.HidD_SetOutputReport(hidDeviceObject, reportBuffer, reportBuffer.Length) != 0;
         }
 
         /// <summary>
