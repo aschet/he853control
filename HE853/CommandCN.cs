@@ -112,7 +112,7 @@ namespace HE853
             stream.WriteByte((byte)(temp >> 12));
             stream.WriteByte((byte)(temp >> 4));
             stream.WriteByte((byte)(temp << 4));
-            this.WriteZero(stream, 10);
+            Command.WriteZero(stream, 10);
         }
     }
 }
