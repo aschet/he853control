@@ -47,7 +47,7 @@ namespace HE853
         /// <returns>Handle to file.</returns>
         public static IntPtr CreateFileForWrite(string fileName)
         {
-            return CreateFile(fileName, NativeMethods.GenericWrite);
+            return CreateFile(fileName, 0x40000000);
         }
 
         /// <summary>
