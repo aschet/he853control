@@ -22,7 +22,7 @@ namespace HE853
     using System;
     using System.Runtime.InteropServices;
 
-    internal sealed class PInvoke
+    internal static class NativeMethods
     {
         public const int FileFlagOverlapped = 0x40000000;
         public const uint GenericWrite = 0x40000000;
