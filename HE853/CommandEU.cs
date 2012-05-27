@@ -53,6 +53,11 @@ namespace HE853
         /// <param name="commandString">Text command to encode.</param>
         protected override void WriteData(Stream stream, int deviceCode, string commandString)
         {
+            if (stream == null)
+            {
+                return;
+            }
+
             byte[] lookup = new byte[] { 0x7, 0xB, 0xD, 0xE, 0x13, 0x15, 0x16, 0x19, 0x1A, 0x1C, 0x3, 0x5, 0x6, 0x9, 0xA, 0xC };
 
             int command = 0x1;

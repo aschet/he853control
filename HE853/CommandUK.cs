@@ -53,6 +53,11 @@ namespace HE853
         /// <param name="commandString">Text command to encode.</param>
         protected override void WriteData(Stream stream, int deviceCode, string commandString)
         {
+            if (stream == null)
+            {
+                return;
+            }
+
             int[] encodingBuffer = new int[8];
             for (int i = 0; i < encodingBuffer.Length; ++i)
             {
