@@ -62,7 +62,7 @@ namespace HE853
         /// <summary>
         /// Gets or sets part of RF specification. Extracted from MDB.
         /// </summary>
-        protected ushort StartBitHTime
+        protected int StartBitHTime
         {
             get;
             set;
@@ -71,7 +71,7 @@ namespace HE853
         /// <summary>
         /// Gets or sets part of RF specification. Extracted from MDB.
         /// </summary>
-        protected ushort StartBitLTime
+        protected int StartBitLTime
         {
             get;
             set;
@@ -80,7 +80,7 @@ namespace HE853
         /// <summary>
         /// Gets or sets part of RF specification. Extracted from MDB.
         /// </summary>
-        protected ushort EndBitHTime
+        protected int EndBitHTime
         {
             get;
             set;
@@ -89,7 +89,7 @@ namespace HE853
         /// <summary>
         /// Gets or sets part of RF specification. Extracted from MDB.
         /// </summary>
-        protected ushort EndBitLTime
+        protected int EndBitLTime
         {
             get;
             set;
@@ -196,8 +196,11 @@ namespace HE853
         /// <param name="count">Amount of zeros to write.</param>
         protected void WriteZero(Stream stream, int count)
         {
-            byte[] bytes = new byte[count];
-            stream.Write(bytes, 0, bytes.Length);
+            if (stream.CanWrite)
+            {
+                byte[] bytes = new byte[count];
+                stream.Write(bytes, 0, bytes.Length);
+            }
         }
 
         /// <summary>
@@ -205,7 +208,7 @@ namespace HE853
         /// </summary>
         /// <param name="stream">Receiving output stream.</param>
         /// <param name="value">Value to write.</param>
-        protected void WriteUShort(Stream stream, ushort value)
+        protected void WriteUShort(Stream stream, int value)
         {
             if (stream.CanWrite)
             {

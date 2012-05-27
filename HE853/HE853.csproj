@@ -51,6 +51,7 @@
     <Compile Include="Device.cs" />
     <Compile Include="IDevice.cs" />
     <Compile Include="NativeMethods.cs" />
+    <Compile Include="NativeMethodsHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
