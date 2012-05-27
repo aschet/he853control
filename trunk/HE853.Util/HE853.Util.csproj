@@ -64,9 +64,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HE853.RPC\HE853.RPC.csproj">
+    <ProjectReference Include="..\HE853.Rpc\HE853.Rpc.csproj">
       <Project>{9E0798BC-7005-4064-947E-3A6291233C80}</Project>
-      <Name>HE853.RPC</Name>
+      <Name>HE853.Rpc</Name>
     </ProjectReference>
     <ProjectReference Include="..\HE853\HE853.csproj">
       <Project>{540C7AC8-6B11-4814-A22C-84580686B8ED}</Project>
