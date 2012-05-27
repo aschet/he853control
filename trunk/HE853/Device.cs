@@ -160,10 +160,10 @@ namespace HE853
         {
             this.CloseUnlocked();
 
-            string devicePath = PInvoke.GetHIDDevicePath(0x4D9, 0x1357);
+            string devicePath = NativeMethods.GetHIDDevicePath(0x4D9, 0x1357);
             if (devicePath.Length != 0)
             {
-                this.writeHandle = PInvoke.CreateFile(devicePath, PInvoke.GenericWrite);
+                this.writeHandle = NativeMethods.CreateFile(devicePath, NativeMethods.GenericWrite);
             }
 
             return this.writeHandle != IntPtr.Zero;
@@ -174,7 +174,7 @@ namespace HE853
         /// </summary>
         private void CloseUnlocked()
         {
-            PInvoke.CloseHandle(ref this.writeHandle);     
+            NativeMethods.CloseHandle(ref this.writeHandle);     
         }
 
         /// <summary>
@@ -231,7 +231,7 @@ namespace HE853
                     chunk[j + 1] = command[(i * ChunkLength) + j];
                 }
 
-                result = result && PInvoke.SetHIDOutputReport(this.writeHandle, chunk);
+                result = result && NativeMethods.SetHIDOutputReport(this.writeHandle, chunk);
             }
 
             System.Threading.Thread.Sleep(10);

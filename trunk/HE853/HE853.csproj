@@ -50,8 +50,8 @@
     <Compile Include="CommandUK.cs" />
     <Compile Include="Device.cs" />
     <Compile Include="IDevice.cs" />
+    <Compile Include="NativeMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PInvoke.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="HE853.snk" />
