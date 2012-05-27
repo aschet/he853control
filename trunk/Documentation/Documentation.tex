@@ -140,7 +140,7 @@ if (device.Open())
 }
 \end{verbatim}
 
-\section{Using the RPC Library -- HE853.RPC.dll}
+\section{Using the RPC Library -- HE853.Rpc.dll}
 
 The RPC library ist not designed for general usage yet and is not available via COM.
 It uses .NET Remoting IPC for communication. The library does only work in combination
@@ -171,41 +171,5 @@ system. The installation performs all required steps:
 
 If you deploy .NET applications you can simply install or copy the HE853.dll with your application
 as private assembly.
-
-
-
-
-\chapter{Support HE853 Control}
-
-You can support this project by testing, writing code or documentation and suggesting features
-and reporting bugs.
-For writing documentation a good knowledge of LaTeX is required. For writing code one should
-have knowledge of:
-
-\begin{itemize}
-	\item Visual Studio 2010 (required for development)
-	\item C\#
-	\item PInvoke and Windows API
-	\item HID Devices
-	\item Unit Tests
-\end{itemize}
-
-\section{TODOs}
-
-\begin{itemize}
-  \item Correct spelling errors in documentation
-	\item Improve user documentation
-	\item Improve source documentation (at least for public interfaces)
-	\item Better input validation in program
-	\item Rewrite code to use exceptions instead of return values
-	\item Refactor code so it is more suiteable for test driven development
-	\item Write more unit tests
-	\item Add installation path to PATH variable during installation
-	\item Make Command classes internal again, exposed now for unit tests
-	\item Test on more 32 and 64 bit platforms: XP, Vista, Windows 7, Windows 8
-	\item Implement GUI as custom control
-	\item Improve GUI application (help integration, layout, etc.)
-	\item Maybe translate the package into other languages
-\end{itemize}
 
 \end{document}
