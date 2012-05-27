@@ -37,6 +37,7 @@
             this.deviceCodeUpDown = new System.Windows.Forms.NumericUpDown();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.checkBoxShortCommands = new System.Windows.Forms.CheckBox();
+            this.labelInfo = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.deviceCodeUpDown)).BeginInit();
             this.tableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
@@ -44,9 +45,9 @@
             // onButton
             // 
             this.onButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.onButton.Location = new System.Drawing.Point(8, 34);
+            this.onButton.Location = new System.Drawing.Point(7, 33);
             this.onButton.Name = "onButton";
-            this.onButton.Size = new System.Drawing.Size(84, 23);
+            this.onButton.Size = new System.Drawing.Size(82, 23);
             this.onButton.TabIndex = 2;
             this.onButton.Text = "On";
             this.onButton.UseVisualStyleBackColor = true;
@@ -55,9 +56,9 @@
             // offButton
             // 
             this.offButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.offButton.Location = new System.Drawing.Point(98, 34);
+            this.offButton.Location = new System.Drawing.Point(95, 33);
             this.offButton.Name = "offButton";
-            this.offButton.Size = new System.Drawing.Size(83, 23);
+            this.offButton.Size = new System.Drawing.Size(82, 23);
             this.offButton.TabIndex = 3;
             this.offButton.Text = "Off";
             this.offButton.UseVisualStyleBackColor = true;
@@ -67,9 +68,9 @@
             // 
             this.deviceCodeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.deviceCodeLabel.AutoSize = true;
-            this.deviceCodeLabel.Location = new System.Drawing.Point(8, 11);
+            this.deviceCodeLabel.Location = new System.Drawing.Point(7, 10);
             this.deviceCodeLabel.Name = "deviceCodeLabel";
-            this.deviceCodeLabel.Size = new System.Drawing.Size(84, 13);
+            this.deviceCodeLabel.Size = new System.Drawing.Size(82, 13);
             this.deviceCodeLabel.TabIndex = 0;
             this.deviceCodeLabel.Text = "Device Code:";
             this.deviceCodeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -80,9 +81,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dimButton.AutoSize = true;
             this.dimButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.dimButton.Location = new System.Drawing.Point(8, 63);
+            this.dimButton.Location = new System.Drawing.Point(7, 62);
             this.dimButton.Name = "dimButton";
-            this.dimButton.Size = new System.Drawing.Size(84, 23);
+            this.dimButton.Size = new System.Drawing.Size(82, 23);
             this.dimButton.TabIndex = 4;
             this.dimButton.Text = "Dim:";
             this.dimButton.UseVisualStyleBackColor = true;
@@ -103,15 +104,15 @@
             "6",
             "7",
             "8"});
-            this.dimComboBox.Location = new System.Drawing.Point(98, 63);
+            this.dimComboBox.Location = new System.Drawing.Point(95, 62);
             this.dimComboBox.Name = "dimComboBox";
-            this.dimComboBox.Size = new System.Drawing.Size(83, 21);
+            this.dimComboBox.Size = new System.Drawing.Size(82, 21);
             this.dimComboBox.TabIndex = 5;
             // 
             // deviceCodeUpDown
             // 
             this.deviceCodeUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.deviceCodeUpDown.Location = new System.Drawing.Point(98, 8);
+            this.deviceCodeUpDown.Location = new System.Drawing.Point(95, 7);
             this.deviceCodeUpDown.Maximum = new decimal(new int[] {
             6000,
             0,
@@ -123,7 +124,7 @@
             0,
             0});
             this.deviceCodeUpDown.Name = "deviceCodeUpDown";
-            this.deviceCodeUpDown.Size = new System.Drawing.Size(83, 20);
+            this.deviceCodeUpDown.Size = new System.Drawing.Size(82, 20);
             this.deviceCodeUpDown.TabIndex = 1;
             this.deviceCodeUpDown.Value = new decimal(new int[] {
             1001,
@@ -143,44 +144,57 @@
             this.tableLayoutPanel.Controls.Add(this.dimComboBox, 1, 2);
             this.tableLayoutPanel.Controls.Add(this.dimButton, 0, 2);
             this.tableLayoutPanel.Controls.Add(this.checkBoxShortCommands, 0, 3);
+            this.tableLayoutPanel.Controls.Add(this.labelInfo, 0, 4);
             this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
             this.tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel.Margin = new System.Windows.Forms.Padding(5);
+            this.tableLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel.Name = "tableLayoutPanel";
-            this.tableLayoutPanel.Padding = new System.Windows.Forms.Padding(5);
-            this.tableLayoutPanel.RowCount = 4;
+            this.tableLayoutPanel.Padding = new System.Windows.Forms.Padding(4);
+            this.tableLayoutPanel.RowCount = 5;
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel.Size = new System.Drawing.Size(189, 118);
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel.Size = new System.Drawing.Size(184, 162);
             this.tableLayoutPanel.TabIndex = 7;
             // 
             // checkBoxShortCommands
             // 
-            this.checkBoxShortCommands.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkBoxShortCommands.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBoxShortCommands.AutoSize = true;
             this.tableLayoutPanel.SetColumnSpan(this.checkBoxShortCommands, 2);
-            this.checkBoxShortCommands.Location = new System.Drawing.Point(8, 92);
+            this.checkBoxShortCommands.Location = new System.Drawing.Point(7, 91);
             this.checkBoxShortCommands.Name = "checkBoxShortCommands";
-            this.checkBoxShortCommands.Size = new System.Drawing.Size(173, 17);
+            this.checkBoxShortCommands.Size = new System.Drawing.Size(170, 17);
             this.checkBoxShortCommands.TabIndex = 6;
             this.checkBoxShortCommands.Text = "Use short commands";
             this.checkBoxShortCommands.UseVisualStyleBackColor = true;
+            // 
+            // labelInfo
+            // 
+            this.labelInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelInfo.AutoSize = true;
+            this.tableLayoutPanel.SetColumnSpan(this.labelInfo, 2);
+            this.labelInfo.Location = new System.Drawing.Point(7, 111);
+            this.labelInfo.Name = "labelInfo";
+            this.labelInfo.Size = new System.Drawing.Size(170, 39);
+            this.labelInfo.TabIndex = 7;
+            this.labelInfo.Text = "This program is licensed under the terms of the GNU GPL. (c) by Thomas Ascher";
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(189, 118);
+            this.ClientSize = new System.Drawing.Size(184, 162);
             this.Controls.Add(this.tableLayoutPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(200, 156);
+            this.MinimumSize = new System.Drawing.Size(200, 200);
             this.Name = "MainWindow";
             this.Text = "HE853 Control";
             this.Load += new System.EventHandler(this.MainWindow_Load);
@@ -201,5 +215,6 @@
         private System.Windows.Forms.NumericUpDown deviceCodeUpDown;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
         private System.Windows.Forms.CheckBox checkBoxShortCommands;
+        private System.Windows.Forms.Label labelInfo;
     }
 }
