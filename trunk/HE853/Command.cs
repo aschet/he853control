@@ -230,7 +230,7 @@ namespace HE853
         /// <param name="count">Amount of zeros to write.</param>
         protected void WriteZero(Stream stream, int count)
         {
-            if (stream.CanWrite)
+            if (stream != null)
             {
                 byte[] bytes = new byte[count];
                 stream.Write(bytes, 0, bytes.Length);
@@ -244,7 +244,7 @@ namespace HE853
         /// <param name="value">Value to write.</param>
         protected void WriteUShort(Stream stream, int value)
         {
-            if (stream.CanWrite)
+            if (stream != null)
             {
                 stream.WriteByte((byte)((value >> 8) & 0xFF));
                 stream.WriteByte((byte)(value & 0xFF));
@@ -257,7 +257,7 @@ namespace HE853
         /// <param name="stream">Receiving output stream.</param>
         private void WriteRFSpec(Stream stream)
         {
-            if (stream.CanWrite)
+            if (stream != null)
             {
                 this.WriteUShort(stream, this.StartBitHTime);
                 this.WriteUShort(stream, this.StartBitLTime);

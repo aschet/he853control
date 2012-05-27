@@ -59,6 +59,11 @@ namespace HE853
         /// <param name="command">Text command to encode.</param>
         protected override void WriteData(Stream stream, int deviceCode, string command)
         {
+            if (stream == null)
+            {
+                return;
+            }
+            
             ushort[] lookup = new ushort[] { 0x609, 0x306, 0x803, 0xA08, 0xA, 0x200, 0xC02, 0x40C, 0xE04, 0x70E, 0x507, 0x105, 0xF01, 0xB0F, 0xD0B, 0x90D };
             this.count = (byte)(this.count + 1);
             byte[] encodingBuffer = new byte[7];
