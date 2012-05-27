@@ -42,12 +42,12 @@ namespace HE853
         /// <summary>
         /// Minimum possible dim level.
         /// </summary>
-        public const byte MinDim = 10;
+        public const byte MinDim = 1;
 
         /// <summary>
         /// Maximum possible dim level.
         /// </summary>
-        public const byte MaxDim = 80;
+        public const byte MaxDim = 8;
 
         /// <summary>
         /// Constant for the On command.

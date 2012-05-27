@@ -55,14 +55,14 @@ namespace HE853.Test
 
         [TestMethod]
         [DeploymentItem("HE853.dll")]
-        public void WriteDataDim10Test()
+        public void WriteDataDim1Test()
         {
             byte[] dataExpected = { 5, 101, 73, 224, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
             CommandCN_Accessor target = new CommandCN_Accessor();
             using (MemoryStream stream = new MemoryStream())
             {
-                target.WriteData(stream, 1001, "10");
+                target.WriteData(stream, 1001, "1");
                 CollectionAssert.AreEqual(dataExpected, stream.ToArray());
             }
         }
