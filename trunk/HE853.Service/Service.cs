@@ -26,6 +26,9 @@ namespace HE853.Service
     /// </summary>
     public partial class Service : ServiceBase
     {        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Service" /> class.
+        /// </summary>
         public Service()
         {
             this.InitializeComponent();

@@ -36,12 +36,12 @@ namespace HE853
         public const string ServiceArg = "/service";
         
         /// <summary>
-        /// Constant for IPC channel name.
+        /// Constant for Ipc channel name.
         /// </summary>
         private const string ChannelName = "HE853";
         
         /// <summary>
-        /// Constant for IPC channel singelton interface name.
+        /// Constant for Ipc channel singelton interface name.
         /// </summary>
         private const string InterfaceName = "Device";
         

@@ -22,8 +22,15 @@ namespace HE853.App
     using System;
     using System.Windows.Forms;
 
+    /// <summary>
+    /// Main program.
+    /// </summary>
     internal static class Program
     {
+        /// <summary>
+        /// Main program.
+        /// </summary>
+        /// <param name="args">Command line arguments.</param>
         [STAThread]
         private static void Main(string[] args)
         {

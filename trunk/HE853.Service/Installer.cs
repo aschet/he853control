@@ -28,6 +28,9 @@ namespace HE853.Service
     [RunInstaller(true)]
     public partial class Installer : System.Configuration.Install.Installer
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Installer" /> class.
+        /// </summary>
         public Installer()
         {
             this.InitializeComponent();

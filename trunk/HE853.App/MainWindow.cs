@@ -22,16 +22,30 @@ namespace HE853.App
     using System;
     using System.Windows.Forms;
 
+    /// <summary>
+    /// GUI control for device interaction.
+    /// </summary>
     public partial class MainWindow : Form
     {
+        /// <summary>
+        /// Device for interaction.
+        /// </summary>
         private Device device = new Device();
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MainWindow" /> class.
+        /// </summary>
         public MainWindow()
         {
             this.InitializeComponent();
             this.dimComboBox.SelectedIndex = 0;
         }
 
+        /// <summary>
+        /// Handles On button click, switches device on.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
         private void OnButton_Click(object sender, EventArgs e)
         {
             this.onButton.Enabled = false;
@@ -39,6 +53,11 @@ namespace HE853.App
             this.onButton.Enabled = true;
         }
 
+        /// <summary>
+        /// Handles Off button click, switches device off.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
         private void OffButton_Click(object sender, EventArgs e)
         {
             this.offButton.Enabled = false;
@@ -46,6 +65,11 @@ namespace HE853.App
             this.offButton.Enabled = true;
         }
 
+        /// <summary>
+        /// Handles Dim button click, adjusts dim.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
         private void DimButton_Click(object sender, EventArgs e)
         {
             this.dimButton.Enabled = false;
@@ -53,29 +77,51 @@ namespace HE853.App
             this.dimButton.Enabled = true;
         }
 
+        /// <summary>
+        /// Initializes device communication on startup.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
         private void MainWindow_Load(object sender, EventArgs e)
         {
             try
             {
                 if (!this.device.Open())
                 {
-                    MessageBox.Show("The device is not attached or in use!");
+                    this.Notify("The device is not attached or in use!");
                 }
             }
             catch (Exception)
             {
-                MessageBox.Show("The service does not respond!");
+                this.Notify("The service does not respond!");
             }
         }
 
+        /// <summary>
+        /// Presents common error message to user.
+        /// </summary>
+        /// <param name="result">False if error message should be shown.</param>
         private void Notify(bool result)
         {
             if (!result)
             {
-                MessageBox.Show("Error during command send!");
+                this.Notify("Error during command send!");
             }
         }
 
+        /// <summary>
+        /// Presents specific message to user.
+        /// </summary>
+        /// <param name="message">Message to present.</param>
+        private void Notify(string message)
+        {
+            MessageBox.Show(message);
+        }
+
+        /// <summary>
+        /// Get the selected device code.
+        /// </summary>
+        /// <returns>The selected device code.</returns>
         private int GetDeviceCode()
         {
             return Convert.ToInt32(this.deviceCodeUpDown.Value);
