@@ -73,16 +73,6 @@ namespace HE853.Test
             CollectionAssert.AreEqual(dataExpected, stream.ToArray());
         }
 
-        internal virtual Command CreateCommand()
-        {
-            return new CommandCN();
-        }
-
-        internal virtual Command_Accessor CreateCommand_Accessor()
-        {
-            return new Command_Accessor(new PrivateObject(this.CreateCommand(), new PrivateType(typeof(Command))));
-        }
-
         [TestMethod]
         [DeploymentItem("HE853.dll")]
         public void Command_PackSevenWithSequenceNumber()
@@ -92,6 +82,16 @@ namespace HE853.Test
             Command_Accessor target = this.CreateCommand_Accessor();
             byte[] data = target.PackSevenWithSequenceNumber(new byte[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 });
             CollectionAssert.AreEqual(dataExpected, data);
+        }
+
+        internal virtual Command CreateCommand()
+        {
+            return new CommandCN();
+        }
+
+        internal virtual Command_Accessor CreateCommand_Accessor()
+        {
+            return new Command_Accessor(new PrivateObject(this.CreateCommand(), new PrivateType(typeof(Command))));
         }
     }
 }
