@@ -85,7 +85,7 @@ namespace HE853
             }
             else
             {
-                encodingBuffer[6] = (byte)(byte.Parse(command) - 1);
+                encodingBuffer[6] = (byte)(byte.Parse(command, CultureInfo.InvariantCulture) - 1);
                 encodingBuffer[6] |= 0x8;
             }
 
