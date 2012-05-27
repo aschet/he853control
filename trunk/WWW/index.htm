@@ -36,9 +36,24 @@ For more information and the latest packages please refer to the project page: <
 <img src="shot.png">
 </p>
 
-<h2>Download</h2>
+<a class="download" href="http://sourceforge.net/projects/he853control/files/1.3/HE853Control_1_3.msi/download">Download v1.3</a>
+</div>
 
-<p>The current package can be obtained from the <a href="http://sourceforge.net/projects/he853control/files/">project download page</a>.</p>
+<h2>Command Line Utility - HE853.Util.exe</h2>
+
+<p>
+<pre>
+Usage: HE853.Util &lt;command&gt; &lt;device_code&gt; [&sol;service] [&sol;short]
+
+&lt;command&gt; := ON | OFF | 1..8
+&lt;device_code&gt; := 1..6000
+
+&sol;service: use service instead of device
+&sol;short: use short command sequence, less compatible
+
+Example: HE853.Util ON 1001
+</pre>
+</p>
 
 <h2>Using the Library - HE853.dll</h2>
 
@@ -58,22 +73,6 @@ if (device.Open())
     device.SwitchOff(1001, false);
     device.Close();
 }
-</pre>
-</p>
-
-<h2>Command Line Utility - HE853.Util.exe</h2>
-
-<p>
-<pre>
-Usage: HE853.Util &lt;command&gt; &lt;device_code&gt; [&sol;service] [&sol;short]
-
-&lt;command&gt; := ON | OFF | 1..8
-&lt;device_code&gt; := 1..6000
-
-&sol;service: use service instead of device
-&sol;short: use short command sequence, less compatible
-
-Example: HE853.Util ON 1001
 </pre>
 </p>
 
