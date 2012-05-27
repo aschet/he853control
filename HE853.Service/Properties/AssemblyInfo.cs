@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
-using System.Runtime.InteropServices;
 using System.Resources;
+using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("HE853.Service")]
 [assembly: AssemblyDescription("HE853 Control Service")]
