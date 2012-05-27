@@ -173,7 +173,7 @@ namespace HE853
         /// <returns>True if is in valid range.</returns>
         public static bool IsValidDeviceCode(int deviceCode)
         {
-            if (deviceCode >= MinDim && deviceCode <= MaxDim)
+            if (deviceCode >= MinDeviceCode && deviceCode <= MaxDeviceCode)
             {
                 return true;
             }
