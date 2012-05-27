@@ -89,6 +89,40 @@ namespace HE853.Test
 
         [TestMethod]
         [DeploymentItem("HE853.dll")]
+        public void IsValidDeviceCodeInRangeTest()
+        {
+            Assert.AreEqual(true, Command_Accessor.IsValidDeviceCode(Command_Accessor.MinDeviceCode));
+            Assert.AreEqual(true, Command_Accessor.IsValidDeviceCode(Command_Accessor.MaxDeviceCode));
+            Assert.AreEqual(true, Command_Accessor.IsValidDeviceCode(Command_Accessor.MinDeviceCode + ((Command_Accessor.MaxDeviceCode - Command_Accessor.MinDeviceCode) / 2)));
+        }
+
+        [TestMethod]
+        [DeploymentItem("HE853.dll")]
+        public void IsValidDeviceCodeOutOfRangeTest()
+        {
+            Assert.AreEqual(false, Command_Accessor.IsValidDeviceCode(Command_Accessor.MinDeviceCode - 1));
+            Assert.AreEqual(false, Command_Accessor.IsValidDeviceCode(Command_Accessor.MaxDeviceCode + 1));
+        }
+
+        [TestMethod]
+        [DeploymentItem("HE853.dll")]
+        public void IsValidDimInRangeTest()
+        {
+            Assert.AreEqual(true, Command_Accessor.IsValidDim(Command_Accessor.MinDim));
+            Assert.AreEqual(true, Command_Accessor.IsValidDim(Command_Accessor.MaxDim));
+            Assert.AreEqual(true, Command_Accessor.IsValidDim(Command_Accessor.MinDim + ((Command_Accessor.MaxDim - Command_Accessor.MinDim) / 2)));
+        }
+
+        [TestMethod]
+        [DeploymentItem("HE853.dll")]
+        public void IsValidDimOutOfRangeTest()
+        {
+            Assert.AreEqual(false, Command_Accessor.IsValidDim(Command_Accessor.MinDim - 1));
+            Assert.AreEqual(false, Command_Accessor.IsValidDim(Command_Accessor.MaxDim + 1));
+        }
+
+        [TestMethod]
+        [DeploymentItem("HE853.dll")]
         public void PackSevenWithSequenceNumberTest()
         {
             byte[] dataExpected = new byte[] { 1, 0, 1, 2, 3, 4, 5, 6, 2, 7, 8, 9, 10, 11, 12, 13 };
