@@ -200,7 +200,7 @@ namespace HE853.Util
             Console.WriteLine("/service: use service instead of device");
             Console.WriteLine("/short: use short command sequence, less compatible");
             Console.WriteLine();
-            Console.WriteLine("The device code has to programmed to a receiver first.");
+            Console.WriteLine("The device code has to programed to a receiver first.");
             Console.WriteLine("To program the code hold the learn button on the receiver for");
             Console.WriteLine("about 1 second and send an ON command with the specific code.");
             Console.WriteLine();
