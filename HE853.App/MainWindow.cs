@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 namespace HE853.App
 {
     using System;
+    using System.Reflection;
     using System.Windows.Forms;
 
     /// <summary>
@@ -39,6 +40,7 @@ namespace HE853.App
         {
             this.InitializeComponent();
             this.dimComboBox.SelectedIndex = 0;
+            this.Text = this.Text + " " + Assembly.GetExecutingAssembly().GetName().Version;
         }
 
         /// <summary>

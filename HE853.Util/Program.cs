@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 namespace HE853.Util
 {
     using System;
+    using System.Reflection;
 
     /// <summary>
     /// Main program.
@@ -54,7 +55,7 @@ namespace HE853.Util
         /// <returns>0 if no error occured.</returns>
         public static int Main(string[] args)
         {
-            Console.WriteLine("Home Easy HE853 Control Utility by Thomas Ascher");
+            Console.WriteLine("Home Easy HE853 Control Utility v" + Assembly.GetExecutingAssembly().GetName().Version + " by Thomas Ascher");
             Console.WriteLine("This program is licensed under the terms of the GNU GPL.");
             Console.WriteLine("http://he853control.sourceforge.net");
             Console.WriteLine();
@@ -189,19 +190,19 @@ namespace HE853.Util
         /// </summary>
         private static void PrintUsage()
         {
-            string name = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
+            string name = Assembly.GetExecutingAssembly().GetName().Name;
 
             Console.WriteLine("Usage: " + name + " <command> <device_code> [" + Rpc.ServiceArg + "] [/short]");
             Console.WriteLine();
             Console.WriteLine("<command> := " + Command.On + " | " + Command.Off + " | " + Command.MinDim + ".." + Command.MaxDim);
             Console.WriteLine("<device_code> := " + Command.MinDeviceCode + ".." + Command.MaxDeviceCode);
             Console.WriteLine();
-            Console.WriteLine("/service use service instead of device");
-            Console.WriteLine("/short use short command sequence, less compatible");
+            Console.WriteLine("/service: use service instead of device");
+            Console.WriteLine("/short: use short command sequence, less compatible");
             Console.WriteLine();
             Console.WriteLine("The device code has to programmed to a receiver first.");
             Console.WriteLine("To program the code hold the learn button on the receiver for");
-            Console.WriteLine("about 2 seconds and send an ON command with the specific code.");
+            Console.WriteLine("about 1 second and send an ON command with the specific code.");
             Console.WriteLine();
             Console.WriteLine("Example: " + name + " " + Command.On + " 1001");
         }
