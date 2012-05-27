@@ -80,17 +80,14 @@ namespace HE853
             }
 
             encodingValue = encodingValue << 7;
-            encodingBuffer[0] = (byte)(encodingValue >> 56);
-            encodingBuffer[1] = (byte)(encodingValue >> 48);
-            encodingBuffer[2] = (byte)(encodingValue >> 40);
-            encodingBuffer[3] = (byte)(encodingValue >> 32);
-            encodingBuffer[4] = (byte)(encodingValue >> 24);
-            encodingBuffer[5] = (byte)(encodingValue >> 16);
-            encodingBuffer[6] = (byte)(encodingValue >> 8);
-            encodingBuffer[7] = (byte)encodingValue;
+            int shift = 56;
+            for (int i = 0; i < encodingBuffer.Length; ++i)
+            {
+                encodingBuffer[i] = (byte)(encodingValue >> shift);
+                shift -= 8;
+            }
 
             stream.Write(encodingBuffer, 0, encodingBuffer.Length);
-
             Command.WriteZero(stream, 6);
         }
     }
