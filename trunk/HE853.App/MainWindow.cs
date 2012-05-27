@@ -49,7 +49,7 @@ namespace HE853.App
         private void OnButton_Click(object sender, EventArgs e)
         {
             this.onButton.Enabled = false;
-            this.Notify(this.device.On(this.GetDeviceCode()));
+            Notify(this.device.On(this.GetDeviceCode(),this.UseShortCommands()));
             this.onButton.Enabled = true;
         }
 
@@ -61,7 +61,7 @@ namespace HE853.App
         private void OffButton_Click(object sender, EventArgs e)
         {
             this.offButton.Enabled = false;
-            this.Notify(this.device.Off(this.GetDeviceCode()));
+            Notify(this.device.Off(this.GetDeviceCode(), this.UseShortCommands()));
             this.offButton.Enabled = true;
         }
 
@@ -73,7 +73,7 @@ namespace HE853.App
         private void DimButton_Click(object sender, EventArgs e)
         {
             this.dimButton.Enabled = false;
-            this.Notify(this.device.Dim(this.GetDeviceCode(), int.Parse(this.dimComboBox.Text)));
+            Notify(this.device.Dim(this.GetDeviceCode(), int.Parse(this.dimComboBox.Text)));
             this.dimButton.Enabled = true;
         }
 
@@ -88,12 +88,12 @@ namespace HE853.App
             {
                 if (!this.device.Open())
                 {
-                    this.Notify("The device is not attached or in use!");
+                    Notify("The device is not attached or in use!");
                 }
             }
-            catch (Exception)
+            finally
             {
-                this.Notify("The service does not respond!");
+                Notify("The service does not respond!");
             }
         }
 
@@ -101,11 +101,11 @@ namespace HE853.App
         /// Presents common error message to user.
         /// </summary>
         /// <param name="result">False if error message should be shown.</param>
-        private void Notify(bool result)
+        private static void Notify(bool result)
         {
             if (!result)
             {
-                this.Notify("Error during command send!");
+                Notify("Error during command send!");
             }
         }
 
@@ -113,7 +113,7 @@ namespace HE853.App
         /// Presents specific message to user.
         /// </summary>
         /// <param name="message">Message to present.</param>
-        private void Notify(string message)
+        private static void Notify(string message)
         {
             MessageBox.Show(message);
         }
@@ -125,6 +125,11 @@ namespace HE853.App
         private int GetDeviceCode()
         {
             return Convert.ToInt32(this.deviceCodeUpDown.Value);
+        }
+
+        private bool UseShortCommands()
+        {
+            return this.checkBoxShortCommands.Checked;
         }
     }
 }

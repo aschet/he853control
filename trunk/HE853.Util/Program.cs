@@ -29,7 +29,7 @@ namespace HE853.Util
         /// <summary>
         /// List of possible exit codes.
         /// </summary>
-        public enum ExitCode : int
+        private enum ExitCode : int
         {
             /// <summary>
             /// Everything was ok.
