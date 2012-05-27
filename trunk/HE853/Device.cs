@@ -126,7 +126,7 @@ namespace HE853
         {
             if (!Command.IsValidDim(amount))
             {
-                throw new ArgumentOutOfRangeException("amount", "Must be value between " + Command.MinDim + " and " + Command.MaxDim);
+                throw new ArgumentOutOfRangeException("amount", "Must be value between " + Command.MinDim + " and " + Command.MaxDim + ".");
             }
 
             bool result = false;
@@ -174,7 +174,7 @@ namespace HE853
         {
             if (!Command.IsValidDeviceCode(deviceCode))
             {
-                throw new ArgumentOutOfRangeException("deviceCode", "Must be value between " + Command.MinDeviceCode + " and " + Command.MaxDeviceCode);
+                throw new ArgumentOutOfRangeException("deviceCode", "Must be value between " + Command.MinDeviceCode + " and " + Command.MaxDeviceCode + ".");
             }
             
             bool result = this.TestStatus();
