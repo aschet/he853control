@@ -95,14 +95,14 @@
             this.dimComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.dimComboBox.FormattingEnabled = true;
             this.dimComboBox.Items.AddRange(new object[] {
-            "10",
-            "20",
-            "30",
-            "40",
-            "50",
-            "60",
-            "70",
-            "80"});
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8"});
             this.dimComboBox.Location = new System.Drawing.Point(98, 63);
             this.dimComboBox.Name = "dimComboBox";
             this.dimComboBox.Size = new System.Drawing.Size(83, 21);

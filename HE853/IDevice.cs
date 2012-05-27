@@ -73,8 +73,8 @@ namespace HE853
         /// Adjusts dim level on receivers with specific device code.
         /// </summary>
         /// <param name="deviceCode">Device code of receivers.</param>
-        /// <param name="percent">Amount of dim. A value between 10 an 80.</param>
+        /// <param name="amount">Amount of dim. A value between 1 an 8.</param>
         /// <returns>True if command could be send.</returns>
-        bool Dim(int deviceCode, int percent);
+        bool Dim(int deviceCode, int amount);
     }
 }
