@@ -42,6 +42,27 @@ namespace HE853.App
         }
 
         /// <summary>
+        /// Presents common error message to user.
+        /// </summary>
+        /// <param name="result">False if error message should be shown.</param>
+        private static void Notify(bool result)
+        {
+            if (!result)
+            {
+                Notify("Error during command send!");
+            }
+        }
+
+        /// <summary>
+        /// Presents specific message to user.
+        /// </summary>
+        /// <param name="message">Message to present.</param>
+        private static void Notify(string message)
+        {
+            MessageBox.Show(message);
+        }
+
+        /// <summary>
         /// Handles On button click, switches device on.
         /// </summary>
         /// <param name="sender">Event sender.</param>
@@ -49,7 +70,7 @@ namespace HE853.App
         private void OnButton_Click(object sender, EventArgs e)
         {
             this.onButton.Enabled = false;
-            Notify(this.device.On(this.GetDeviceCode(),this.UseShortCommands()));
+            Notify(this.device.On(this.GetDeviceCode(), this.UseShortCommands()));
             this.onButton.Enabled = true;
         }
 
@@ -91,31 +112,10 @@ namespace HE853.App
                     Notify("The device is not attached or in use!");
                 }
             }
-            finally
+            catch
             {
                 Notify("The service does not respond!");
             }
-        }
-
-        /// <summary>
-        /// Presents common error message to user.
-        /// </summary>
-        /// <param name="result">False if error message should be shown.</param>
-        private static void Notify(bool result)
-        {
-            if (!result)
-            {
-                Notify("Error during command send!");
-            }
-        }
-
-        /// <summary>
-        /// Presents specific message to user.
-        /// </summary>
-        /// <param name="message">Message to present.</param>
-        private static void Notify(string message)
-        {
-            MessageBox.Show(message);
         }
 
         /// <summary>
@@ -127,6 +127,10 @@ namespace HE853.App
             return Convert.ToInt32(this.deviceCodeUpDown.Value);
         }
 
+        /// <summary>
+        /// Determines if user selected shorts commands.
+        /// </summary>
+        /// <returns>True if short commands should be used.</returns>
         private bool UseShortCommands()
         {
             return this.checkBoxShortCommands.Checked;
