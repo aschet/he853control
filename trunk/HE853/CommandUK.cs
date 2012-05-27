@@ -50,8 +50,8 @@ namespace HE853
         /// </summary>
         /// <param name="stream">Receiving output stream.</param>
         /// <param name="deviceCode">Device code of receivers to encode.</param>
-        /// <param name="commandString">Text command to encode.</param>
-        protected override void WriteData(Stream stream, int deviceCode, string commandString)
+        /// <param name="command">Text command to encode.</param>
+        protected override void WriteData(Stream stream, int deviceCode, string command)
         {
             if (stream == null)
             {
@@ -82,13 +82,13 @@ namespace HE853
 
             Command.WriteUShort(stream, encodedDeviceCode);
             
-            byte command = 0x14;
-            if (commandString == Command.On)
+            byte commandValue = 0x14;
+            if (command == Command.On)
             {
-                command = (byte)(command | 0x1);
+                commandValue = (byte)(commandValue | 0x1);
             }
 
-            stream.WriteByte(command);
+            stream.WriteByte(commandValue);
             Command.WriteZero(stream, 11);
         }
     }

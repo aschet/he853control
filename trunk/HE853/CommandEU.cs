@@ -50,8 +50,8 @@ namespace HE853
         /// </summary>
         /// <param name="stream">Receiving output stream.</param>
         /// <param name="deviceCode">Device code of receivers to encode.</param>
-        /// <param name="commandString">Text command to encode.</param>
-        protected override void WriteData(Stream stream, int deviceCode, string commandString)
+        /// <param name="command">Text command to encode.</param>
+        protected override void WriteData(Stream stream, int deviceCode, string command)
         {
             if (stream == null)
             {
@@ -60,34 +60,34 @@ namespace HE853
 
             byte[] lookup = new byte[] { 0x7, 0xB, 0xD, 0xE, 0x13, 0x15, 0x16, 0x19, 0x1A, 0x1C, 0x3, 0x5, 0x6, 0x9, 0xA, 0xC };
 
-            int command = 0x1;
-            if (commandString == Command.On)
+            int commandValue = 0x1;
+            if (command == Command.On)
             {
-                command |= 0x10;
+                commandValue |= 0x10;
             }
 
-            byte[] encodingBuffer = new byte[] { 0x0, 0x0, (byte)((deviceCode >> 12) & 0xF), (byte)((deviceCode >> 8) & 0xF), (byte)((deviceCode >> 4) & 0xF), (byte)(deviceCode & 0xF), (byte)(command >> 4), (byte)(command & 0xF) };
+            byte[] encodingBuffer = new byte[] { 0x0, 0x0, (byte)((deviceCode >> 12) & 0xF), (byte)((deviceCode >> 8) & 0xF), (byte)((deviceCode >> 4) & 0xF), (byte)(deviceCode & 0xF), (byte)(commandValue >> 4), (byte)(commandValue & 0xF) };
             for (int i = 0; i < encodingBuffer.Length; ++i)
             {
                 encodingBuffer[i] = (byte)((lookup[encodingBuffer[i]] | 0x40) & 0x7F);
             }
 
             encodingBuffer[0] |= 0x80;
-            ulong t64 = encodingBuffer[0];
+            ulong encodingValue = encodingBuffer[0];
             for (int i = 1; i < encodingBuffer.Length; ++i)
             {
-                t64 = (t64 << 7) | encodingBuffer[i];
+                encodingValue = (encodingValue << 7) | encodingBuffer[i];
             }
 
-            t64 = t64 << 7;
-            encodingBuffer[0] = (byte)(t64 >> 56);
-            encodingBuffer[1] = (byte)(t64 >> 48);
-            encodingBuffer[2] = (byte)(t64 >> 40);
-            encodingBuffer[3] = (byte)(t64 >> 32);
-            encodingBuffer[4] = (byte)(t64 >> 24);
-            encodingBuffer[5] = (byte)(t64 >> 16);
-            encodingBuffer[6] = (byte)(t64 >> 8);
-            encodingBuffer[7] = (byte)t64;
+            encodingValue = encodingValue << 7;
+            encodingBuffer[0] = (byte)(encodingValue >> 56);
+            encodingBuffer[1] = (byte)(encodingValue >> 48);
+            encodingBuffer[2] = (byte)(encodingValue >> 40);
+            encodingBuffer[3] = (byte)(encodingValue >> 32);
+            encodingBuffer[4] = (byte)(encodingValue >> 24);
+            encodingBuffer[5] = (byte)(encodingValue >> 16);
+            encodingBuffer[6] = (byte)(encodingValue >> 8);
+            encodingBuffer[7] = (byte)encodingValue;
 
             stream.Write(encodingBuffer, 0, encodingBuffer.Length);
 
