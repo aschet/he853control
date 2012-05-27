@@ -76,6 +76,19 @@ namespace HE853.Test
 
         [TestMethod]
         [DeploymentItem("HE853.dll")]
+        public void WriteUShortTest()
+        {
+            byte[] dataExpected = { 0, 10 };
+
+            using (MemoryStream stream = new MemoryStream())
+            {
+                Command_Accessor.WriteUShort(stream, 10);
+                CollectionAssert.AreEqual(dataExpected, stream.ToArray());
+            }
+        }
+
+        [TestMethod]
+        [DeploymentItem("HE853.dll")]
         public void PackSevenWithSequenceNumberTest()
         {
             byte[] dataExpected = new byte[] { 1, 0, 1, 2, 3, 4, 5, 6, 2, 7, 8, 9, 10, 11, 12, 13 };

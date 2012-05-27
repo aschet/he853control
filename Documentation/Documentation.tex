@@ -41,8 +41,9 @@ For more information and the latest packages please refer to the project page:
 \url{http://he853control.sourceforge.net/}
 
 \section{Prequesites}
-For installation, usage and development Microsoft .NET Framework 2.0 has to be installed on
-your system: \url{http://go.microsoft.com/fwlink/?LinkId=131000}
+For usage at least Microsoft .NET Framework 2.0 has to be installed on your
+system: \url{http://go.microsoft.com/fwlink/?LinkId=131000}. For development
+Visual Studio 2010 is recommended.
 
 
 
@@ -52,9 +53,9 @@ your system: \url{http://go.microsoft.com/fwlink/?LinkId=131000}
 All tools are located in the installation directory and support the following commands:
 
 \begin{itemize}
-	\item On: receiver will perform switch on
-	\item Off: receiver will perform switch off
-	\item Dim 10--80: reciver will perform dim to specific level if supported
+	\item On: receiver will switch on
+	\item Off: receiver will switch off
+	\item Dim 1--8: reciver will adjust dim to specific level if supported
 \end{itemize}
 
 
@@ -62,10 +63,13 @@ All tools are located in the installation directory and support the following co
 
 \includegraphics[width=300px]{cmd.png}
 
-Usage: HE853.Util \textless command\textgreater \textless device\textunderscore code\textgreater [/service]
+Usage: HE853.Util \textless command\textgreater \textless device\textunderscore code\textgreater [/service] [/short]
 
-\textless command\textgreater := ON | OFF | 10..80
+\textless command\textgreater := ON | OFF | 1..8 \\
 \textless device\textunderscore code\textgreater := 1..6000
+
+/service: use service instead of device \\
+/short: use short command sequence, less compatible \\
 
 Example: HE853.Util ON 1001
 
@@ -73,17 +77,17 @@ Example: HE853.Util ON 1001
 
 \includegraphics[width=100px]{gui.png}
 
-Enter a specifi device code and click the buttons to send a specific command.
+Enter a specific device code and click the buttons to send a specific command.
 
 \section{Coupling Dongle with Receivers}
 
-Before a receiver react to commands of the USB dongle a specific device code has to be
+Before a receiver reacts to commands of the USB dongle a specific device code has to be
 programmed to the receiver first. A device code is a number between 1 and 6000 and can
 be used by multiple receivers.
 
 To program a device code use the command line utility or the GUI application. Press the
 learn button on a receiver for about 1 second. Then send an ON command with the desired
-device code from the command line utility or the GUI application. The receiver will
+device code from the command line utility or the GUI application. The receiver will now
 react to commands with this device code.
 
 To clear the programmed device code press the learn button on a receiver util the LED
@@ -98,22 +102,16 @@ instead of using the device directly.
 
 \subsection{Configuration}
 
-The service is configured to start manually per default. This behavior has to be changed
-in the service control panel. Configure the HE853 RPC Service to start automatically and
-or start it. 
-
-\subsection{Manual Installation}
-
-If the service was not installed with the MSI installer is has to be registered with
-the Installer Tool (Installutil.exe).
-
+The service is configured to start manually per default. This behavior can be changed
+in the service control panel. 
 
 
 
 
 \chapter{Development}
 
-For development at least Microsoft .NET Framework 2.0 and or Visual Studio 2005 is required.
+For development at least Microsoft .NET Framework 2.0 is required. Currently the code
+is not compatible with Mono since Win32 API functions are used.
 
 \section{Using the Library -- HE853.dll}
 
@@ -134,27 +132,27 @@ have to be made available on distribution.
 HE853.IDevice device = new HE853.Device();
 if (device.Open())
 {
-    device.On(1001);
-    device.Off(1001);
+    device.SwitchOn(1001, false);
+    device.Off(1001, false);
     device.Close();
 }
 \end{verbatim}
 
 \section{Using the RPC Library -- HE853.Rpc.dll}
 
-The RPC library ist not designed for general usage yet and is not available via COM.
-It uses .NET Remoting IPC for communication. The library does only work in combination
-with the service application.
+The RPC library ist not designed to work via COM. It uses .NET Remoting IPC for
+communication. The library does only work in combination with the service
+application.
 
-Use the folloging code in combination with the RPC library:
+\subsection{C\# Sample Code}
 
 \begin{verbatim}
-HE853.RPC.RegisterClient();
+HE853.Rpc.RegisterClient();
 HE853.IDevice device = new HE853.Device();
 if (device.Open())
 {
-    device.On(1001);
-    device.Off(1001);
+    device.SwitchOn(1001, false);
+    device.SwitchOff(1001, false);
     device.Close();
 }
 \end{verbatim}
