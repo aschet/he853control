@@ -141,16 +141,35 @@ namespace HE853.Util
             }
 
             command = args[0];
-            if (!(command == Command.On || command == Command.Off || int.TryParse(command, out dim)))
+            bool dimOk = int.TryParse(command, out dim);
+
+            if (!(command == Command.On || command == Command.Off || dimOk))
             {
                 PrintUsage();
                 return false;
+            }
+
+            if (dimOk)
+            {
+                if (!Command.IsValidDim(dim))
+                {
+                    PrintUsage();
+                    return false;
+                }
             }
 
             if (!int.TryParse(args[1], out deviceCode))
             {
                 PrintUsage();
                 return false;
+            }
+            else
+            {
+                if (!Command.IsValidDeviceCode(deviceCode))
+                {
+                    PrintUsage();
+                    return false;
+                }
             }
 
             foreach (string arg in args)
