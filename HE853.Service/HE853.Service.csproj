@@ -116,9 +116,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HE853.RPC\HE853.RPC.csproj">
+    <ProjectReference Include="..\HE853.Rpc\HE853.Rpc.csproj">
       <Project>{9E0798BC-7005-4064-947E-3A6291233C80}</Project>
-      <Name>HE853.RPC</Name>
+      <Name>HE853.Rpc</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
