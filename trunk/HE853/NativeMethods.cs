@@ -22,160 +22,124 @@ namespace HE853
     using System;
     using System.Runtime.InteropServices;
 
+    /// <summary>
+    /// 
+    /// </summary>
     internal static class NativeMethods
     {
-        public const int FileFlagOverlapped = 0x40000000;
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint GenericWrite = 0x40000000;
 
-        public static void CloseHandle(ref IntPtr handle)
-        {
-            if (handle != IntPtr.Zero)
-            {
-                CloseHandle(handle);
-                handle = IntPtr.Zero;
-            }
-        }
-
-        public static IntPtr CreateFile(string fileName, uint desiredAccess, uint flagsAndAttributes = 0)
-        {
-            SecurityAttributes security = new SecurityAttributes();
-            security.Length = Marshal.SizeOf(security);
-            security.SecurityDescriptor = IntPtr.Zero;
-            security.InheritHandle = Convert.ToInt32(true);
-
-            return CreateFile(fileName, desiredAccess, 0x3, ref security, 0x3, flagsAndAttributes, IntPtr.Zero);
-        }
-
-        public static string GetHIDDevicePath(short vendorID, short productID)
-        {
-            IntPtr hidHandle = IntPtr.Zero;
-            string devicePath = string.Empty;
-
-            string[] paths = GetHIDDevicePaths();
-            foreach (string path in paths)
-            {
-                hidHandle = CreateFile(path, 0);
-
-                if (hidHandle != IntPtr.Zero)
-                {
-                    bool isHIDProduct = IsSpecificHIDDevice(hidHandle, 0x4D9, 0x1357);
-                    CloseHandle(ref hidHandle);
-
-                    if (isHIDProduct)
-                    {
-                        devicePath = path;
-                        break;
-                    }
-                }
-            }
-
-            return devicePath;
-        }
-
-        public static bool SetHIDOutputReport(IntPtr hidDeviceObject, byte[] reportBuffer)
-        {
-            return HidD_SetOutputReport(hidDeviceObject, reportBuffer, reportBuffer.Length);
-        }
-
-        private static bool IsSpecificHIDDevice(IntPtr hidHandle, short vendorID, short productID)
-        {
-            HIDDAttributes deviceAttributes = new HIDDAttributes();
-            deviceAttributes.Size = Marshal.SizeOf(deviceAttributes);
-            if (HidD_GetAttributes(hidHandle, ref deviceAttributes) != 0)
-            {
-                if ((deviceAttributes.VendorID == vendorID) && (deviceAttributes.ProductID == productID))
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        private static string[] GetHIDDevicePaths()
-        {
-            string[] paths = new string[0];
-            Guid guid = Guid.Empty;
-            HidD_GetHidGuid(ref guid);
-
-            int index = 0;
-            IntPtr deviceInfoSet = SetupDiGetClassDevs(ref guid, null, IntPtr.Zero, 0x12);
-
-            SPDeviceInterfaceData deviceInterfaceData = new SPDeviceInterfaceData();
-            deviceInterfaceData.Size = Marshal.SizeOf(deviceInterfaceData);
-
-            while (SetupDiEnumDeviceInterfaces(deviceInfoSet, IntPtr.Zero, ref guid, index, ref deviceInterfaceData) != 0)
-            {
-                int bufferSize = 0;
-                SetupDiGetDeviceInterfaceDetail(deviceInfoSet, ref deviceInterfaceData, IntPtr.Zero, 0, ref bufferSize, IntPtr.Zero);
-                IntPtr deviceInterfaceDetailData = Marshal.AllocHGlobal(bufferSize);
-
-                int detailDataSize = 6;
-                if (IntPtr.Size == 8)
-                {
-                    detailDataSize = 8;
-                }
-
-                Marshal.WriteInt32(deviceInterfaceDetailData, detailDataSize);
-                SetupDiGetDeviceInterfaceDetail(deviceInfoSet, ref deviceInterfaceData, deviceInterfaceDetailData, bufferSize, ref bufferSize, IntPtr.Zero);
-
-                byte[] deviceInterfaceDetailDataManaged = new byte[bufferSize];
-                Marshal.Copy(deviceInterfaceDetailData, deviceInterfaceDetailDataManaged, 0, deviceInterfaceDetailDataManaged.Length);
-                Marshal.FreeHGlobal(deviceInterfaceDetailData);
-
-                byte[] deviceName = new byte[deviceInterfaceDetailDataManaged.Length - 4];
-                for (int i = 0; i < deviceName.Length; ++i)
-                {
-                    deviceName[i] = deviceInterfaceDetailDataManaged[i + 4];
-                }
-
-                Array.Resize(ref paths, paths.Length + 1);
-                paths[paths.Length - 1] = System.Text.Encoding.Unicode.GetString(deviceName);
-                ++index;
-            }
-
-            SetupDiDestroyDeviceInfoList(deviceInfoSet);
-
-            return paths;
-        }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="handleObject"></param>
+        /// <returns></returns>
         [DllImport("kernel32.dll")]
-        private static extern int CloseHandle(IntPtr handleObject);
+        public static extern int CloseHandle(IntPtr handleObject);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <param name="desiredAccess"></param>
+        /// <param name="shareMode"></param>
+        /// <param name="securityAttributes"></param>
+        /// <param name="creationDisposition"></param>
+        /// <param name="flagsAndAttributes"></param>
+        /// <param name="handleTemplateFile"></param>
+        /// <returns></returns>
         [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
-        private static extern IntPtr CreateFile(string fileName, uint desiredAccess, uint shareMode, ref SecurityAttributes securityAttributes, int creationDisposition, uint flagsAndAttributes, IntPtr handleTemplateFile);
+        public static extern IntPtr CreateFile(string fileName, uint desiredAccess, uint shareMode, ref SecurityAttributes securityAttributes, int creationDisposition, uint flagsAndAttributes, IntPtr handleTemplateFile);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="hidGuid"></param>
         [DllImport("hid.dll")]
-        private static extern void HidD_GetHidGuid(ref Guid hidGuid);
+        public static extern void HidD_GetHidGuid(ref Guid hidGuid);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="hidDeviceObject"></param>
+        /// <param name="atributes"></param>
+        /// <returns></returns>
         [DllImport("hid.dll")]
-        private static extern int HidD_GetAttributes(IntPtr hidDeviceObject, ref HIDDAttributes atributes);
+        public static extern int HidD_GetAttributes(IntPtr hidDeviceObject, ref HIDDAttributes atributes);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="hidDeviceObject"></param>
+        /// <param name="reportBuffer"></param>
+        /// <param name="reportBufferLength"></param>
+        /// <returns></returns>
         [DllImport("hid.dll")]
-        private static extern bool HidD_SetOutputReport(IntPtr hidDeviceObject, byte[] reportBuffer, int reportBufferLength);
+        public static extern bool HidD_SetOutputReport(IntPtr hidDeviceObject, byte[] reportBuffer, int reportBufferLength);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="deviceInfoSet"></param>
+        /// <param name="deviceInfoData"></param>
+        /// <param name="interfaceClassGuid"></param>
+        /// <param name="memberIndex"></param>
+        /// <param name="deviceInterfaceData"></param>
+        /// <returns></returns>
         [DllImport("setupapi.dll")]
-        private static extern int SetupDiEnumDeviceInterfaces(IntPtr deviceInfoSet, IntPtr deviceInfoData, ref Guid interfaceClassGuid, int memberIndex, ref SPDeviceInterfaceData deviceInterfaceData);
+        public static extern int SetupDiEnumDeviceInterfaces(IntPtr deviceInfoSet, IntPtr deviceInfoData, ref Guid interfaceClassGuid, int memberIndex, ref SPDeviceInterfaceData deviceInterfaceData);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="deviceInfoSet"></param>
+        /// <returns></returns>
         [DllImport("setupapi.dll")]
-        private static extern int SetupDiDestroyDeviceInfoList(IntPtr deviceInfoSet);
+        public static extern int SetupDiDestroyDeviceInfoList(IntPtr deviceInfoSet);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="classGuid"></param>
+        /// <param name="enumerator"></param>
+        /// <param name="hwndParent"></param>
+        /// <param name="flags"></param>
+        /// <returns></returns>
         [DllImport("setupapi.dll", CharSet = CharSet.Unicode)]
-        private static extern IntPtr SetupDiGetClassDevs(ref Guid classGuid, string enumerator, IntPtr hwndParent, int flags);
+        public static extern IntPtr SetupDiGetClassDevs(ref Guid classGuid, string enumerator, IntPtr hwndParent, int flags);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="deviceInfoSet"></param>
+        /// <param name="deviceInterfaceData"></param>
+        /// <param name="deviceInterfaceDetailData"></param>
+        /// <param name="deviceInterfaceDetailDataSize"></param>
+        /// <param name="requiredSize"></param>
+        /// <param name="deviceInfoData"></param>
+        /// <returns></returns>
         [DllImport("setupapi.dll", CharSet = CharSet.Unicode)]
-        private static extern int SetupDiGetDeviceInterfaceDetail(IntPtr deviceInfoSet, ref SPDeviceInterfaceData deviceInterfaceData, IntPtr deviceInterfaceDetailData, int deviceInterfaceDetailDataSize, ref int requiredSize, IntPtr deviceInfoData);
+        public static extern int SetupDiGetDeviceInterfaceDetail(IntPtr deviceInfoSet, ref SPDeviceInterfaceData deviceInterfaceData, IntPtr deviceInterfaceDetailData, int deviceInterfaceDetailDataSize, ref int requiredSize, IntPtr deviceInfoData);
 
+        /// <summary>
+        /// 
+        /// </summary>
         [StructLayout(LayoutKind.Sequential)]
-        private struct SecurityAttributes
+        public struct SecurityAttributes
         {
             public int Length;
             public IntPtr SecurityDescriptor;
             public int InheritHandle;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         [StructLayout(LayoutKind.Sequential)]
-        private struct HIDDAttributes
+        public struct HIDDAttributes
         {
             public int Size;
             public short VendorID;
@@ -183,8 +147,11 @@ namespace HE853
             public short VersionNumber;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         [StructLayout(LayoutKind.Sequential)]
-        private struct SPDeviceInterfaceData
+        public struct SPDeviceInterfaceData
         {
             public int Size;
             public Guid InterfaceClassGuid;
