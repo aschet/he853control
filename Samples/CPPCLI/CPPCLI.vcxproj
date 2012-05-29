@@ -69,9 +69,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Reference Include="HE853, Version=1.4.0.0, Culture=neutral, PublicKeyToken=c5b100a8b7cb8aff">
+      <HintPath>..\..\HE853.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
