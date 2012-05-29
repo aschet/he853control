@@ -1,0 +1,83 @@
+<html>
+
+<head>
+<link rel="SHORTCUT ICON" href="HE853.ico">
+<link rel="stylesheet" type="text/css" href="style.css">
+<title>HE853 Control Project</title>
+<meta name="description" content="A library, command line application and GUI application to control the Home Easy HE853 home automation USB dongel on Windows." />
+<meta name="keywords" content="HE853, HE853 usb, home easy, home outomation, source, develop, library, .NET" />
+</head>
+
+<body>
+
+<h1>HE853 Control Project</h1>
+
+<h2>Introduction</h2>
+
+<p>
+The HE853 Control project is dedicated to create a Windows SDK for the
+<a href="http://www.elro.eu/en/products/category/home_automation/home_easy/zenders2/pc_afstandsbediening_usb_dongle">HE853 USB dongle</a>
+of the Home Easy home automation products since the vendor does not provide one.
+
+The SDK consists of GPL licensed tools and a LGPL licensed library that can be used
+from other applications.
+</p>
+
+<p>
+Out target audience are power users and software developers who wish to extend the usage
+of the HE853 USB dongle beyond the limits of the vendor software.
+</p>
+
+<p>
+For more information and the latest packages please refer to the project page: <a href="https://sourceforge.net/projects/he853control/">https://sourceforge.net/projects/he853control/</a>
+</p>
+
+<p>
+<img src="shot.png">
+</p>
+
+<a class="download" href="http://sourceforge.net/projects/he853control/files/1.4/HE853Control_1_4.msi/download">Download v1.4</a>
+</div>
+
+<h2>Command Line Utility - HE853.Util.exe</h2>
+
+<p>
+<pre>
+Usage: HE853.Util &lt;command&gt; &lt;device_code&gt; [&sol;service] [&sol;short]
+
+&lt;command&gt; := ON | OFF | 1..8
+&lt;device_code&gt; := 1..6000
+
+&sol;service: use service instead of device
+&sol;short: use short command sequence, less compatible
+
+Example: HE853.Util ON 1001
+</pre>
+</p>
+
+<h2>Using the Library - HE853.dll</h2>
+
+<p>
+The library can be used by any .NET language by referencing the HE853.dll assembly
+from the installation directory or via COM. Please note that the assembly is compiled
+as Any CPU and works with x86 and x64 platform configurations.
+</p>
+
+<h3>C# Sample Code</h3>
+<p>
+<pre>
+HE853.IDevice device = new HE853.Device();
+device.Open();
+device.SwitchOn(1001, false);
+device.SwitchOff(1001, false);
+device.Close();
+</pre>
+</p>
+
+<p>
+&copy; 2012 <a href="http://sourceforge.net/users/ashman">Thomas Ascher</a>
+</p>
+
+</body>
+
+</html>
