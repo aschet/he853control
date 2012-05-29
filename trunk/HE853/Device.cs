@@ -60,7 +60,6 @@ namespace HE853
         /// <summary>
         /// Prepares the HE853 device for usage. Uses locking.
         /// </summary>
-        /// <returns>True if the device is available.</returns>
         public void Open()
         {
             lock (this.locker)
@@ -85,7 +84,6 @@ namespace HE853
         /// </summary>
         /// <param name="deviceCode">Device code of receivers.</param>
         /// <param name="shortCommand">Sends shorter less compatible command sequence.</param>
-        /// <returns>True if command could be send.</returns>
         public void SwitchOn(int deviceCode, bool shortCommand)
         {
             lock (this.locker)
@@ -99,7 +97,6 @@ namespace HE853
         /// </summary>
         /// <param name="deviceCode">Device code of receivers.</param>
         /// <param name="shortCommand">Sends shorter less compatible command sequence.</param>
-        /// <returns>True if command could be send.</returns>
         public void SwitchOff(int deviceCode, bool shortCommand)
         {
             lock (this.locker)
@@ -113,7 +110,6 @@ namespace HE853
         /// </summary>
         /// <param name="deviceCode">Device code of receivers.</param>
         /// <param name="amount">Amount of dim. A value between 1 an 8.</param>
-        /// <returns>True if command could be send.</returns>
         public void AdjustDim(int deviceCode, int amount)
         {
             if (!Command.IsValidDim(amount))
@@ -160,7 +156,6 @@ namespace HE853
         /// <param name="deviceCode">Device code of receivers.</param>
         /// <param name="command">Text command to send.</param>
         /// <param name="shortCommand">Sends shorter less compatible command sequence.</param> 
-        /// <returns>True if command could be send.</returns>
         private void SendCommand(int deviceCode, string command, bool shortCommand)
         {
             if (!Command.IsValidDeviceCode(deviceCode))
@@ -182,7 +177,6 @@ namespace HE853
         /// Sends a command sequence as series of 9 byte long HID reports to the HE853 device.
         /// </summary>
         /// <param name="command">Command sequence to send.</param>
-        /// <returns>True if command could be send.</returns>
         private void SendCommand(byte[] command)
         {            
             bool result = true;
@@ -201,7 +195,9 @@ namespace HE853
             }
 
             if (!result)
+            {
                 throw new IOException("Command could not be send to HE853 device.");
+            }
 
             System.Threading.Thread.Sleep(10);
         }
