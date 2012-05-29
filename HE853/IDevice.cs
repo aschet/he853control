@@ -31,8 +31,7 @@ namespace HE853
         /// <summary>
         /// Prepares the HE853 device for usage.
         /// </summary>
-        /// <returns>True if the device is available.</returns>
-        bool Open();
+        void Open();
 
         /// <summary>
         /// Shuts down the HE853 device.
@@ -44,23 +43,20 @@ namespace HE853
         /// </summary>
         /// <param name="deviceCode">Device code of receivers.</param>
         /// <param name="shortCommand">Sends shorter less compatible command sequence.</param>
-        /// <returns>True if command could be send.</returns>
-        bool SwitchOn(int deviceCode, bool shortCommand);
+        void SwitchOn(int deviceCode, bool shortCommand);
 
         /// <summary>
         /// Swiches receivers with specific device code off.
         /// </summary>
         /// <param name="deviceCode">Device code of receivers.</param>
         /// <param name="shortCommand">Sends shorter less compatible command sequence.</param>
-        /// <returns>True if command could be send.</returns>
-        bool SwitchOff(int deviceCode, bool shortCommand);
+        void SwitchOff(int deviceCode, bool shortCommand);
         
         /// <summary>
         /// Adjusts dim level on receivers with specific device code.
         /// </summary>
         /// <param name="deviceCode">Device code of receivers.</param>
         /// <param name="amount">Amount of dim. A value between 1 an 8.</param>
-        /// <returns>True if command could be send.</returns>
-        bool AdjustDim(int deviceCode, int amount);
+        void AdjustDim(int deviceCode, int amount);
     }
 }

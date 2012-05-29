@@ -21,6 +21,7 @@ namespace HE853
 {
     using System;
     using System.Globalization;
+    using System.IO;
     using System.Runtime.InteropServices;
 
     /// <summary>
@@ -60,15 +61,12 @@ namespace HE853
         /// Prepares the HE853 device for usage. Uses locking.
         /// </summary>
         /// <returns>True if the device is available.</returns>
-        public bool Open()
+        public void Open()
         {
-            bool result = false;
             lock (this.locker)
             {
-                result = this.OpenUnlocked();
+                this.OpenUnlocked();
             }
-
-            return result;
         }
 
         /// <summary>
@@ -88,15 +86,12 @@ namespace HE853
         /// <param name="deviceCode">Device code of receivers.</param>
         /// <param name="shortCommand">Sends shorter less compatible command sequence.</param>
         /// <returns>True if command could be send.</returns>
-        public bool SwitchOn(int deviceCode, bool shortCommand)
+        public void SwitchOn(int deviceCode, bool shortCommand)
         {
-            bool result = false;
             lock (this.locker)
             {
-                result = this.SendCommand(deviceCode, Command.On, shortCommand);
+                this.SendCommand(deviceCode, Command.On, shortCommand);
             }
-
-            return result;
         }
 
         /// <summary>
@@ -105,15 +100,12 @@ namespace HE853
         /// <param name="deviceCode">Device code of receivers.</param>
         /// <param name="shortCommand">Sends shorter less compatible command sequence.</param>
         /// <returns>True if command could be send.</returns>
-        public bool SwitchOff(int deviceCode, bool shortCommand)
+        public void SwitchOff(int deviceCode, bool shortCommand)
         {
-            bool result = false;
             lock (this.locker)
             {
-                result = this.SendCommand(deviceCode, Command.Off, shortCommand);
+                this.SendCommand(deviceCode, Command.Off, shortCommand);
             }
-
-            return result;
         }
 
         /// <summary>
@@ -122,27 +114,23 @@ namespace HE853
         /// <param name="deviceCode">Device code of receivers.</param>
         /// <param name="amount">Amount of dim. A value between 1 an 8.</param>
         /// <returns>True if command could be send.</returns>
-        public bool AdjustDim(int deviceCode, int amount)
+        public void AdjustDim(int deviceCode, int amount)
         {
             if (!Command.IsValidDim(amount))
             {
                 throw new ArgumentOutOfRangeException("amount", "Must be value between " + Command.MinDim + " and " + Command.MaxDim + ".");
             }
 
-            bool result = false;
             lock (this.locker)
             {
-                result = this.SendCommand(deviceCode, Convert.ToString(amount, CultureInfo.InvariantCulture), false);
+                this.SendCommand(deviceCode, Convert.ToString(amount, CultureInfo.InvariantCulture), false);
             }
-
-            return result;
         }
 
         /// <summary>
         /// Prepares the HE853 device for usage.
         /// </summary>
-        /// <returns>True if the device is available.</returns>
-        private bool OpenUnlocked()
+        private void OpenUnlocked()
         {
             this.CloseUnlocked();
 
@@ -152,7 +140,10 @@ namespace HE853
                 this.writeHandle = NativeMethodsHelper.CreateFileForWrite(devicePath);
             }
 
-            return this.writeHandle != IntPtr.Zero;
+            if (this.writeHandle == IntPtr.Zero)
+            {
+                throw new FileNotFoundException("HE853 device is not connected or in use.");
+            }
         }
 
         /// <summary>
@@ -170,32 +161,21 @@ namespace HE853
         /// <param name="command">Text command to send.</param>
         /// <param name="shortCommand">Sends shorter less compatible command sequence.</param> 
         /// <returns>True if command could be send.</returns>
-        private bool SendCommand(int deviceCode, string command, bool shortCommand)
+        private void SendCommand(int deviceCode, string command, bool shortCommand)
         {
             if (!Command.IsValidDeviceCode(deviceCode))
             {
                 throw new ArgumentOutOfRangeException("deviceCode", "Must be value between " + Command.MinDeviceCode + " and " + Command.MaxDeviceCode + ".");
             }
             
-            bool result = this.TestStatus();
-            if (result)
+            this.TestStatus();
+
+            this.SendCommand(this.commandCN.Build(deviceCode, command));
+            if (!shortCommand && (command == Command.On || command == Command.Off))
             {
-                result = this.SendCommand(this.commandCN.Build(deviceCode, command));
-                if (!shortCommand && (command == Command.On || command == Command.Off))
-                {
-                    if (result)
-                    {
-                        result = this.SendCommand(this.commandUK.Build(deviceCode, command));
-                    }
-
-                    if (result)
-                    {
-                        result = this.SendCommand(this.commandEU.Build(deviceCode, command));
-                    }
-                }
+                this.SendCommand(this.commandUK.Build(deviceCode, command));
+                this.SendCommand(this.commandEU.Build(deviceCode, command));
             }
-
-            return result;
         }
 
         /// <summary>
@@ -203,13 +183,8 @@ namespace HE853
         /// </summary>
         /// <param name="command">Command sequence to send.</param>
         /// <returns>True if command could be send.</returns>
-        private bool SendCommand(byte[] command)
-        {
-            if (this.writeHandle == IntPtr.Zero)
-            {
-                return false;
-            }
-            
+        private void SendCommand(byte[] command)
+        {            
             bool result = true;
             const int ChunkLength = 8;
             byte[] chunk = new byte[ChunkLength + 1];
@@ -225,24 +200,32 @@ namespace HE853
                 result = result && NativeMethodsHelper.SetHIDOutputReport(this.writeHandle, chunk);
             }
 
-            System.Threading.Thread.Sleep(10);
+            if (!result)
+                throw new IOException("Command could not be send to HE853 device.");
 
-            return result;
+            System.Threading.Thread.Sleep(10);
         }
 
         /// <summary>
         /// Tests if the HE853 device is still available and if not tries to reopen it.
         /// </summary>
-        /// <returns>True if the device is available.</returns>
-        private bool TestStatus()
+        private void TestStatus()
         {
-            bool result = this.SendCommand(Command.BuildStatus());
-            if (!result)
+            if (this.writeHandle == IntPtr.Zero)
             {
-                result = this.OpenUnlocked();
+                this.OpenUnlocked();
             }
-
-            return result;
+            else
+            {
+                try
+                {
+                    this.SendCommand(Command.BuildStatus());
+                }
+                catch (IOException)
+                {
+                    this.OpenUnlocked();
+                }
+            }
         }
     }
 }

@@ -20,7 +20,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 namespace HE853.Util
 {
     using System;
+    using System.IO;
     using System.Reflection;
+    using System.Runtime.Remoting;
 
     /// <summary>
     /// Main program.
@@ -80,37 +82,35 @@ namespace HE853.Util
 
             try
             {
-                if (!device.Open())
+                device.Open();
+
+                if (command == Command.On)
                 {
-                    Console.WriteLine("The device is not attached or in use!");
-                    return (int)ExitCode.DeviceNotFound;
+                    device.SwitchOn(deviceCode, shortCommand);
+                }
+                else if (command == Command.Off)
+                {
+                    device.SwitchOff(deviceCode, shortCommand);
+                }
+                else
+                {
+                    device.AdjustDim(deviceCode, dim);
                 }
             }
-            catch (Exception)
+            catch (FileNotFoundException exception)
             {
-                Console.WriteLine("The service does not respond!");
+                Console.WriteLine(exception.Message);
                 return (int)ExitCode.DeviceNotFound;
             }
-
-            bool result = false;
-            if (command == Command.On)
+            catch (RemotingException)
             {
-                result = device.SwitchOn(deviceCode, shortCommand);
+                Console.WriteLine("The service does not respond.");
+                return (int)ExitCode.DeviceNotFound;
             }
-            else if (command == Command.Off)
+            catch (IOException exception)
             {
-                result = device.SwitchOff(deviceCode, shortCommand);
-            }
-            else
-            {
-                result = device.AdjustDim(deviceCode, dim);
-            }
-
-            device.Close();
-
-            if (!result)
-            {
-                Console.WriteLine("Error during command send!");
+                Console.WriteLine(exception.Message);
+                device.Close();
                 return (int)ExitCode.CommandFailed;
             }
 

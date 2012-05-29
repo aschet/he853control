@@ -44,18 +44,6 @@ namespace HE853.App
         }
 
         /// <summary>
-        /// Presents common error message to user.
-        /// </summary>
-        /// <param name="result">False if error message should be shown.</param>
-        private static void Notify(bool result)
-        {
-            if (!result)
-            {
-                Notify("Error during command send!");
-            }
-        }
-
-        /// <summary>
         /// Presents specific message to user.
         /// </summary>
         /// <param name="message">Message to present.</param>
@@ -72,7 +60,16 @@ namespace HE853.App
         private void OnButton_Click(object sender, EventArgs e)
         {
             this.onButton.Enabled = false;
-            Notify(this.device.SwitchOn(this.GetDeviceCode(), this.UseShortCommands()));
+            
+            try
+            {
+                this.device.SwitchOn(this.GetDeviceCode(), this.UseShortCommands());
+            }
+            catch (Exception exception)
+            {
+                Notify(exception.Message);
+            }
+
             this.onButton.Enabled = true;
         }
 
@@ -84,7 +81,16 @@ namespace HE853.App
         private void OffButton_Click(object sender, EventArgs e)
         {
             this.offButton.Enabled = false;
-            Notify(this.device.SwitchOff(this.GetDeviceCode(), this.UseShortCommands()));
+
+            try
+            {
+                this.device.SwitchOff(this.GetDeviceCode(), this.UseShortCommands());
+            }
+            catch (Exception exception)
+            {
+                Notify(exception.Message);
+            }
+
             this.offButton.Enabled = true;
         }
 
@@ -96,7 +102,16 @@ namespace HE853.App
         private void DimButton_Click(object sender, EventArgs e)
         {
             this.dimButton.Enabled = false;
-            Notify(this.device.AdjustDim(this.GetDeviceCode(), int.Parse(this.dimComboBox.Text)));
+
+            try
+            {
+                this.device.AdjustDim(this.GetDeviceCode(), int.Parse(this.dimComboBox.Text));
+            }
+            catch (Exception exception)
+            {
+                Notify(exception.Message);
+            }
+
             this.dimButton.Enabled = true;
         }
 
@@ -109,14 +124,11 @@ namespace HE853.App
         {
             try
             {
-                if (!this.device.Open())
-                {
-                    Notify("The device is not attached or in use!");
-                }
+                this.device.Open();
             }
-            catch
+            catch (Exception exception)
             {
-                Notify("The service does not respond!");
+                Notify(exception.Message);
             }
         }
 
