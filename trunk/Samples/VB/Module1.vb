@@ -1,12 +1,25 @@
-﻿Module Module1
+﻿Imports System
+Imports System.IO
+
+Module Module1
 
     Sub Main()
         Dim device As New HE853.Device()
-        If (device.Open()) Then
-            device.SwitchOn(1001, false)
-            device.SwitchOff(1001, false)
+
+        Try
+            device.Open()
+            device.SwitchOn(1001, False)
+            device.SwitchOff(1001, False)
             device.Close()
-        End If
+
+        Catch exception As FileNotFoundException
+            Console.WriteLine(exception.Message)
+
+        Catch exception As IOException
+            Console.WriteLine(exception.Message)
+            device.Close()
+
+        End Try
 
     End Sub
 
