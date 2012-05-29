@@ -130,12 +130,10 @@ have to be made available on distribution.
 
 \begin{verbatim}
 HE853.IDevice device = new HE853.Device();
-if (device.Open())
-{
-    device.SwitchOn(1001, false);
-    device.Off(1001, false);
-    device.Close();
-}
+device.Open();
+device.SwitchOn(1001, false);
+device.Off(1001, false);
+device.Close();
 \end{verbatim}
 
 \section{Using the RPC Library -- HE853.Rpc.dll}
@@ -149,12 +147,10 @@ application.
 \begin{verbatim}
 HE853.Rpc.RegisterClient();
 HE853.IDevice device = new HE853.Device();
-if (device.Open())
-{
-    device.SwitchOn(1001, false);
-    device.SwitchOff(1001, false);
-    device.Close();
-}
+device.Open();
+device.SwitchOn(1001, false);
+device.Off(1001, false);
+device.Close();
 \end{verbatim}
 
 \section{Deployment}
