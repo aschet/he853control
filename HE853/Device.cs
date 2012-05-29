@@ -130,6 +130,7 @@ namespace HE853
         {
             this.CloseUnlocked();
 
+            // "\\\\?\\hid#vid_04d9&pid_1357#6&37b1e0bf&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}\0"
             string devicePath = NativeMethodsHelper.GetHE853DevicePath();
             if (devicePath.Length != 0)
             {
