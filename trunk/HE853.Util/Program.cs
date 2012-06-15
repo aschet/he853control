@@ -92,7 +92,7 @@ namespace HE853.Util
                 }
                 else
                 {
-                    device.AdjustDim(deviceCode, dim);
+                    device.AdjustDim(deviceCode, dim, commandStyle);
                 }
             }
             catch (FileNotFoundException exception)
