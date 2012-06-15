@@ -57,6 +57,14 @@ namespace HE853
         public static extern void HidD_GetHidGuid(ref Guid hidGuid);
 
         /// <summary>
+        /// Import for HidD_FlushQueue function.
+        /// </summary>
+        /// <param name="hidDeviceObject">Specifies an open handle to a top-level collection.</param>
+        /// <returns></returns>
+        [DllImport("hid.dll")]
+        public static extern bool HidD_FlushQueue(IntPtr hidDeviceObject); 
+
+        /// <summary>
         /// Import for HidD_GetAttributes function.
         /// </summary>
         /// <param name="hidDeviceObject">Specifies an open handle to a top-level collection.</param>
