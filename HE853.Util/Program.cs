@@ -70,6 +70,7 @@ namespace HE853.Util
 
             if (!ParseArgs(args, out command, out dim, out deviceCode, out useService, out commandStyle))
             {
+                PrintUsage();
                 return (int)ExitCode.Success;
             }
 
@@ -137,7 +138,6 @@ namespace HE853.Util
             
             if (args.Length < 2)
             {
-                PrintUsage();
                 return false;
             }
 
@@ -146,7 +146,6 @@ namespace HE853.Util
 
             if (!(command == Command.On || command == Command.Off || dimOk))
             {
-                PrintUsage();
                 return false;
             }
 
@@ -154,21 +153,18 @@ namespace HE853.Util
             {
                 if (!Command.IsValidDim(dim))
                 {
-                    PrintUsage();
                     return false;
                 }
             }
 
             if (!int.TryParse(args[1], out deviceCode))
             {
-                PrintUsage();
                 return false;
             }
             else
             {
                 if (!Command.IsValidDeviceCode(deviceCode))
                 {
-                    PrintUsage();
                     return false;
                 }
             }
