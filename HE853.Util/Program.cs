@@ -58,20 +58,20 @@ namespace HE853.Util
         public static int Main(string[] args)
         {
             PrintInformation();
-            
-            string command;
-            int dim;
-            int deviceCode;
-            bool useService;
-            CommandStyle commandStyle;
 
-            if (!ParseArgs(args, out command, out dim, out deviceCode, out useService, out commandStyle))
+            Arguments arguments = new Arguments();
+
+            try
+            {
+                arguments.Parse(args);
+            }
+            catch (Exception)
             {
                 PrintUsage();
                 return (int)ExitCode.Success;
             }
 
-            if (useService)
+            if (arguments.Service)
             {
                 Rpc.RegisterClient();
             }
@@ -82,17 +82,17 @@ namespace HE853.Util
             {
                 device.Open();
 
-                if (command == Command.On)
+                if (arguments.CommandText == Command.On)
                 {
-                    device.SwitchOn(deviceCode, commandStyle);
+                    device.SwitchOn(arguments.DeviceCode, arguments.Style);
                 }
-                else if (command == Command.Off)
+                else if (arguments.CommandText == Command.Off)
                 {
-                    device.SwitchOff(deviceCode, commandStyle);
+                    device.SwitchOff(arguments.DeviceCode, arguments.Style);
                 }
                 else
                 {
-                    device.AdjustDim(deviceCode, commandStyle, dim);
+                    device.AdjustDim(arguments.DeviceCode, arguments.Style, arguments.Dim);
                 }
             }
             catch (FileNotFoundException exception)
@@ -116,69 +116,6 @@ namespace HE853.Util
         }
 
         /// <summary>
-        /// Parse command line arguments.
-        /// </summary>
-        /// <param name="args">Command line arguments.</param>
-        /// <param name="command">Detected command string.</param>
-        /// <param name="dim">Detected dim.</param>
-        /// <param name="deviceCode">Detected device code.</param>
-        /// <param name="service">Status of service flag.</param>
-        /// <param name="commandStyle">Status of short command flag.</param>
-        /// <returns>True if all required arguments are valid and available.</returns>
-        private static bool ParseArgs(string[] args, out string command, out int dim, out int deviceCode, out bool service, out CommandStyle commandStyle)
-        {
-            command = string.Empty;
-            dim = 0;
-            deviceCode = 0;
-            service = Rpc.HasServiceArg(args);
-            commandStyle = CommandStyle.Comprehensive;
-            
-            if (args.Length < 2)
-            {
-                return false;
-            }
-
-            command = args[0];
-            bool dimOk = int.TryParse(command, out dim);
-
-            if (!(command == Command.On || command == Command.Off || dimOk))
-            {
-                return false;
-            }
-
-            if (dimOk)
-            {
-                if (!Command.IsValidDim(dim))
-                {
-                    return false;
-                }
-            }
-
-            if (!int.TryParse(args[1], out deviceCode))
-            {
-                return false;
-            }
-            else
-            {
-                if (!Command.IsValidDeviceCode(deviceCode))
-                {
-                    return false;
-                }
-            }
-
-            foreach (string arg in args)
-            {
-                if (arg == "/short")
-                {
-                    commandStyle = CommandStyle.Short;
-                    break;
-                }
-            }
-
-            return true;
-        }
-
-        /// <summary>
         /// Print program information.
         /// </summary>
         private static void PrintInformation()
@@ -196,13 +133,13 @@ namespace HE853.Util
         {
             string name = Assembly.GetExecutingAssembly().GetName().Name;
 
-            Console.WriteLine("Usage: " + name + " <command> <device_code> [" + Rpc.ServiceArg + "] [/short]");
+            Console.WriteLine("Usage: " + name + " <command> <device_code> [" + Rpc.ServiceArg + "] [" + Arguments.Short + "]");
             Console.WriteLine();
             Console.WriteLine("<command> := " + Command.On + " | " + Command.Off + " | " + Command.MinDim + ".." + Command.MaxDim);
             Console.WriteLine("<device_code> := " + Command.MinDeviceCode + ".." + Command.MaxDeviceCode);
             Console.WriteLine();
             Console.WriteLine(Rpc.ServiceArg + ": use service instead of device");
-            Console.WriteLine("/short: use short command sequence, less compatible");
+            Console.WriteLine(Arguments.Short + ": use short command sequence, less compatible");
             Console.WriteLine();
             Console.WriteLine("The device code has to programed to a receiver first.");
             Console.WriteLine("To program the code hold the learn button on the receiver for");
