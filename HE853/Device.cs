@@ -83,12 +83,12 @@ namespace HE853
         /// Swiches receivers with specific device code on.
         /// </summary>
         /// <param name="deviceCode">Device code of receivers.</param>
-        /// <param name="shortCommand">Sends shorter less compatible command sequence.</param>
-        public void SwitchOn(int deviceCode, bool shortCommand)
+        /// <param name="commandStyle">Does specify how much information is send.</param>
+        public void SwitchOn(int deviceCode, CommandStyle commandStyle)
         {
             lock (this.locker)
             {
-                this.SendCommand(deviceCode, Command.On, shortCommand);
+                this.SendCommand(deviceCode, Command.On, commandStyle);
             }
         }
 
@@ -96,12 +96,12 @@ namespace HE853
         /// Swiches receivers with specific device code off.
         /// </summary>
         /// <param name="deviceCode">Device code of receivers.</param>
-        /// <param name="shortCommand">Sends shorter less compatible command sequence.</param>
-        public void SwitchOff(int deviceCode, bool shortCommand)
+        /// <param name="commandStyle">Does specify how much information is send.</param>
+        public void SwitchOff(int deviceCode, CommandStyle commandStyle)
         {
             lock (this.locker)
             {
-                this.SendCommand(deviceCode, Command.Off, shortCommand);
+                this.SendCommand(deviceCode, Command.Off, commandStyle);
             }
         }
 
@@ -119,7 +119,7 @@ namespace HE853
 
             lock (this.locker)
             {
-                this.SendCommand(deviceCode, Convert.ToString(amount, CultureInfo.InvariantCulture), false);
+                this.SendCommand(deviceCode, Convert.ToString(amount, CultureInfo.InvariantCulture), CommandStyle.Short);
             }
         }
 
@@ -156,8 +156,8 @@ namespace HE853
         /// </summary>
         /// <param name="deviceCode">Device code of receivers.</param>
         /// <param name="command">Text command to send.</param>
-        /// <param name="shortCommand">Sends shorter less compatible command sequence.</param> 
-        private void SendCommand(int deviceCode, string command, bool shortCommand)
+        /// <param name="commandStyle">Does specify how much information is send.</param>
+        private void SendCommand(int deviceCode, string command, CommandStyle commandStyle)
         {
             if (!Command.IsValidDeviceCode(deviceCode))
             {
@@ -167,7 +167,7 @@ namespace HE853
             this.TestStatus();
 
             this.SendCommand(this.commandCN.Build(deviceCode, command));
-            if (!shortCommand && (command == Command.On || command == Command.Off))
+            if (commandStyle == CommandStyle.Comprehensive && (command == Command.On || command == Command.Off))
             {
                 this.SendCommand(this.commandUK.Build(deviceCode, command));
                 this.SendCommand(this.commandEU.Build(deviceCode, command));
