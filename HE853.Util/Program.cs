@@ -57,10 +57,7 @@ namespace HE853.Util
         /// <returns>0 if no error occured.</returns>
         public static int Main(string[] args)
         {
-            Console.WriteLine("Home Easy HE853 Control Utility v" + Assembly.GetExecutingAssembly().GetName().Version + " by Thomas Ascher");
-            Console.WriteLine("This program is licensed under the terms of the GNU GPL.");
-            Console.WriteLine("http://he853control.sourceforge.net");
-            Console.WriteLine();
+            PrintInformation();
             
             string command;
             int dim;
@@ -179,6 +176,17 @@ namespace HE853.Util
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// Print program information.
+        /// </summary>
+        private static void PrintInformation()
+        {
+            Console.WriteLine("Home Easy HE853 Control Utility v" + Assembly.GetExecutingAssembly().GetName().Version + " by Thomas Ascher");
+            Console.WriteLine("This program is licensed under the terms of the GNU GPL.");
+            Console.WriteLine("http://he853control.sourceforge.net");
+            Console.WriteLine();
         }
 
         /// <summary>
