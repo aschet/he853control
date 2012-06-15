@@ -110,7 +110,8 @@ namespace HE853
         /// </summary>
         /// <param name="deviceCode">Device code of receivers.</param>
         /// <param name="amount">Amount of dim. A value between 1 an 8.</param>
-        public void AdjustDim(int deviceCode, int amount)
+        /// <param name="commandStyle">Does specify how much information is send.</param>
+        public void AdjustDim(int deviceCode, int amount, CommandStyle commandStyle)
         {
             if (!Command.IsValidDim(amount))
             {
@@ -119,7 +120,7 @@ namespace HE853
 
             lock (this.locker)
             {
-                this.SendCommand(deviceCode, Convert.ToString(amount, CultureInfo.InvariantCulture), CommandStyle.Short);
+                this.SendCommand(deviceCode, Convert.ToString(amount, CultureInfo.InvariantCulture), commandStyle);
             }
         }
 

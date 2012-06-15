@@ -105,7 +105,7 @@ namespace HE853.App
 
             try
             {
-                this.device.AdjustDim(this.GetDeviceCode(), int.Parse(this.dimComboBox.Text));
+                this.device.AdjustDim(this.GetDeviceCode(), int.Parse(this.dimComboBox.Text), this.GetCommandStyle());
             }
             catch (Exception exception)
             {
