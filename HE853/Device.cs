@@ -109,9 +109,9 @@ namespace HE853
         /// Adjusts dim level on receivers with specific device code.
         /// </summary>
         /// <param name="deviceCode">Device code of receivers.</param>
-        /// <param name="amount">Amount of dim. A value between 1 an 8.</param>
         /// <param name="commandStyle">Does specify how much information is send.</param>
-        public void AdjustDim(int deviceCode, int amount, CommandStyle commandStyle)
+        /// <param name="amount">Amount of dim. A value between 1 an 8.</param>
+        public void AdjustDim(int deviceCode, CommandStyle commandStyle, int amount)
         {
             if (!Command.IsValidDim(amount))
             {
