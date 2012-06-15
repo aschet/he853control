@@ -197,12 +197,12 @@ namespace HE853.Util
             Console.WriteLine("<command> := " + Command.On + " | " + Command.Off + " | " + Command.MinDim + ".." + Command.MaxDim);
             Console.WriteLine("<device_code> := " + Command.MinDeviceCode + ".." + Command.MaxDeviceCode);
             Console.WriteLine();
-            Console.WriteLine("/service: use service instead of device");
+            Console.WriteLine(Rpc.ServiceArg + ": use service instead of device");
             Console.WriteLine("/short: use short command sequence, less compatible");
             Console.WriteLine();
             Console.WriteLine("The device code has to programed to a receiver first.");
             Console.WriteLine("To program the code hold the learn button on the receiver for");
-            Console.WriteLine("about 1 second and send an ON command with the specific code.");
+            Console.WriteLine("about 1 second and send an " + Command.On + " command with the specific code.");
             Console.WriteLine();
             Console.WriteLine("Example: " + name + " " + Command.On + " 1001");
         }
