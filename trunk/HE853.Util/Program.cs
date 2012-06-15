@@ -66,9 +66,9 @@ namespace HE853.Util
             int dim;
             int deviceCode;
             bool useService;
-            bool shortCommand;
+            CommandStyle commandStyle;
 
-            if (!ParseArgs(args, out command, out dim, out deviceCode, out useService, out shortCommand))
+            if (!ParseArgs(args, out command, out dim, out deviceCode, out useService, out commandStyle))
             {
                 return (int)ExitCode.Success;
             }
@@ -86,11 +86,11 @@ namespace HE853.Util
 
                 if (command == Command.On)
                 {
-                    device.SwitchOn(deviceCode, shortCommand);
+                    device.SwitchOn(deviceCode, commandStyle);
                 }
                 else if (command == Command.Off)
                 {
-                    device.SwitchOff(deviceCode, shortCommand);
+                    device.SwitchOff(deviceCode, commandStyle);
                 }
                 else
                 {
@@ -125,15 +125,15 @@ namespace HE853.Util
         /// <param name="dim">Detected dim.</param>
         /// <param name="deviceCode">Detected device code.</param>
         /// <param name="service">Status of service flag.</param>
-        /// <param name="shortCommnd">Status of short command flag.</param>
+        /// <param name="commandStyle">Status of short command flag.</param>
         /// <returns>True if all required arguments are valid and available.</returns>
-        private static bool ParseArgs(string[] args, out string command, out int dim, out int deviceCode, out bool service, out bool shortCommnd)
+        private static bool ParseArgs(string[] args, out string command, out int dim, out int deviceCode, out bool service, out CommandStyle commandStyle)
         {
             command = string.Empty;
             dim = 0;
             deviceCode = 0;
             service = Rpc.HasServiceArg(args);
-            shortCommnd = false;
+            commandStyle = CommandStyle.Comprehensive;
             
             if (args.Length < 2)
             {
@@ -177,7 +177,7 @@ namespace HE853.Util
             {
                 if (arg == "/short")
                 {
-                    shortCommnd = true;
+                    commandStyle = CommandStyle.Short;
                     break;
                 }
             }

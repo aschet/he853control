@@ -42,15 +42,15 @@ namespace HE853
         /// Swiches receivers with specific device code on.
         /// </summary>
         /// <param name="deviceCode">Device code of receivers.</param>
-        /// <param name="shortCommand">Sends shorter less compatible command sequence.</param>
-        void SwitchOn(int deviceCode, bool shortCommand);
+        /// <param name="commandStyle">Does specify how much information is send.</param>
+        void SwitchOn(int deviceCode, CommandStyle commandStyle);
 
         /// <summary>
         /// Swiches receivers with specific device code off.
         /// </summary>
         /// <param name="deviceCode">Device code of receivers.</param>
-        /// <param name="shortCommand">Sends shorter less compatible command sequence.</param>
-        void SwitchOff(int deviceCode, bool shortCommand);
+        /// <param name="commandStyle">Does specify how much information is send.</param>
+        void SwitchOff(int deviceCode, CommandStyle commandStyle);
         
         /// <summary>
         /// Adjusts dim level on receivers with specific device code.

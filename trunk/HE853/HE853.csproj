@@ -49,6 +49,7 @@
     <Compile Include="Command.cs" />
     <Compile Include="CommandCN.cs" />
     <Compile Include="CommandEU.cs" />
+    <Compile Include="CommandStyle.cs" />
     <Compile Include="CommandUK.cs" />
     <Compile Include="Device.cs" />
     <Compile Include="IDevice.cs" />

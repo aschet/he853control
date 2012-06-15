@@ -63,7 +63,7 @@ namespace HE853.App
             
             try
             {
-                this.device.SwitchOn(this.GetDeviceCode(), this.UseShortCommands());
+                this.device.SwitchOn(this.GetDeviceCode(), this.GetCommandStyle());
             }
             catch (Exception exception)
             {
@@ -84,7 +84,7 @@ namespace HE853.App
 
             try
             {
-                this.device.SwitchOff(this.GetDeviceCode(), this.UseShortCommands());
+                this.device.SwitchOff(this.GetDeviceCode(), this.GetCommandStyle());
             }
             catch (Exception exception)
             {
@@ -145,9 +145,16 @@ namespace HE853.App
         /// Determines if user selected shorts commands.
         /// </summary>
         /// <returns>True if short commands should be used.</returns>
-        private bool UseShortCommands()
+        private CommandStyle GetCommandStyle()
         {
-            return this.checkBoxShortCommands.Checked;
+            if (this.checkBoxShortCommands.Checked)
+            {
+                return CommandStyle.Short;
+            }
+            else
+            {
+                return CommandStyle.Comprehensive;
+            }
         }
     }
 }
