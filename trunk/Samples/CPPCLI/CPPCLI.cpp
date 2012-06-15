@@ -1,14 +1,15 @@
 using namespace System;
 using namespace System::IO;
+using namespace HE853;
 
 int main(array<String ^> ^args)
 {
-	HE853::IDevice^ device = gcnew HE853::Device();
+	IDevice^ device = gcnew Device();
 	try
 	{
 		device->Open();
-		device->SwitchOn(1001, false);
-		device->SwitchOff(1001, false);
+		device->SwitchOn(1001, CommandStyle::Comprehensive);
+		device->SwitchOff(1001, CommandStyle::Comprehensive);
 		device->Close();
 	}
 	catch (FileNotFoundException^ exception)

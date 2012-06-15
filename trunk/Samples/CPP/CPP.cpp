@@ -1,14 +1,16 @@
 #import "..\..\HE853.tlb"
 
+using namespace HE853;
+
 int main(int argc, char* argv[])
 {
 	CoInitialize(NULL);
 	
-	HE853::IDevicePtr device(__uuidof(HE853::Device));
+	IDevicePtr device(__uuidof(Device));
 
 	device->Open();
-	device->SwitchOn(1001, false);
-	device->SwitchOff(1001, false);
+	device->SwitchOn(1001, CommandStyle_Comprehensive);
+	device->SwitchOff(1001, CommandStyle_Comprehensive);
 	device->Close();
 
 	device->Release();
