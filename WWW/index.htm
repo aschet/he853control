@@ -36,7 +36,7 @@ For more information and the latest packages please refer to the project page: <
 <img src="shot.png">
 </p>
 
-<a class="download" href="http://sourceforge.net/projects/he853control/files/1.4/HE853Control_1_4.msi/download">Download v1.4</a>
+<a class="download" href="http://sourceforge.net/projects/he853control/files/1.5/HE853Control_1_5.msi/download">Download v1.5</a>
 </div>
 
 <h2>Command Line Utility - HE853.Util.exe</h2>
@@ -66,10 +66,10 @@ as Any CPU and works with x86 and x64 platform configurations.
 <h3>C# Sample Code</h3>
 <p>
 <pre>
-HE853.IDevice device = new HE853.Device();
+IDevice device = new Device();
 device.Open();
-device.SwitchOn(1001, false);
-device.SwitchOff(1001, false);
+device.SwitchOn(1001, CommandStyle.Comprehensive);
+device.SwitchOff(1001, CommandStyle.Comprehensive);
 device.Close();
 </pre>
 </p>
