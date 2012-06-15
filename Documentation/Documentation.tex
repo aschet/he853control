@@ -13,7 +13,7 @@ normalheadings,
 
 \begin{document}
 
-\title{HE853 Control Documentation v1.4}
+\title{HE853 Control Documentation v1.5}
 \author{Thomas Ascher}
 \maketitle
 \tableofcontents
@@ -129,10 +129,10 @@ have to be made available on distribution.
 \subsection{C\# Sample Code}
 
 \begin{verbatim}
-HE853.IDevice device = new HE853.Device();
+IDevice device = new Device();
 device.Open();
-device.SwitchOn(1001, false);
-device.Off(1001, false);
+device.SwitchOn(1001, CommandStyle.Comprehensive);
+device.SwitchOff(1001, CommandStyle.Comprehensive);
 device.Close();
 \end{verbatim}
 
@@ -145,11 +145,11 @@ application.
 \subsection{C\# Sample Code}
 
 \begin{verbatim}
-HE853.Rpc.RegisterClient();
-HE853.IDevice device = new HE853.Device();
+Rpc.RegisterClient();
+IDevice device = new Device();
 device.Open();
-device.SwitchOn(1001, false);
-device.Off(1001, false);
+device.SwitchOn(1001, CommandStyle.Comprehensive);
+device.SwitchOff(1001, CommandStyle.Comprehensive);
 device.Close();
 \end{verbatim}
 
