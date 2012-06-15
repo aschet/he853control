@@ -2,17 +2,18 @@
 {
     using System;
     using System.IO;
+    using HE853;
 
     class Program
     {
         static void Main(string[] args)
         {
-            HE853.IDevice device = new HE853.Device();
+            IDevice device = new Device();
             try
             {
                 device.Open();
-                device.SwitchOn(1001, false);
-                device.SwitchOff(1001, false);
+                device.SwitchOn(1001, CommandStyle.Comprehensive);
+                device.SwitchOff(1001, CommandStyle.Comprehensive);
                 device.Close();
             }
             catch (FileNotFoundException exception)
