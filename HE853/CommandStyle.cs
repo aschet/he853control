@@ -28,13 +28,13 @@ namespace HE853
     public enum CommandStyle
     {
         /// <summary>
-        /// Short send sequence. Does not support all devices.
-        /// </summary>
-        Short,
-
-        /// <summary>
         /// Long send sequence. Does support all devices but requires more time to send information.
         /// </summary>
-        Comprehensive
+        Comprehensive,
+
+        /// <summary>
+        /// Short send sequence. Does not support all devices.
+        /// </summary>
+        Short
     }
 }
