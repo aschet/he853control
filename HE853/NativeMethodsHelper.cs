@@ -81,6 +81,20 @@ namespace HE853
         }
 
         /// <summary>
+        /// Flushes HID queue.
+        /// </summary>
+        /// <param name="fileName">Name of the file to open.</param>
+        public static void FlushHIDQueue(string fileName)
+        {
+            IntPtr handle = CreateFile(fileName, 0x80000000, 0x40000000);
+            if (handle != IntPtr.Zero)
+            {
+                NativeMethods.HidD_FlushQueue(handle);
+                CloseHandle(ref handle);
+            }
+        }
+
+        /// <summary>
         /// Convenience helper for HidD_SetOutputReport.
         /// </summary>
         /// <param name="hidDeviceObject">Valid handle to HID device.</param>
@@ -96,15 +110,16 @@ namespace HE853
         /// </summary>
         /// <param name="fileName">Name of the file to open.</param>
         /// <param name="desiredAccess">Flags for access.</param>
+        /// <param name="flagsAndAttributes">Attributes for access.</param>
         /// <returns>Handle to file.</returns>
-        private static IntPtr CreateFile(string fileName, uint desiredAccess)
+        private static IntPtr CreateFile(string fileName, uint desiredAccess, uint flagsAndAttributes = 0x0)
         {
             NativeMethods.SecurityAttributes security = new NativeMethods.SecurityAttributes();
             security.Length = Marshal.SizeOf(security);
             security.SecurityDescriptor = IntPtr.Zero;
             security.InheritHandle = Convert.ToInt32(true);
 
-            return NativeMethods.CreateFile(fileName, desiredAccess, 0x3, ref security, 0x3, 0x0, IntPtr.Zero);
+            return NativeMethods.CreateFile(fileName, desiredAccess, 0x3, ref security, 0x3, flagsAndAttributes, IntPtr.Zero);
         }
 
         /// <summary>

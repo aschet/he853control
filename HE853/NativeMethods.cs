@@ -60,9 +60,9 @@ namespace HE853
         /// Import for HidD_FlushQueue function.
         /// </summary>
         /// <param name="hidDeviceObject">Specifies an open handle to a top-level collection.</param>
-        /// <returns></returns>
+        /// <returns>True if flush operation succeeded.</returns>
         [DllImport("hid.dll")]
-        public static extern bool HidD_FlushQueue(IntPtr hidDeviceObject); 
+        public static extern int HidD_FlushQueue(IntPtr hidDeviceObject); 
 
         /// <summary>
         /// Import for HidD_GetAttributes function.

@@ -135,6 +135,7 @@ namespace HE853
             string devicePath = NativeMethodsHelper.GetHE853DevicePath();
             if (devicePath.Length != 0)
             {
+                NativeMethodsHelper.FlushHIDQueue(devicePath);
                 this.writeHandle = NativeMethodsHelper.CreateFileForWrite(devicePath);
             }
 
