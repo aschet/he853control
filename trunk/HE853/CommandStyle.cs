@@ -19,11 +19,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace HE853
 {
+    using System;
     using System.Runtime.InteropServices;
 
     /// <summary>
     /// Does specify how much information is send.
     /// </summary>
+    [Serializable]
     [ComVisible(true), GuidAttribute("3DAA2F62-5469-4F71-A4EA-5D7077FE920A")]
     public enum CommandStyle
     {

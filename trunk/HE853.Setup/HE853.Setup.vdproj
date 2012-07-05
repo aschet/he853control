@@ -208,13 +208,7 @@
         "Entry"
         {
         "MsmKey" = "8:_BE23276721F8098C2A2D162D96B847FD"
-        "OwnerKey" = "8:_B6CCCEE919D744F28FF3CD19FADF5AB9"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_BE23276721F8098C2A2D162D96B847FD"
-        "OwnerKey" = "8:_B4F193A7AE4F40498A5C8CD42E36ADE3"
+        "OwnerKey" = "8:_DB4CE44957BE27D6EA2CBBD499D4C522"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -226,7 +220,13 @@
         "Entry"
         {
         "MsmKey" = "8:_BE23276721F8098C2A2D162D96B847FD"
-        "OwnerKey" = "8:_DB4CE44957BE27D6EA2CBBD499D4C522"
+        "OwnerKey" = "8:_B4F193A7AE4F40498A5C8CD42E36ADE3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BE23276721F8098C2A2D162D96B847FD"
+        "OwnerKey" = "8:_B6CCCEE919D744F28FF3CD19FADF5AB9"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -274,13 +274,13 @@
         "Entry"
         {
         "MsmKey" = "8:_DB4CE44957BE27D6EA2CBBD499D4C522"
-        "OwnerKey" = "8:_B4F193A7AE4F40498A5C8CD42E36ADE3"
+        "OwnerKey" = "8:_85AE27FAD65E4571B4CAB1529DD516A3"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_DB4CE44957BE27D6EA2CBBD499D4C522"
-        "OwnerKey" = "8:_85AE27FAD65E4571B4CAB1529DD516A3"
+        "OwnerKey" = "8:_B4F193A7AE4F40498A5C8CD42E36ADE3"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -316,31 +316,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C84C9716AA084C8698617637F92B5990"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_B6CCCEE919D744F28FF3CD19FADF5AB9"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_B4F193A7AE4F40498A5C8CD42E36ADE3"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_85AE27FAD65E4571B4CAB1529DD516A3"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_835FDE80299A49BFB81F16608C9443F8"
+        "OwnerKey" = "8:_BE23276721F8098C2A2D162D96B847FD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -352,7 +328,31 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_BE23276721F8098C2A2D162D96B847FD"
+        "OwnerKey" = "8:_835FDE80299A49BFB81F16608C9443F8"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_85AE27FAD65E4571B4CAB1529DD516A3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_B4F193A7AE4F40498A5C8CD42E36ADE3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_B6CCCEE919D744F28FF3CD19FADF5AB9"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_C84C9716AA084C8698617637F92B5990"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -363,7 +363,7 @@
         "DisplayName" = "8:Debug"
         "IsDebugOnly" = "11:TRUE"
         "IsReleaseOnly" = "11:FALSE"
-        "OutputFilename" = "8:Debug\\HE853Control_1_5.msi"
+        "OutputFilename" = "8:Debug\\HE853Control_1_5_1.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -390,7 +390,7 @@
         "DisplayName" = "8:Release"
         "IsDebugOnly" = "11:FALSE"
         "IsReleaseOnly" = "11:TRUE"
-        "OutputFilename" = "8:Release\\HE853Control_1_5.msi"
+        "OutputFilename" = "8:Release\\HE853Control_1_5_1.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -1020,14 +1020,9 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:HE853, Version=1.5.0.0, Culture=neutral, PublicKeyToken=c5b100a8b7cb8aff, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:HE853, Version=1.5.1.0, Culture=neutral, PublicKeyToken=c5b100a8b7cb8aff, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_BE23276721F8098C2A2D162D96B847FD"
-                    {
-                    "Name" = "8:HE853.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:HE853.dll"
             "TargetName" = "8:"
@@ -1151,14 +1146,9 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:HE853.Rpc, Version=1.5.0.0, Culture=neutral, PublicKeyToken=c5b100a8b7cb8aff, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:HE853.Rpc, Version=1.5.1.0, Culture=neutral, PublicKeyToken=c5b100a8b7cb8aff, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_DB4CE44957BE27D6EA2CBBD499D4C522"
-                    {
-                    "Name" = "8:HE853.Rpc.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:HE853.Rpc.dll"
             "TargetName" = "8:"
@@ -1501,15 +1491,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:HE853 Control"
-        "ProductCode" = "8:{B885E066-D767-4DB4-850E-786DA18C10EE}"
-        "PackageCode" = "8:{34BD2E25-DDFB-4784-B3E6-04D7B47E0C39}"
+        "ProductCode" = "8:{44BF7B72-6FEF-4B07-B587-DFC4B09FBC73}"
+        "PackageCode" = "8:{F3ED0B51-3D6D-41D9-9078-FCB24FDE5DDF}"
         "UpgradeCode" = "8:{5D5BA8E3-E724-4900-A438-A3C3EBD4E6FE}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.5"
+        "ProductVersion" = "8:1.5.1"
         "Manufacturer" = "8:Thomas Ascher"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://he853control.sourceforge.net"

@@ -56,9 +56,12 @@ namespace HE853
             System.Collections.IDictionary properties = new System.Collections.Hashtable();
             properties["portName"] = ChannelName;
             properties["authorizedGroup"] = account.ToString();
+            properties["typeFilterLevel"] = System.Runtime.Serialization.Formatters.TypeFilterLevel.Full;
+
 
             BinaryClientFormatterSinkProvider clientProvider = new BinaryClientFormatterSinkProvider();
             BinaryServerFormatterSinkProvider serverProvider = new BinaryServerFormatterSinkProvider();
+            serverProvider.TypeFilterLevel = System.Runtime.Serialization.Formatters.TypeFilterLevel.Full;
 
             ChannelServices.RegisterChannel(new IpcChannel(properties, clientProvider, serverProvider), true);
             RemotingConfiguration.RegisterWellKnownServiceType(typeof(HE853.Device), InterfaceName, WellKnownObjectMode.Singleton);
