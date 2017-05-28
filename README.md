@@ -4,6 +4,8 @@ The HE853 Control project is dedicated to create a Windows SDK for the [HE853 US
 
 Our target audience are power users and software developers who wish to extend the usage of the HE853 USB dongle beyond the limits of the vendor software.
 
+![Screenshot](https://cloud.githubusercontent.com/assets/13846346/26529320/2db8733e-43be-11e7-8960-a2a4b4a9793b.png)
+
 ## Command Line Utility - HE853.Util.exe
 
 ```
